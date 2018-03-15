@@ -3,8 +3,8 @@ import numpy as np
 
 class VGG:
     def __init__(self):
-        self.x = tf.placeholder(tf.float32, shape=(None, 224, 224, 3))
-        self.y_ = tf.placeholder(tf.float32, shape=(None, 1000))
+        self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
+        self.y_ = tf.placeholder(tf.float32, shape=(None, 10))
         self.filters = []
         self.filters.append(tf.Variable(np.random.rand(3, 3, 3, 64), dtype=np.float32))
         self.filters.append(tf.Variable(np.random.rand(3, 3, 64, 64), dtype=np.float32))
@@ -42,10 +42,9 @@ class VGG:
 
         polled = tf.reshape(polled,[None,20])
         fc1 = self.fc_relu_drop(polled)
-        fc2 = self.fc_relu_drop(fc1)
-        y = tf.layers.dense(inputs=fc2, units=1000)
-
-        correct_prediction = tf.equal(tf.arg_max(tf.nn.softmax(y),1), tf.arg_max(self.y_,1))
+        y = tf.layers.dense(inputs=fc1, units=10)
+        y = tf.nn.softmax(y)
+        correct_prediction = tf.equal(tf.arg_max(y,1), self.y_)
         self.accaury = tf.reduce_mean(tf.cast(correct_prediction), tf.float32)
 
         self.cross_entropy = tf.nn.softmax_cross_entropy_with_logits(
@@ -58,7 +57,7 @@ class VGG:
         return output
 
     def fc_relu_drop(self, input, filter):
-        output = tf.layers.dense(inputs=input, units=4096, activation=tf.nn.relu)
+        output = tf.layers.dense(inputs=input, units=512, activation=tf.nn.relu)
         output = tf.nn.dropout(output,0.5)
         return output
 
