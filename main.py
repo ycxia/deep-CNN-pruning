@@ -5,6 +5,7 @@ import numpy as np
 import os
 from glob import glob
 import util
+import sys
 
 flags = tf.app.flags
 flags.DEFINE_integer("epoch", 25, "Epoch to train [25]")
@@ -82,7 +83,7 @@ def main(_):
     #     FLAGS.output_width = FLAGS.output_height
     batch_size = FLAGS.batch_size
     epoch_num = FLAGS.epoch
-    dataset_path = os.path.join('./data', FLAGS.dataset)
+    dataset_path = os.path.join(sys.path[0],'data', FLAGS.dataset)
     learning_rate = FLAGS.learning_rate
 
     run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate)
