@@ -1,5 +1,6 @@
 import pickle
 import numpy as np
+import tensorflow as tf
 def unpickle(file):
     with open(file, 'rb') as fo:
         dict = pickle.load(fo, encoding='bytes')
@@ -7,7 +8,7 @@ def unpickle(file):
 
 def data_read(train_file):
     x = np.array([])
-    label = list()
+    label = None
     for file in train_file:
         dict = unpickle(file)
         # if x == None:
@@ -15,6 +16,12 @@ def data_read(train_file):
         #     label = dict[b'labels']
         # else:
         x = np.concatenate((x,dict[b'data'].flatten()))
-        for num in dict[b'labels']:
-            label.append([num])
+        nums = tf.one_hot(dict[b'labels'],depth=10)
+        if(label==None):
+            label = nums
+        else:
+            tf.concat([label,nums],axis=0)
+    with tf.Session() as sess:
+        sess.run(tf.global_variables_initializer())
+        label = sess.run(label)
     return x, label

@@ -4,7 +4,7 @@ import numpy as np
 class VGG16Cifar10:
     def __init__(self):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
-        self.y_ = tf.placeholder(tf.int64, shape=(None, 1))
+        self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
         self.filters = []
         self.filters.append(tf.Variable(np.random.rand(3, 3, 3, 64), dtype=np.float32))
         self.filters.append(tf.Variable(np.random.rand(3, 3, 64, 64), dtype=np.float32))
@@ -40,7 +40,7 @@ class VGG16Cifar10:
         self.output13 = self.conv2d_with_relu(self.output12, self.filters[12])
         polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
-        polled = tf.reshape(polled,[-1,20])
+        polled = tf.reshape(polled,[-1,512])
         fc1 = self.fc_relu_drop(polled)
         y = tf.layers.dense(inputs=fc1, units=10)
         y = tf.nn.softmax(y)

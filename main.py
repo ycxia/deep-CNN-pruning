@@ -43,7 +43,7 @@ def run():
     print("Training end!")
 
 def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate):
-    train_file = glob(os.path.join(dataset_path, 'data*'))
+    train_file = glob(os.path.join(dataset_path, 'data*1'))
     train_x,train_label = util.data_read(train_file)
     train_x = np.reshape(train_x,(-1, 32, 32, 3))
     print(train_x.shape)
@@ -60,7 +60,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate):
     train_step = vgg.get_train_step(learning_rate)
 
     print("Model build success!")
-    batch_num = batch_size // train_data_size
+    batch_num = train_data_size//batch_size
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         print("Training starts...")
@@ -69,10 +69,11 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate):
                 batch_x = train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 batch_label = train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
+                print(str(i))
                 if i % 5 == 0:
-                    loss = sess.run(vgg.cross_entropy, feed_dict={vgg.x: test_x, vgg.y_: test_label})
+                    loss = sess.run(vgg.cross_entropy, feed_dict={vgg.x: test_x[0:10], vgg.y_: test_label[0:10]})
                     print(str(i) + "/" + str(batch_num) + " batch: loss is " + str(loss))
-            loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label})
+            loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x[0:10], vgg.y_: test_label[0:10]})
             print(str(epoch) + " epoch: loss is " + str(loss) + ",accuary is " + str(acc))
     print("Training end!")
 
