@@ -6,4 +6,4 @@
 - tensorReduce.py 用于张量裁剪，可以剪去卷积核某个输出通道，或者减少某个输入通道对应的卷积参数，从而进行剪枝
 
 ## 训练命令
-python main.py --epoch 20 --learning_rate 0.02 --batch_size 1 --dataset cifar-10-batches-py
+python main.py --epoch 20 --learning_rate 0.02 --batch_size 16 --dataset cifar-10-batches-py --testset_size 32

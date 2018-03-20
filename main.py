@@ -15,6 +15,7 @@ flags.DEFINE_integer("batch_size", 64, "The size of batch images [64]")
 flags.DEFINE_string("dataset", None, "The name of dataset [celebA, mnist, lsun]")
 flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the checkpoints [checkpoint]")
 flags.DEFINE_boolean("train", False, "True for training, False for testing [False]")
+flags.DEFINE_integer("testset_size", 32, "testset size [32]")
 FLAGS = flags.FLAGS
 
 def run():
@@ -42,7 +43,7 @@ def run():
             print(str(epoch) + " epoch: loss is " + str(loss) + ",accuary is " + str(acc))
     print("Training end!")
 
-def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate):
+def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size):
     train_file = glob(os.path.join(dataset_path, 'data*1'))
     train_x,train_label = util.data_read(train_file)
     train_x = np.reshape(train_x,(-1, 32, 32, 3))
@@ -68,12 +69,13 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate):
             for i in range(batch_num):
                 batch_x = train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 batch_label = train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
+                # y = sess.run(vgg.fc1, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
-                print(str(i))
+                # print(str(i)+":y is "+str(y))
                 if i % 5 == 0:
-                    loss = sess.run(vgg.cross_entropy, feed_dict={vgg.x: test_x[0:10], vgg.y_: test_label[0:10]})
-                    print(str(i) + "/" + str(batch_num) + " batch: loss is " + str(loss))
-            loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x[0:10], vgg.y_: test_label[0:10]})
+                    loss,acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
+                    print(str(i) + "/" + str(batch_num) + " batch: loss is " + str(loss) + ",acc is "+str(acc))
+            loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
             print(str(epoch) + " epoch: loss is " + str(loss) + ",accuary is " + str(acc))
     print("Training end!")
 
@@ -86,8 +88,9 @@ def main(_):
     epoch_num = FLAGS.epoch
     dataset_path = os.path.join(sys.path[0],'data', FLAGS.dataset)
     learning_rate = FLAGS.learning_rate
+    testset_size = FLAGS.testset_size
 
-    run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate)
+    run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size)
 
 if __name__ == '__main__':
   tf.app.run()

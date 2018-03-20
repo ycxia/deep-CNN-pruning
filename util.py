@@ -15,7 +15,7 @@ def data_read(train_file):
         #     x = dict[b'data']
         #     label = dict[b'labels']
         # else:
-        x = np.concatenate((x,dict[b'data'].flatten()))
+        x = np.concatenate((x,(dict[b'data']/255.0).flatten()))
         nums = tf.one_hot(dict[b'labels'],depth=10)
         if(label==None):
             label = nums

@@ -6,7 +6,7 @@ class VGG16Cifar10:
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
         self.filters = []
-        self.filters.append(tf.Variable(np.random.rand(3, 3, 3, 64), dtype=np.float32))
+        self.filters.append(tf.Variable(np.random.rand(3, 3, 3, 64), dtype=np.float32,))
         self.filters.append(tf.Variable(np.random.rand(3, 3, 64, 64), dtype=np.float32))
         self.filters.append(tf.Variable(np.random.rand(3, 3, 64, 128), dtype=np.float32))
         self.filters.append(tf.Variable(np.random.rand(3, 3, 128, 128), dtype=np.float32))
@@ -41,15 +41,15 @@ class VGG16Cifar10:
         polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         polled = tf.reshape(polled,[-1,512])
-        fc1 = self.fc_relu_drop(polled)
-        y = tf.layers.dense(inputs=fc1, units=10)
-        y = tf.nn.softmax(y)
-        correct_prediction = tf.equal(tf.arg_max(y,1), self.y_)
+        self.fc1 = self.fc_relu_drop(polled)
+        self.y = tf.layers.dense(inputs=self.fc1, units=10)
+        self.y = tf.nn.softmax(self.y)
+        correct_prediction = tf.equal(tf.argmax(self.y,1), tf.argmax(self.y_,1))
         self.accaury = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-        self.cross_entropy = tf.nn.softmax_cross_entropy_with_logits(
+        self.cross_entropy = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(
             labels=self.y_,
-            logits=y)
+            logits=self.y))
 
     def conv2d_with_relu(self, input, filter):
         output = tf.nn.conv2d(input, filter, [1, 1, 1, 1], 'SAME')
