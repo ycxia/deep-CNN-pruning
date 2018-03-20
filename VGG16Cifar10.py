@@ -47,7 +47,7 @@ class VGG16Cifar10:
         correct_prediction = tf.equal(tf.argmax(self.y,1), tf.argmax(self.y_,1))
         self.accaury = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-        self.cross_entropy = tf.reduce_sum(tf.nn.softmax_cross_entropy_with_logits(
+        self.cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
             labels=self.y_,
             logits=self.y))
 
