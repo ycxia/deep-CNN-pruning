@@ -44,7 +44,7 @@ FLAGS = flags.FLAGS
 #     print("Training end!")
 
 def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size):
-    train_file = glob(os.path.join(dataset_path, 'data*1'))
+    train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
     train_x = np.reshape(train_x,(-1, 32, 32, 3))
     print(train_x.shape)
@@ -72,7 +72,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                 # y = sess.run(vgg.y, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                 # print(str(i)+":y is "+str(y))
-                if i % 50 == 0:
+                if i % 100 == 0:
                     loss,acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
                     print(str(i) + "/" + str(batch_num) + " batch: loss is " + str(loss) + ",acc is "+str(acc))
             loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})

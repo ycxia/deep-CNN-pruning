@@ -16,7 +16,7 @@ def data_read(train_file):
         if(label==None):
             label = nums
         else:
-            tf.concat([label,nums],axis=0)
+            label = tf.concat([label,nums],axis=0)
     # x = (x - np.mean(x)) / np.std(x)
     x = x/255.0
     with tf.Session() as sess:
