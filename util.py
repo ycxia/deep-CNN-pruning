@@ -11,16 +11,14 @@ def data_read(train_file):
     label = None
     for file in train_file:
         dict = unpickle(file)
-        # if x == None:
-        #     x = dict[b'data']
-        #     label = dict[b'labels']
-        # else:
-        x = np.concatenate((x,(dict[b'data']/255.0).flatten()))
+        x = np.concatenate((x,dict[b'data'].flatten()))
         nums = tf.one_hot(dict[b'labels'],depth=10)
         if(label==None):
             label = nums
         else:
             tf.concat([label,nums],axis=0)
+    # x = (x - np.mean(x)) / np.std(x)
+    x = x/255.0
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         label = sess.run(label)
