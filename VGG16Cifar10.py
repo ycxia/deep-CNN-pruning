@@ -1,5 +1,4 @@
 import tensorflow as tf
-import numpy as np
 
 class VGG16Cifar10:
     def __init__(self):

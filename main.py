@@ -1,5 +1,4 @@
-from VGG16Imagenet import VGG16Imagenet
-from VGG16Cifar10 import VGG16Cifar10
+from VGG16 import VGG16
 import tensorflow as tf
 import numpy as np
 import os
@@ -57,9 +56,9 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     train_data_size = len(train_label)
     print('Total train sample number is ' + str(train_data_size))
 
-    vgg = VGG16Cifar10()
+    vgg = VGG16()
     vgg.build_model()
-    train_step = vgg.get_train_step(learning_rate,l2_lambda)
+    train_step = vgg.get_train_step(learning_rate)
 
     print("Model build success!")
     batch_num = train_data_size//batch_size
@@ -70,9 +69,9 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
             for i in range(batch_num):
                 batch_x = train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 batch_label = train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
-                y = sess.run(vgg.reg_term, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
+                # y = sess.run(vgg.reg_term, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
-                print("{}:reg_term is {}".format(i,y))
+                # print("{}:reg_term is {}".format(i,y))
                 if i % 100 == 0:
                     loss,acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
                     print("{}/{} batch: loss is {},acc is {}".format(i,batch_num,loss,acc))
