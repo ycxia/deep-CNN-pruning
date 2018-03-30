@@ -58,7 +58,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
 
     vgg = VGG16Cifar10()
     vgg.build_model()
-    train_step = vgg.get_train_step(learning_rate)
+    train_step = vgg.get_train_step(learning_rate,0.0001)
 
     print("Model build success!")
     batch_num = train_data_size//batch_size
@@ -80,10 +80,6 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     print("Training end!")
 
 def main(_):
-    # if FLAGS.input_width is None:
-    #     FLAGS.input_width = FLAGS.input_height
-    # if FLAGS.output_width is None:
-    #     FLAGS.output_width = FLAGS.output_height
     batch_size = FLAGS.batch_size
     epoch_num = FLAGS.epoch
     dataset_path = os.path.join(sys.path[0],'data', FLAGS.dataset)

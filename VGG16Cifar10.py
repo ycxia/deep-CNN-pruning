@@ -6,6 +6,8 @@ class VGG16Cifar10:
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
         self.filters = []
+        self.dense = []
+        self.bais = []
 
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 3, 64), dtype=np.float32))
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 64, 64), dtype=np.float32))
@@ -34,6 +36,11 @@ class VGG16Cifar10:
         self.filters.append(tf.get_variable("filter12",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
         self.filters.append(tf.get_variable("filter13",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
 
+        self.dense.append(tf.get_variable("dense1",shape=[512,512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
+        self.bais.append(tf.zeros(name="b1",shape=[1,512]))
+        self.dense.append(tf.get_variable("dense2",shape=[512,10],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
+        self.bais.append(tf.zeros(name="b2", shape=[1, 10]))
+
     def build_model(self):
         self.output1 = self.conv2d_with_relu(self.x, self.filters[0])
         self.output2 = self.conv2d_with_relu(self.output1, self.filters[1])
@@ -55,8 +62,13 @@ class VGG16Cifar10:
         polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         polled = tf.reshape(polled,[-1,512])
-        self.fc1 = self.fc_relu_drop(polled)
-        self.y = tf.layers.dense(inputs=self.fc1, units=10, kernel_initializer=tf.truncated_normal_initializer(mean=0, stddev=1))
+        fc1 = self.fc(polled,self.dense[0],self.bais[0])
+        fc1 = tf.nn.relu(fc1)
+        fc1 = tf.nn.dropout(fc1,0.5)
+
+        self.y = self.fc(fc1,self.dense[1],self.bais[1])
+        # self.fc1 = self.fc_relu_drop(polled)
+        # self.y = tf.layers.dense(inputs=self.fc1, units=10, kernel_initializer=tf.truncated_normal_initializer(mean=0, stddev=1))
         self.yy = tf.nn.softmax(self.y)
         correct_prediction = tf.equal(tf.argmax(self.yy,1), tf.argmax(self.y_,1))
         self.accaury = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -64,6 +76,8 @@ class VGG16Cifar10:
         self.cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
             labels=self.y_,
             logits=self.y))
+
+        self.add_weight_to_collection()
 
     def conv2d_with_relu(self, input, filter):
         output = tf.nn.conv2d(input, filter, [1, 1, 1, 1], 'SAME')
@@ -79,5 +93,16 @@ class VGG16Cifar10:
         output = tf.nn.dropout(output,0.5)
         return output
 
-    def get_train_step(self, learning_rate):
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy)
+    def fc(self,input,dense,bais):
+        return tf.matmul(input, dense) + bais
+
+    def get_train_step(self, learning_rate,lbd):
+        regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
+        reg_term = tf.contrib.layers.apply_regularization(regularizer)
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+reg_term)
+
+    def add_weight_to_collection(self):
+        for filter in self.filters:
+            tf.add_to_collection(tf.GraphKeys.WEIGHTS, filter)
+        for dense in self.dense:
+            tf.add_to_collection(tf.GraphKeys.WEIGHTS, dense)
