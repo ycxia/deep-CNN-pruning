@@ -16,6 +16,7 @@ flags.DEFINE_string("dataset", None, "The name of dataset [celebA, mnist, lsun]"
 flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the checkpoints [checkpoint]")
 flags.DEFINE_boolean("train", False, "True for training, False for testing [False]")
 flags.DEFINE_integer("testset_size", 32, "testset size [32]")
+flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
 FLAGS = flags.FLAGS
 
 # def run():
@@ -43,7 +44,7 @@ FLAGS = flags.FLAGS
 #             print(str(epoch) + " epoch: loss is " + str(loss) + ",accuary is " + str(acc))
 #     print("Training end!")
 
-def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size):
+def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda):
     train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
     train_x = np.reshape(train_x,(-1, 32, 32, 3))
@@ -58,7 +59,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
 
     vgg = VGG16Cifar10()
     vgg.build_model()
-    train_step = vgg.get_train_step(learning_rate,0.0001)
+    train_step = vgg.get_train_step(learning_rate,l2_lambda)
 
     print("Model build success!")
     batch_num = train_data_size//batch_size
@@ -85,8 +86,9 @@ def main(_):
     dataset_path = os.path.join(sys.path[0],'data', FLAGS.dataset)
     learning_rate = FLAGS.learning_rate
     testset_size = FLAGS.testset_size
+    l2_lambda = FLAGS.l2_lambda
 
-    run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size)
+    run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda)
 
 if __name__ == '__main__':
   tf.app.run()

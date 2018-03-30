@@ -9,6 +9,6 @@
 训练数据需要存放在项目下的data文件夹下（自行创建），dataset参数即数据集文件夹的名称。VGG16Cifar10使用的是cifar10-python数据集。
 
 ## 训练命令
-python main.py --epoch 20 --learning_rate 0.001 --batch_size 16 --dataset cifar-10-batches-py --testset_size 32
+python main.py --epoch 20 --learning_rate 0.001 --batch_size 16 --dataset cifar-10-batches-py --testset_size 32 --l2_lambda 0.01
 
 
