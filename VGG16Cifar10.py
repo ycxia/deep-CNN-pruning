@@ -98,8 +98,8 @@ class VGG16Cifar10:
 
     def get_train_step(self, learning_rate,lbd):
         regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
-        reg_term = tf.contrib.layers.apply_regularization(regularizer)
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+reg_term)
+        self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+self.reg_term)
 
     def add_weight_to_collection(self):
         for filter in self.filters:
