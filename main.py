@@ -76,7 +76,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                     loss,acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
                     print("{}/{} batch: loss is {},acc is {}".format(i,batch_num,loss,acc))
             loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
-            print("{} epoch: loss is {},accuary is ".format(epoch,loss,acc))
+            print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
     print("Training end!")
 
 def main(_):
