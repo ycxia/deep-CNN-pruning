@@ -85,15 +85,6 @@ class VGG16Cifar10:
         output = tf.nn.relu(output)
         return output
 
-    def fc_relu_drop(self, input):
-        output = tf.layers.dense(
-            inputs=input,
-            units=512,
-            activation=tf.nn.relu,
-            kernel_initializer=tf.truncated_normal_initializer(mean=0, stddev=1))
-        output = tf.nn.dropout(output,0.5)
-        return output
-
     def fc(self,input,dense,bais):
         return tf.matmul(input, dense) + bais
 
