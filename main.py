@@ -59,7 +59,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
 
     vgg = VGG16Cifar10()
     vgg.build_model()
-    train_step = vgg.get_train_step(learning_rate)
+    train_step = vgg.get_train_step(learning_rate,l2_lambda)
 
     print("Model build success!")
     batch_num = train_data_size//batch_size
