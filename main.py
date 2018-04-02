@@ -1,4 +1,5 @@
 from VGG16 import VGG16
+from VGG16Cifar10 import VGG16Cifar10
 import tensorflow as tf
 import numpy as np
 import os
@@ -56,7 +57,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     train_data_size = len(train_label)
     print('Total train sample number is ' + str(train_data_size))
 
-    vgg = VGG16()
+    vgg = VGG16Cifar10()
     vgg.build_model()
     train_step = vgg.get_train_step(learning_rate)
 

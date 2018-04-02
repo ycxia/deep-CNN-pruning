@@ -21,23 +21,23 @@ class VGG16Cifar10:
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 512, 512), dtype=np.float32))
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 512, 512), dtype=np.float32))
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 512, 512), dtype=np.float32))
-        self.filters.append(tf.get_variable("filter1",shape=[3,3,3,64],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter2",shape=[3,3,64,64],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter3",shape=[3, 3, 64, 128],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter4",shape=[3, 3, 128, 128],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter5",shape=[3, 3, 128, 256],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter6",shape=[3, 3, 256, 256],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter7",shape=[3, 3, 256, 256],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter8",shape=[3, 3, 256, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter9",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter10",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter11",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter12",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
-        self.filters.append(tf.get_variable("filter13",shape=[3, 3, 512, 512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
+        self.filters.append(self.get_variable(shape=[3,3,3,64]))
+        self.filters.append(self.get_variable(shape=[3,3,64,64]))
+        self.filters.append(self.get_variable(shape=[3, 3, 64, 128]))
+        self.filters.append(self.get_variable(shape=[3, 3, 128, 128]))
+        self.filters.append(self.get_variable(shape=[3, 3, 128, 256]))
+        self.filters.append(self.get_variable(shape=[3, 3, 256, 256]))
+        self.filters.append(self.get_variable(shape=[3, 3, 256, 256]))
+        self.filters.append(self.get_variable(shape=[3, 3, 256, 512]))
+        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
 
-        self.dense.append(tf.get_variable("dense1",shape=[512,512],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
+        self.dense.append(self.get_variable(shape=[512,512]))
         self.bais.append(tf.zeros(name="b1",shape=[1,512]))
-        self.dense.append(tf.get_variable("dense2",shape=[512,10],initializer=tf.truncated_normal_initializer(mean=0, stddev=1)))
+        self.dense.append(self.get_variable(shape=[512,10]))
         self.bais.append(tf.zeros(name="b2", shape=[1, 10]))
 
     def build_model(self):
@@ -61,11 +61,13 @@ class VGG16Cifar10:
         polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         polled = tf.reshape(polled,[-1,512])
-        fc1 = self.fc(polled,self.dense[0],self.bais[0])
-        fc1 = tf.nn.relu(fc1)
+        # fc1 = self.fc(polled,self.dense[0],self.bais[0])
+        # fc1 = tf.nn.relu(fc1)
+        fc1 = tf.layers.dense(polled,512,tf.nn.relu)
         fc1 = tf.nn.dropout(fc1,0.5)
 
-        self.y = self.fc(fc1,self.dense[1],self.bais[1])
+        # self.y = self.fc(fc1,self.dense[1],self.bais[1])
+        self.y = tf.layers.dense(fc1,10)
         # self.fc1 = self.fc_relu_drop(polled)
         # self.y = tf.layers.dense(inputs=self.fc1, units=10, kernel_initializer=tf.truncated_normal_initializer(mean=0, stddev=1))
         self.yy = tf.nn.softmax(self.y)
@@ -76,7 +78,7 @@ class VGG16Cifar10:
             labels=self.y_,
             logits=self.y))
 
-        self.add_weight_to_collection()
+        # self.add_weight_to_collection()
 
     def conv2d_with_relu(self, input, filter):
         output = tf.nn.conv2d(input, filter, [1, 1, 1, 1], 'SAME')
@@ -96,9 +98,12 @@ class VGG16Cifar10:
         return tf.matmul(input, dense) + bais
 
     def get_train_step(self, learning_rate,lbd):
-        regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
-        self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+self.reg_term)
+        # regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
+        # self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy)
+
+    def get_variable(self,shape):
+        tf.Variable(tf.random_normal(shape))
 
     def add_weight_to_collection(self):
         for filter in self.filters:
