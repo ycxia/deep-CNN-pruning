@@ -19,6 +19,7 @@ class VGG16:
         output7 = self.conv2d_with_relu(output6, 256)
         output7 = self.max_pooling(output7)
 
+        output7 = tf.reshape(output7, [-1, 512])
         fc1 = tf.layers.dense(output7,512,tf.nn.relu)
         fc1 = tf.layers.dropout(fc1,0.5)
 
