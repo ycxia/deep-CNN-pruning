@@ -61,13 +61,13 @@ class VGG16Cifar10:
         polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         polled = tf.reshape(polled,[-1,512])
-        # fc1 = self.fc(polled,self.dense[0],self.bais[0])
-        # fc1 = tf.nn.relu(fc1)
-        fc1 = tf.layers.dense(polled,512,tf.nn.relu)
+        fc1 = self.fc(polled,self.dense[0],self.bais[0])
+        fc1 = tf.nn.relu(fc1)
+        # fc1 = tf.layers.dense(polled,512,tf.nn.relu)
         fc1 = tf.nn.dropout(fc1,0.5)
 
-        # self.y = self.fc(fc1,self.dense[1],self.bais[1])
-        self.y = tf.layers.dense(fc1,10)
+        self.y = self.fc(fc1,self.dense[1],self.bais[1])
+        # self.y = tf.layers.dense(fc1,10)
         # self.fc1 = self.fc_relu_drop(polled)
         # self.y = tf.layers.dense(inputs=self.fc1, units=10, kernel_initializer=tf.truncated_normal_initializer(mean=0, stddev=1))
         self.yy = tf.nn.softmax(self.y)
