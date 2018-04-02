@@ -1,5 +1,5 @@
 import tensorflow as tf
-
+import itertools
 class VGG16Cifar10:
     def __init__(self):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
@@ -95,7 +95,7 @@ class VGG16Cifar10:
         # self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
         tv = tf.trainable_variables()
         print("all weight shape:{}".format(len(tv)))
-        regularization_cost = 0.0005 * tf.reduce_sum([tf.nn.l2_loss(v) for v in self.filter+self.dense])
+        regularization_cost = 0.0005 * tf.reduce_sum([tf.nn.l2_loss(v) for v in itertools.chain(self.filters,self.dense)])
         return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+regularization_cost)
 
     def get_variable(self,name,shape):
