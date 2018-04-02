@@ -103,7 +103,7 @@ class VGG16Cifar10:
         return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy)
 
     def get_variable(self,shape):
-        tf.Variable(tf.random_normal(shape))
+        return tf.Variable(tf.random_normal(shape))
 
     def add_weight_to_collection(self):
         for filter in self.filters:
