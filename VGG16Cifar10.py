@@ -63,6 +63,7 @@ class VGG16Cifar10:
         polled = tf.reshape(polled,[-1,512])
         fc1 = self.fc(polled,self.dense[0],self.bais[0])
         fc1 = tf.nn.relu(fc1)
+        fc1 = tf.layers.batch_normalization(fc1)
         # fc1 = tf.layers.dense(polled,512,tf.nn.relu)
         fc1 = tf.nn.dropout(fc1,0.5)
 
@@ -83,6 +84,7 @@ class VGG16Cifar10:
     def conv2d_with_relu(self, input, filter):
         output = tf.nn.conv2d(input, filter, [1, 1, 1, 1], 'SAME')
         output = tf.nn.relu(output)
+        output = tf.layers.batch_normalization(output)
         return output
 
     def fc(self,input,dense,bais):
@@ -91,7 +93,9 @@ class VGG16Cifar10:
     def get_train_step(self, learning_rate,lbd):
         # regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
         # self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy)
+        tv = tf.trainable_variables()
+        regularization_cost = 0.0005 * tf.reduce_sum([tf.nn.l2_loss(v) for v in tv])
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+regularization_cost)
 
     def get_variable(self,name,shape):
         return tf.get_variable(name=name,shape=shape,initializer=tf.glorot_normal_initializer())
