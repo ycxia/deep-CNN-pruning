@@ -94,7 +94,7 @@ class VGG16Cifar10:
         # regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
         # self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
         tv = tf.trainable_variables()
-        print("all weight shape:{}".format(tv.shape))
+        print("all weight shape:{}".format(len(tv)))
         regularization_cost = 0.0005 * tf.reduce_sum([tf.nn.l2_loss(v) for v in tv])
         return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+regularization_cost)
 
