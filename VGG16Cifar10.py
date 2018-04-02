@@ -21,23 +21,23 @@ class VGG16Cifar10:
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 512, 512), dtype=np.float32))
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 512, 512), dtype=np.float32))
         # self.filters.append(tf.Variable(np.random.rand(3, 3, 512, 512), dtype=np.float32))
-        self.filters.append(self.get_variable(shape=[3,3,3,64]))
-        self.filters.append(self.get_variable(shape=[3,3,64,64]))
-        self.filters.append(self.get_variable(shape=[3, 3, 64, 128]))
-        self.filters.append(self.get_variable(shape=[3, 3, 128, 128]))
-        self.filters.append(self.get_variable(shape=[3, 3, 128, 256]))
-        self.filters.append(self.get_variable(shape=[3, 3, 256, 256]))
-        self.filters.append(self.get_variable(shape=[3, 3, 256, 256]))
-        self.filters.append(self.get_variable(shape=[3, 3, 256, 512]))
-        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
-        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
-        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
-        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
-        self.filters.append(self.get_variable(shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable("filter1",shape=[3,3,3,64]))
+        self.filters.append(self.get_variable("filter2",shape=[3,3,64,64]))
+        self.filters.append(self.get_variable("filter3",shape=[3, 3, 64, 128]))
+        self.filters.append(self.get_variable("filter4",shape=[3, 3, 128, 128]))
+        self.filters.append(self.get_variable("filter5",shape=[3, 3, 128, 256]))
+        self.filters.append(self.get_variable("filter6",shape=[3, 3, 256, 256]))
+        self.filters.append(self.get_variable("filter7",shape=[3, 3, 256, 256]))
+        self.filters.append(self.get_variable("filter8",shape=[3, 3, 256, 512]))
+        self.filters.append(self.get_variable("filter9",shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable("filter10",shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable("filter11",shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable("filter12",shape=[3, 3, 512, 512]))
+        self.filters.append(self.get_variable("filter13",shape=[3, 3, 512, 512]))
 
-        self.dense.append(self.get_variable(shape=[512,512]))
+        self.dense.append(self.get_variable("dense1",shape=[512,512]))
         self.bais.append(tf.zeros(name="b1",shape=[1,512]))
-        self.dense.append(self.get_variable(shape=[512,10]))
+        self.dense.append(self.get_variable("dense2",shape=[512,10]))
         self.bais.append(tf.zeros(name="b2", shape=[1, 10]))
 
     def build_model(self):
@@ -102,8 +102,8 @@ class VGG16Cifar10:
         # self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
         return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy)
 
-    def get_variable(self,shape):
-        return tf.Variable(tf.random_normal(shape))
+    def get_variable(self,name,shape):
+        return tf.get_variable(name=name,shape=shape,initializer=tf.glorot_normal_initializer())
 
     def add_weight_to_collection(self):
         for filter in self.filters:
