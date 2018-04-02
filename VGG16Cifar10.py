@@ -93,9 +93,10 @@ class VGG16Cifar10:
     def get_train_step(self, learning_rate,lbd):
         # regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
         # self.reg_term = tf.contrib.layers.apply_regularization(regularizer)
-        # tv = tf.trainable_variables()
-        # regularization_cost = 0.0005 * tf.reduce_sum([tf.nn.l2_loss(v) for v in tv])
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy)
+        tv = tf.trainable_variables()
+        print("all weight shape:{}".format(tv.shape))
+        regularization_cost = 0.0005 * tf.reduce_sum([tf.nn.l2_loss(v) for v in tv])
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+regularization_cost)
 
     def get_variable(self,name,shape):
         return tf.get_variable(name=name,shape=shape,initializer=tf.glorot_normal_initializer())
