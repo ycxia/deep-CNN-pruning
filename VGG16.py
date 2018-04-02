@@ -36,7 +36,7 @@ class VGG16:
         return tf.layers.conv2d(input,output_num,[3,3],[1,1],'same',activation=tf.nn.relu)
 
     def max_pooling(self,input):
-        tf.layers.max_pooling2d(input,[2,2],[2,2],'valid')
+        return tf.layers.max_pooling2d(input,[2,2],[2,2],'valid')
 
 
     def get_train_step(self, learning_rate):
