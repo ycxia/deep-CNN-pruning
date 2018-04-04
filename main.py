@@ -48,20 +48,20 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
     train_x = np.reshape(train_x,(-1, 32, 32, 3))
-    print(train_x.shape)
+    print("Train set shape:".format(train_x.shape))
 
     test_file = glob(os.path.join(dataset_path, 'test*'))
     test_x,test_label = util.data_read(test_file)
     test_x = np.reshape(test_x, (-1, 32, 32, 3))
-    print(test_x.shape)
-    train_data_size = len(train_label)
-    print('Total train sample number is ' + str(train_data_size))
+    print("Test set shape:{}".format(test_x.shape))
 
     vgg = VGG16Cifar10()
     vgg.build_model()
-    train_step = vgg.get_train_step(learning_rate,l2_lambda)
+    vgg.add_weight_regularizer(l2_lambda)
+    train_step = vgg.get_train_step(learning_rate,ues_regularizer=True)
 
     print("Model build success!")
+    train_data_size = len(train_label)
     batch_num = train_data_size//batch_size
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())

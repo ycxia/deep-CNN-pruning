@@ -4,7 +4,6 @@ class VGG16Cifar10:
     def __init__(self):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
-        self.regularizer = tf.contrib.layers.l2_regularizer(0.0005)
         self.filters = []
         self.dense = []
         self.bais = []
@@ -85,18 +84,18 @@ class VGG16Cifar10:
     def fc(self,input,dense,bais):
         return tf.matmul(input, dense) + bais
 
-    def get_train_step(self, learning_rate,lbd):
-        # regularizer = tf.contrib.layers.l2_regularizer(scale=lbd)
-        # reg_term = tf.reduce_sum(tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES))
-        regularization_loss = tf.reduce_sum(tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES))
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.cross_entropy+regularization_loss)
+    def get_train_step(self, learning_rate, ues_regularizer=False):
+        loss = self.cross_entropy
+        if(ues_regularizer):
+            loss += tf.reduce_sum(tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES))
+        return tf.train.AdamOptimizer(learning_rate).minimize(loss)
 
     def get_variable(self,name,shape):
-        return tf.get_variable(name=name,shape=shape,initializer=tf.glorot_normal_initializer()
-                               ,regularizer=self.regularizer)
+        return tf.get_variable(name=name,shape=shape,initializer=tf.glorot_normal_initializer())
 
-    def add_weight_to_collection(self):
+    def add_weight_regularizer(self,lbda):
+        self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
         for filter in self.filters:
-            tf.add_to_collection(tf.GraphKeys.WEIGHTS, filter)
+            tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, filter)
         for dense in self.dense:
-            tf.add_to_collection(tf.GraphKeys.WEIGHTS, dense)
+            tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, dense)
