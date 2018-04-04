@@ -95,7 +95,5 @@ class VGG16Cifar10:
 
     def add_weight_regularizer(self,lbda):
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
-        for filter in self.filters:
-            tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, filter)
-        for dense in self.dense:
-            tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, dense)
+        tf.contrib.layers.apply_regularization(self.regularizer, self.filters)
+        tf.contrib.layers.apply_regularization(self.regularizer, self.dense)
