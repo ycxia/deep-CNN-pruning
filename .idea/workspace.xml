@@ -4,7 +4,6 @@
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/VGG16Cifar10.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16Cifar10.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +17,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="79" column="91" selection-start-line="79" selection-start-column="91" selection-end-line="79" selection-end-column="91" />
+            <state relative-caret-position="274">
+              <caret line="59" column="23" lean-forward="true" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -39,20 +38,8 @@
       <file leaf-file-name="VGG16Cifar10.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
-              <caret line="98" column="76" selection-start-line="98" selection-start-column="76" selection-end-line="98" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="util.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/util.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="13" column="8" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="292">
+              <caret line="89" column="34" lean-forward="true" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -65,6 +52,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>REGULARIZATION_LOSSES</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -496,7 +488,21 @@
       <option name="project" value="LOCAL" />
       <updated>1522822885123</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="corret l2 loss add method">
+      <created>1522829004091</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1522829004091</updated>
+    </task>
+    <task id="LOCAL-00029" summary="corret l2 loss add method">
+      <created>1522832089372</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1522832089372</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -511,7 +517,7 @@
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32784185" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.7179081" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49702382" weight="0.8447205" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27022782" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27022782" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -560,7 +566,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add vgg16 for cifar10,correct fc layer" />
     <MESSAGE value="solve a lot of bugs,can run" />
     <MESSAGE value="int to float" />
     <MESSAGE value="abs path" />
@@ -585,7 +590,8 @@
     <MESSAGE value="print all weight shape" />
     <MESSAGE value="add l2 loss" />
     <MESSAGE value="set l2 loss lambda changable" />
-    <option name="LAST_COMMIT_MESSAGE" value="set l2 loss lambda changable" />
+    <MESSAGE value="corret l2 loss add method" />
+    <option name="LAST_COMMIT_MESSAGE" value="corret l2 loss add method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -593,13 +599,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="6" lean-forward="true" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
@@ -910,18 +909,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="79" column="91" selection-start-line="79" selection-start-column="91" selection-end-line="79" selection-end-column="91" />
+        <state relative-caret-position="274">
+          <caret line="59" column="23" lean-forward="true" selection-start-line="59" selection-start-column="23" selection-end-line="59" selection-end-column="23" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3276" column="34" selection-start-line="3276" selection-start-column="30" selection-end-line="3276" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
-          <caret line="98" column="76" selection-start-line="98" selection-start-column="76" selection-end-line="98" selection-end-column="76" />
+        <state relative-caret-position="292">
+          <caret line="89" column="34" lean-forward="true" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
         </state>
       </provider>
     </entry>
