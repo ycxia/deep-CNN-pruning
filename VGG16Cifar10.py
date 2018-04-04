@@ -1,9 +1,10 @@
 import tensorflow as tf
 
 class VGG16Cifar10:
-    def __init__(self):
+    def __init__(self,lbda):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
+        self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
         self.filters = []
         self.dense = []
         self.bais = []
@@ -85,19 +86,22 @@ class VGG16Cifar10:
         return tf.matmul(input, dense) + bais
 
     def get_train_step(self, learning_rate, ues_regularizer=False):
-        loss = self.cross_entropy
+        self.loss = self.cross_entropy
         if(ues_regularizer):
-            loss += tf.reduce_sum(
-                tf.contrib.layers.apply_regularization(self.regularizer,tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES))
+            self.loss += tf.reduce_sum(
+                tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
             )
-        return tf.train.AdamOptimizer(learning_rate).minimize(loss)
+        return tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
 
     def get_variable(self,name,shape):
-        return tf.get_variable(name=name,shape=shape,initializer=tf.glorot_normal_initializer())
+        return tf.get_variable(name=name,
+                               shape=shape,
+                               initializer=tf.glorot_normal_initializer(),
+                               regularizer=self.regularizer)
 
-    def add_weight_regularizer(self,lbda):
-        self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
-        for f in self.filters:
-            tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, f)
-        for d in self.dense:
-            tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, d)
+    # def add_weight_regularizer(self,lbda):
+    #     self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
+    #     for f in self.filters:
+    #         tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, f)
+    #     for d in self.dense:
+    #         tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, d)

@@ -56,8 +56,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     print("Test set shape:{}".format(test_x.shape))
 
     vgg = VGG16Cifar10()
-    vgg.build_model()
-    vgg.add_weight_regularizer(l2_lambda)
+    vgg.build_model(l2_lambda)
     train_step = vgg.get_train_step(learning_rate,ues_regularizer=True)
 
     print("Model build success!")
@@ -74,10 +73,10 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                 # print("{}:reg_term is {}".format(i,y))
                 if i % 100 == 0:
-                    loss,acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
-                    train_loss, train_acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
+                    loss,acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
+                    train_loss, train_acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i,batch_num,loss,acc,train_loss,train_acc))
-            loss, acc = sess.run([vgg.cross_entropy, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label})
+            loss, acc = sess.run([vgg.loss, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label})
             print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
     print("Training end!")
 
