@@ -87,7 +87,9 @@ class VGG16Cifar10:
     def get_train_step(self, learning_rate, ues_regularizer=False):
         loss = self.cross_entropy
         if(ues_regularizer):
-            loss += tf.reduce_sum(tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES))
+            loss += tf.reduce_sum(
+                tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+            )
         return tf.train.AdamOptimizer(learning_rate).minimize(loss)
 
     def get_variable(self,name,shape):
@@ -95,5 +97,7 @@ class VGG16Cifar10:
 
     def add_weight_regularizer(self,lbda):
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
-        tf.contrib.layers.apply_regularization(self.regularizer, self.filters)
-        tf.contrib.layers.apply_regularization(self.regularizer, self.dense)
+        for f in self.filters:
+            tf.contrib.layers.apply_regularization(self.regularizer, f)
+        for d in self.dense:
+            tf.contrib.layers.apply_regularization(self.regularizer, d)

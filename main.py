@@ -48,7 +48,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
     train_x = np.reshape(train_x,(-1, 32, 32, 3))
-    print("Train set shape:".format(train_x.shape))
+    print("Train set shape:{}".format(train_x.shape))
 
     test_file = glob(os.path.join(dataset_path, 'test*'))
     test_x,test_label = util.data_read(test_file)
