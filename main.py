@@ -55,8 +55,8 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     test_x = np.reshape(test_x, (-1, 32, 32, 3))
     print("Test set shape:{}".format(test_x.shape))
 
-    vgg = VGG16Cifar10()
-    vgg.build_model(l2_lambda)
+    vgg = VGG16Cifar10(l2_lambda)
+    vgg.build_model()
     train_step = vgg.get_train_step(learning_rate,ues_regularizer=True)
 
     print("Model build success!")
