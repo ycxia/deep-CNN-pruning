@@ -4,6 +4,7 @@ class VGG16Cifar10:
     def __init__(self):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
+        self.regularizer = tf.contrib.layers.l2_regularizer(0.0005)
         self.filters = []
         self.dense = []
         self.bais = []
@@ -26,7 +27,7 @@ class VGG16Cifar10:
         self.dense.append(self.get_variable("dense2",shape=[512,10]))
         self.bais.append(tf.zeros(name="b2", shape=[1, 10]))
 
-        self.regularizer = tf.contrib.layers.l2_regularizer(0.0005)
+
 
     def build_model(self):
         self.output1 = self.conv2d_with_relu(self.x, self.filters[0])
