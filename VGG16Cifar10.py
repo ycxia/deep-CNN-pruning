@@ -4,7 +4,7 @@ class VGG16Cifar10:
     def __init__(self,lbda):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
-        self.isTrain = tf.placeholder_v2(tf.bool)
+        self.isTrain = tf.placeholder(tf.bool)
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
         self.filters = []
         self.dense = []
