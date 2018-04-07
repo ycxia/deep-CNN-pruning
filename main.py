@@ -72,7 +72,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                 # print("{}:reg_term is {}".format(i,y))
                 if i % 100 == 0:
                     loss,acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size], vgg.isTrain:False})
-                    train_loss, train_acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
+                    train_loss, train_acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: batch_x, vgg.y_: batch_label, vgg.isTrain:False})
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i,batch_num,loss,acc,train_loss,train_acc))
             loss, acc = sess.run([vgg.loss, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label, vgg.isTrain:False})
             print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
