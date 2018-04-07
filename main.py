@@ -68,13 +68,13 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                 batch_x = train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 batch_label = train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 # y = sess.run(vgg.reg_term, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
-                sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
+                sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label, vgg.isTrain:True})
                 # print("{}:reg_term is {}".format(i,y))
                 if i % 100 == 0:
-                    loss,acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size]})
+                    loss,acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size], vgg.isTrain:False})
                     train_loss, train_acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i,batch_num,loss,acc,train_loss,train_acc))
-            loss, acc = sess.run([vgg.loss, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label})
+            loss, acc = sess.run([vgg.loss, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label, vgg.isTrain:False})
             print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
     print("Training end!")
 

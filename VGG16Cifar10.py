@@ -4,6 +4,7 @@ class VGG16Cifar10:
     def __init__(self,lbda):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
+        self.isTrain = tf.placeholder(tf.bool)
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
         self.filters = []
         self.dense = []
@@ -31,38 +32,38 @@ class VGG16Cifar10:
 
     def build_model(self):
         self.output1 = self.conv2d_with_relu(self.x, self.filters[0])
-        self.output1 = tf.layers.dropout(self.output1,0.3)
+        self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
         self.output2 = self.conv2d_with_relu(self.output1, self.filters[1])
         polled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
 
         self.output3 = self.conv2d_with_relu(polled, self.filters[2])
-        self.output3 = tf.layers.dropout(self.output3, 0.4)
+        self.output3 = tf.layers.dropout(self.output3, 0.4,training=self.isTrain)
         self.output4 = self.conv2d_with_relu(self.output3, self.filters[3])
         polled = tf.nn.max_pool(self.output4, [1,2,2,1], [1,2,2,1], 'VALID')
 
         self.output5 = self.conv2d_with_relu(polled, self.filters[4])
-        self.output5 = tf.layers.dropout(self.output5, 0.4)
+        self.output5 = tf.layers.dropout(self.output5, 0.4,training=self.isTrain)
         self.output6 = self.conv2d_with_relu(self.output5, self.filters[5])
-        self.output6 = tf.layers.dropout(self.output6, 0.4)
+        self.output6 = tf.layers.dropout(self.output6, 0.4,training=self.isTrain)
         self.output7 = self.conv2d_with_relu(self.output6, self.filters[6])
         polled = tf.nn.max_pool(self.output7, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         self.output8 = self.conv2d_with_relu(polled, self.filters[7])
-        self.output8 = tf.layers.dropout(self.output8, 0.4)
+        self.output8 = tf.layers.dropout(self.output8, 0.4,training=self.isTrain)
         self.output9 = self.conv2d_with_relu(self.output8, self.filters[8])
-        self.output9 = tf.layers.dropout(self.output9, 0.4)
+        self.output9 = tf.layers.dropout(self.output9, 0.4,training=self.isTrain)
         self.output10 = self.conv2d_with_relu(self.output9, self.filters[9])
         polled = tf.nn.max_pool(self.output10, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         self.output11 = self.conv2d_with_relu(polled, self.filters[10])
-        self.output11 = tf.layers.dropout(self.output11, 0.4)
+        self.output11 = tf.layers.dropout(self.output11, 0.4,training=self.isTrain)
         self.output12 = self.conv2d_with_relu(self.output11, self.filters[11])
-        self.output12 = tf.layers.dropout(self.output12, 0.4)
+        self.output12 = tf.layers.dropout(self.output12, 0.4,training=self.isTrain)
         self.output13 = self.conv2d_with_relu(self.output12, self.filters[12])
         polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         polled = tf.reshape(polled,[-1,512])
-        polled = tf.layers.dropout(polled, 0.4)
+        polled = tf.layers.dropout(polled, 0.4,training=self.isTrain)
         fc1 = self.fc(polled,self.dense[0],self.bais[0])
         fc1 = tf.layers.batch_normalization(fc1)
         fc1 = tf.nn.relu(fc1)
