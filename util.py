@@ -17,15 +17,11 @@ def data_read(train_file):
             label = nums
         else:
             label = tf.concat([label,nums],axis=0)
-    # x = (x - np.mean(x)) / np.std(x)
-    x = x/255.0
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         label = sess.run(label)
-    show = np.array([])
-    for i in range(x.shape[0]//3072):
-        image = x[i * 3072:(i + 1) * 3072]
-        image = np.reshape(image, (32, 32, 3), 'F')
-        show = np.append(show, image)
-    x = np.reshape(show, (-1, 32, 32, 3))
+
+    x = x/255.0
+    x = np.reshape(x, (-1, 3, 32, 32))
+    x = np.transpose(x, (0, 2, 3, 1))
     return x, label
