@@ -47,7 +47,6 @@ FLAGS = flags.FLAGS
 
 def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir):
     WEIGHT_SAVER_DIR = os.path.join(checkpoint_dir,'vgg16_cifar_epoch')
-    saver = tf.train.Saver()
     train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
     print("Train data load success,Train set shape:{}".format(train_x.shape))
@@ -63,6 +62,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     print("Model build success!")
     train_data_size = len(train_label)
     batch_num = train_data_size//batch_size
+    saver = tf.train.Saver()
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         print("Training starts...")
