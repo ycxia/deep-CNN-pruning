@@ -7,6 +7,7 @@ from glob import glob
 import util
 import sys
 
+
 flags = tf.app.flags
 flags.DEFINE_integer("epoch", 25, "Epoch to train [25]")
 flags.DEFINE_float("learning_rate", 0.0002, "Learning rate of for adam [0.0002]")
@@ -45,13 +46,15 @@ FLAGS = flags.FLAGS
 #     print("Training end!")
 
 def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda):
+    WEIGHT_SAVER_DIR = 'weights/vgg16_cifar.ckpt'
+    saver = tf.train.Saver()
     train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
-    print("Train set shape:{}".format(train_x.shape))
+    print("Train data load success,Train set shape:{}".format(train_x.shape))
 
     test_file = glob(os.path.join(dataset_path, 'test*'))
     test_x,test_label = util.data_read(test_file)
-    print("Test set shape:{}".format(test_x.shape))
+    print("Test data load success,Test set shape:{}".format(test_x.shape))
 
     vgg = VGG16Cifar10(l2_lambda)
     vgg.build_model()
@@ -76,7 +79,12 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i,batch_num,loss,acc,train_loss,train_acc))
             loss, acc = sess.run([vgg.loss, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label, vgg.isTrain:False})
             print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
-    print("Training end!")
+            saver.save(sess, WEIGHT_SAVER_DIR, global_step=epoch)
+            print("{} epoch weight save success!")
+        print("Training end!")
+
+
+
 
 def main(_):
     batch_size = FLAGS.batch_size
