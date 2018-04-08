@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,12 +18,25 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="82" column="50" lean-forward="true" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+            <state relative-caret-position="343">
+              <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+                <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="275">
+                <caret line="11" column="138" lean-forward="false" selection-start-line="11" selection-start-column="138" selection-end-line="11" selection-end-column="138" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -30,8 +44,8 @@
       <file leaf-file-name="saver.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/saver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="893">
-              <caret line="1511" column="21" lean-forward="true" selection-start-line="1511" selection-start-column="21" selection-end-line="1511" selection-end-column="21" />
+            <state relative-caret-position="285">
+              <caret line="1505" column="29" lean-forward="false" selection-start-line="1505" selection-start-column="29" selection-end-line="1505" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -96,11 +110,11 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/VGG16_Cifar10.py" />
         <option value="$PROJECT_DIR$/VGG16Imagenet.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/util.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/VGG16Cifar10.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -394,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523102752375</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="每个epoch完成保存权重">
+      <created>1523163306363</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1523163306363</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TodoView">
@@ -484,11 +505,12 @@
     <MESSAGE value="image input pixel order" />
     <MESSAGE value="use np tanscope" />
     <MESSAGE value="dropout区分训练和推断" />
-    <option name="LAST_COMMIT_MESSAGE" value="dropout区分训练和推断" />
+    <MESSAGE value="每个epoch完成保存权重" />
+    <option name="LAST_COMMIT_MESSAGE" value="每个epoch完成保存权重" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -517,7 +539,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+            <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
           </folding>
         </state>
       </provider>
@@ -554,7 +576,7 @@
           <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+            <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
           </folding>
         </state>
       </provider>
@@ -610,7 +632,7 @@
           <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+            <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
           </folding>
         </state>
       </provider>
@@ -635,7 +657,7 @@
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+            <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
           </folding>
         </state>
       </provider>
@@ -661,7 +683,7 @@
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+            <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
           </folding>
         </state>
       </provider>
@@ -749,21 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="128" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="128" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="275">
-            <caret line="11" column="114" lean-forward="false" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="114" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-332">
@@ -830,8 +837,8 @@
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/saver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="1511" column="21" lean-forward="true" selection-start-line="1511" selection-start-column="21" selection-end-line="1511" selection-end-column="21" />
+        <state relative-caret-position="285">
+          <caret line="1505" column="29" lean-forward="false" selection-start-line="1505" selection-start-column="29" selection-end-line="1505" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -844,13 +851,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="128" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="128" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="275">
+            <caret line="11" column="138" lean-forward="false" selection-start-line="11" selection-start-column="138" selection-end-line="11" selection-end-column="138" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="82" column="50" lean-forward="true" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+        <state relative-caret-position="343">
+          <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
-            <marker date="1523163242777" expanded="true" signature="3996:4021" ph="..." />
+            <marker date="1523164106450" expanded="true" signature="4034:4059" ph="..." />
           </folding>
         </state>
       </provider>

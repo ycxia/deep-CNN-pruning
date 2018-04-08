@@ -45,8 +45,8 @@ FLAGS = flags.FLAGS
 #             print(str(epoch) + " epoch: loss is " + str(loss) + ",accuary is " + str(acc))
 #     print("Training end!")
 
-def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda):
-    WEIGHT_SAVER_DIR = 'weights/vgg16_cifar.ckpt'
+def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir):
+    WEIGHT_SAVER_DIR = os.path.join(checkpoint_dir,'vgg16_cifar_epoch')
     saver = tf.train.Saver()
     train_file = glob(os.path.join(dataset_path, 'data*'))
     train_x,train_label = util.data_read(train_file)
@@ -93,8 +93,9 @@ def main(_):
     learning_rate = FLAGS.learning_rate
     testset_size = FLAGS.testset_size
     l2_lambda = FLAGS.l2_lambda
+    checkpoint_dir = FLAGS.checkpoint_dir
 
-    run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda)
+    run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir)
 
 if __name__ == '__main__':
   tf.app.run()
