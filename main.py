@@ -80,7 +80,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
             loss, acc = sess.run([vgg.loss, vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label, vgg.isTrain:False})
             print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
             saver.save(sess, WEIGHT_SAVER_DIR, global_step=epoch)
-            print("{} epoch weight save success!")
+            print("{} epoch weight save success!".format(epoch))
         print("Training end!")
 
 
