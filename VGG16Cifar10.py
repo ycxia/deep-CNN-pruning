@@ -99,10 +99,3 @@ class VGG16Cifar10:
                                shape=shape,
                                initializer=tf.glorot_normal_initializer(),
                                regularizer=self.regularizer)
-
-    # def add_weight_regularizer(self,lbda):
-    #     self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
-    #     for f in self.filters:
-    #         tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, f)
-    #     for d in self.dense:
-    #         tf.add_to_collection(tf.GraphKeys.REGULARIZATION_LOSSES, d)
