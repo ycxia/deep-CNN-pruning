@@ -65,15 +65,16 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     saver = tf.train.Saver(max_to_keep=1)
     max_acc = 0.8
     with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        if os.path.exists(os.path.join(WEIGHT_SAVER_DIR,'*')):
+            saver.restore(sess, WEIGHT_SAVER_DIR)
+        else:
+            sess.run(tf.global_variables_initializer())
         print("Training starts...")
         for epoch in range(epoch_num):
             for i in range(batch_num):
                 batch_x = train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 batch_label = train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
-                # y = sess.run(vgg.reg_term, feed_dict={vgg.x: batch_x, vgg.y_: batch_label})
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label, vgg.isTrain:True})
-                # print("{}:reg_term is {}".format(i,y))
                 if i % 100 == 0:
                     loss,acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: test_x[0:testset_size], vgg.y_: test_label[0:testset_size], vgg.isTrain:False})
                     train_loss, train_acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: batch_x, vgg.y_: batch_label, vgg.isTrain:False})
@@ -83,7 +84,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
             if acc>max_acc:
                 saver.save(sess, WEIGHT_SAVER_DIR)
                 max_acc = acc
-            print("{} epoch weight save success!".format(epoch))
+                print("{} epoch weight save success!".format(epoch))
         print("Training end!")
 
 
