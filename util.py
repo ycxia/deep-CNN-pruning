@@ -1,6 +1,10 @@
 import pickle
 import numpy as np
 import tensorflow as tf
+import os
+from glob import glob
+
+
 def unpickle(file):
     with open(file, 'rb') as fo:
         dict = pickle.load(fo, encoding='bytes')
@@ -25,3 +29,47 @@ def data_read(train_file):
     x = np.reshape(x, (-1, 3, 32, 32))
     x = np.transpose(x, (0, 2, 3, 1))
     return x, label
+
+
+class Cifar10Dataset:
+    def __init__(self,dir):
+        self.dir = dir
+        self.train_label = None
+        self.train_x = None
+        self.test_x = None
+        self.test_label = None
+    def load_train_data(self):
+        file_list = glob(os.path.join(self.dir, 'data*'))
+        self.train_x = np.array([])
+        self.train_label = np.array([])
+        for file in file_list:
+            dict = unpickle(file)
+            self.train_x = np.concatenate((self.train_x,dict[b'data'].flatten()))
+            self.train_label = np.concatenate((self.train_label,np.array(dict[b'labels'])))
+
+        # 数据增强（左右翻转）
+        self.train_x = self._data_reshape(self.train_x)
+        filp_data = self.train_x[:, :, ::-1, :]
+        self.train_x = np.concatenate((self.train_x, filp_data))
+        self.train_label = np.concatenate((self.train_label, self.train_label))
+        # 打乱顺序
+        permutation = np.random.permutation(self.train_x.shape[0])
+        self.train_x = self.train_x[permutation, :, :]
+        self.train_label = self.train_label[permutation]
+
+    def load_test_data(self):
+        file_dir = os.path.join(self.dir, 'test_batch')
+        dict = unpickle(file_dir)
+        self.test_x = dict[b'data'].flatten()
+        self.test_x = self._data_reshape(self.test_x)
+        self.test_label = dict[b'labels']
+
+    def _data_reshape(self,data):
+        data = data / 255.0
+        data = np.reshape(data, (-1, 3, 32, 32))
+        data = np.transpose(data, (0, 2, 3, 1))
+        return data
+
+
+
+

@@ -3,7 +3,7 @@ import tensorflow as tf
 class VGG16Cifar10:
     def __init__(self,lbda):
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
-        self.y_ = tf.placeholder(tf.int64, shape=(None, 10))
+        self.y_ = tf.placeholder(tf.int64, shape=(None,))
         self.isTrain = tf.placeholder(tf.bool)
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
         self.filters = []
@@ -70,10 +70,10 @@ class VGG16Cifar10:
         fc1 = tf.nn.dropout(fc1,0.5)
         self.y = self.fc(fc1,self.dense[1],self.bais[1])
         self.yy = tf.nn.softmax(self.y)
-        correct_prediction = tf.equal(tf.argmax(self.yy,1), tf.argmax(self.y_,1))
+        correct_prediction = tf.equal(tf.argmax(self.yy,1), self.y_)
         self.accaury = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
-        self.cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
+        self.cross_entropy = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(
             labels=self.y_,
             logits=self.y))
 
