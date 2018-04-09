@@ -65,10 +65,10 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     saver = tf.train.Saver(max_to_keep=1)
     max_acc = 0.8
     with tf.Session() as sess:
-        if os.path.isfile(WEIGHT_SAVER_DIR+".*"):
+        try:
             saver.restore(sess, WEIGHT_SAVER_DIR)
             print("Checkpoint load success!")
-        else:
+        except ValueError:
             sess.run(tf.global_variables_initializer())
             print("No checkpoint file,weight inited!")
         print("Training starts...")
