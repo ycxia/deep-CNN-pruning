@@ -67,7 +67,7 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
         try:
             saver.restore(sess, WEIGHT_SAVER_DIR)
             print("Checkpoint load success!")
-        except ValueError:
+        except BaseException:
             sess.run(tf.global_variables_initializer())
             print("No checkpoint file,weight inited!")
         print("Training starts...")
