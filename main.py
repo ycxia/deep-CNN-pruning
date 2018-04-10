@@ -1,9 +1,7 @@
-from VGG16 import VGG16
 from VGG16Cifar10 import VGG16Cifar10
 import tensorflow as tf
 import numpy as np
 import os
-from glob import glob
 from util import Cifar10Dataset
 import sys
 
@@ -20,31 +18,6 @@ flags.DEFINE_integer("testset_size", 32, "testset size [32]")
 flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
 FLAGS = flags.FLAGS
 
-# def run():
-#     batch_size = 64
-#     train_data_size = None
-#     epoch_num = FLAGS.epoch
-#
-#     test_x, test_label = None
-#
-#     vgg = VGG16Imagenet()
-#     vgg.build_model()
-#     train_step = vgg.get_train_step(0.02)
-#
-#     print("Training starts!")
-#     batch_num = batch_size/train_data_size
-#     with tf.Session() as sess:
-#         for epoch in range(epoch_num):
-#             for i in range(batch_num):
-#                 batch_x ,batch_label= None
-#                 sess.run(train_step,feed_dict={vgg.x:batch_x,vgg.y_:batch_label})
-#                 if i%100==0:
-#                     loss = sess.run(vgg.cross_entropy, feed_dict={vgg.x: test_x, vgg.y_: test_label})
-#                     print(str(i) + "/" + str(batch_num) + " batch: loss is " + str(loss))
-#             loss,acc = sess.run([vgg.cross_entropy,vgg.accaury], feed_dict={vgg.x: test_x, vgg.y_: test_label})
-#             print(str(epoch) + " epoch: loss is " + str(loss) + ",accuary is " + str(acc))
-#     print("Training end!")
-
 def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir):
     WEIGHT_SAVER_DIR = os.path.join(checkpoint_dir,'vgg16_cifar_epoch')
     cifar10 = Cifar10Dataset(dataset_path)
@@ -52,13 +25,13 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
     print("Train data load success,train set shape:{}".format(cifar10.train_x.shape))
 
     cifar10.load_test_data()
-    print("Test data load success,Test set shape:{}".format(cifar10.test_x.shape))
+    print("Test data load success,test set shape:{}".format(cifar10.test_x.shape))
 
     vgg = VGG16Cifar10(l2_lambda)
     vgg.build_model()
     train_step = vgg.get_train_step(learning_rate,ues_regularizer=True)
-
     print("Model build success!")
+
     train_data_size = len(cifar10.train_label)
     batch_num = train_data_size//batch_size
     saver = tf.train.Saver(max_to_keep=1)
@@ -72,6 +45,8 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
             print("No checkpoint file,weight inited!")
         print("Training starts...")
         for epoch in range(epoch_num):
+            # 每个epoch都打乱数据顺序
+            cifar10.shuffle_train_data()
             for i in range(batch_num):
                 batch_x = cifar10.train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
                 batch_label = cifar10.train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
@@ -87,9 +62,6 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
                 max_acc = acc
                 print("{} epoch weight save success!".format(epoch))
         print("Training end!")
-
-
-
 
 def main(_):
     batch_size = FLAGS.batch_size

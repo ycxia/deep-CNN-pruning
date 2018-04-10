@@ -52,10 +52,6 @@ class Cifar10Dataset:
         filp_data = self.train_x[:, :, ::-1, :]
         self.train_x = np.concatenate((self.train_x, filp_data))
         self.train_label = np.concatenate((self.train_label, self.train_label))
-        # 打乱顺序
-        permutation = np.random.permutation(self.train_x.shape[0])
-        self.train_x = self.train_x[permutation, :, :]
-        self.train_label = self.train_label[permutation]
 
     def load_test_data(self):
         file_dir = os.path.join(self.dir, 'test_batch')
@@ -70,6 +66,10 @@ class Cifar10Dataset:
         data = np.transpose(data, (0, 2, 3, 1))
         return data
 
+    def shuffle_train_data(self):
+        permutation = np.random.permutation(self.train_x.shape[0])
+        self.train_x = self.train_x[permutation, :, :]
+        self.train_label = self.train_label[permutation]
 
 
 
