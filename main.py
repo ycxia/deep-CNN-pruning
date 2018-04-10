@@ -46,10 +46,11 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
         print("Training starts...")
         for epoch in range(epoch_num):
             # 每个epoch都打乱数据顺序
-            cifar10.shuffle_train_data()
+            random_order = np.random.permutation(train_data_size)
             for i in range(batch_num):
-                batch_x = cifar10.train_x[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
-                batch_label = cifar10.train_label[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
+                batch_index = random_order[i*batch_size : min(i*batch_size+batch_size,train_data_size)]
+                batch_x = cifar10.train_x[batch_index]
+                batch_label = cifar10.train_label[batch_index]
                 sess.run(train_step, feed_dict={vgg.x: batch_x, vgg.y_: batch_label, vgg.isTrain:True})
                 if i % 100 == 0:
                     loss,acc = sess.run([vgg.loss,vgg.accaury], feed_dict={vgg.x: cifar10.test_x[0:testset_size], vgg.y_: cifar10.test_label[0:testset_size], vgg.isTrain:False})
