@@ -38,6 +38,7 @@ class Cifar10Dataset:
         self.train_x = None
         self.test_x = None
         self.test_label = None
+        self.prune_x = None
     def load_train_data(self):
         file_list = glob(os.path.join(self.dir, 'data*'))
         self.train_x = np.array([])
@@ -70,6 +71,23 @@ class Cifar10Dataset:
         permutation = np.random.permutation(self.train_x.shape[0])
         self.train_x = self.train_x[permutation, :, :]
         self.train_label = self.train_label[permutation]
+
+    def load_prune_data(self):
+        if self.train_x == None:
+            print("Error:train data has not been loaded!")
+            return False
+        self.prune_x = np.array([])
+        all_count = 0;
+        class_count = np.zeros(shape=(10))
+        for image,label in self.train_x,self.train_label:
+            if(class_count[label]<10):
+                all_count+=1
+                class_count[label]+=1
+                self.prune_x = np.concatenate(self.prune_x,image)
+                if(all_count==10*10):
+                    self.prune_x = np.reshape(self.prune_x, (-1, 32, 32, 3))
+                    return True
+        return False
 
 
 
