@@ -40,6 +40,10 @@ def run_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_
         try:
             saver.restore(sess, WEIGHT_SAVER_DIR)
             print("Checkpoint load success!")
+            loss, acc = sess.run([vgg.loss, vgg.accaury],
+                                 feed_dict={vgg.x: cifar10.test_x, vgg.y_: cifar10.test_label, vgg.isTrain: False})
+            print("Model init stat: loss is {},accuary is {}".format(loss, acc))
+            max_acc = acc
         except BaseException:
             sess.run(tf.global_variables_initializer())
             print("No checkpoint file,weight inited!")
