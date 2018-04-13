@@ -147,7 +147,7 @@ class VGG16SEBlock:
             loss, acc = sess.run([self.loss, self.accaury], feed_dict={self.x: data_set.test_x, self.y_: data_set.test_label, self.isTrain:False})
             print("{} epoch: loss is {},accuary is {}".format(epoch,loss,acc))
             if acc>max_acc:
-                saver.save(sess, "{}_{.2f}".format(weight_saver_dir,acc))
+                saver.save(sess, "{}_{}".format(weight_saver_dir,'%.2f' % acc))
                 max_acc = acc
                 print("{} epoch weight save success!".format(epoch))
         print("Training end!")
