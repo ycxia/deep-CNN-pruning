@@ -44,7 +44,13 @@ def train_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testse
             return
         print("Weight load success，pruning start!")
 
-
+def thinet_channel_select(sess,input_channel,filters):
+    input_channel_num = input_channel.shape[1]
+    input_channel_size = input_channel.shape[2]
+    filter_num = filters.shape[3]
+    input_channel = np.pad(input_channel,((0,0), (1,1),(1,1),(0,0)), 'constant')
+    print(input_channel.shape)
+    prune_sample = np.array()
 
 def main(_):
     batch_size = FLAGS.batch_size

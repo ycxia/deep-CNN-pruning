@@ -5,16 +5,17 @@ import util
 from util import Cifar10Dataset
 import pickle
 import matplotlib.pyplot as plt
-
 import numpy as np
-arr2 = np.array([
-    [1,2,3],
-    [4,5,6]
-])
-class_count = np.zeros(shape=(10))
-class_count[5] += 1
-print(class_count[5]==0)
+import tensorflow as tf
 
+from VGG16Cifar10 import VGG16Cifar10
+vgg = VGG16Cifar10(0.5)
+vgg.build_model()
+input = np.zeros((8,32,32,3))
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+    result = sess.run(vgg.output2,feed_dict={vgg.x:input,vgg.isTrain:False})
+    print(type(result))
 
 
 

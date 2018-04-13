@@ -1,4 +1,5 @@
 from VGG16Cifar10 import VGG16Cifar10
+from VGG16SEBlock import VGG16SEBlock
 import tensorflow as tf
 import os
 from util import Cifar10Dataset
@@ -14,7 +15,28 @@ flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the 
 flags.DEFINE_integer("testset_size", 32, "testset size [32]")
 flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
 FLAGS = flags.FLAGS
+def train_vgg_seblock(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir):
+    weight_saver_dir = os.path.join(checkpoint_dir, 'vgg16_seblock')
 
+    cifar10 = Cifar10Dataset(dataset_path)
+    cifar10.load_train_data()
+    print("Train data load success,train set shape:{}".format(cifar10.train_x.shape))
+    cifar10.load_test_data()
+    print("Test data load success,test set shape:{}".format(cifar10.test_x.shape))
+
+    vgg = VGG16SEBlock(l2_lambda)
+    vgg.build_model()
+    train_step = vgg.get_train_step(learning_rate, ues_regularizer=True)
+    print("Model build success!")
+
+    saver = tf.train.Saver(max_to_keep=1)
+    with tf.Session() as sess:
+        load_result = vgg.load_weight(sess, saver, weight_saver_dir)
+        if (load_result == True):
+            print("Checkpoint load success!")
+        else:
+            print("No checkpoint file,weight inited!")
+        vgg.train(sess, batch_size, epoch_num, cifar10, train_step, testset_size, weight_saver_dir, saver)
 def train_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir):
     weight_saver_dir = os.path.join(checkpoint_dir,'vgg16_cifar_epoch')
 
@@ -47,7 +69,7 @@ def main(_):
     l2_lambda = FLAGS.l2_lambda
     checkpoint_dir = FLAGS.checkpoint_dir
 
-    train_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir)
+    train_vgg_seblock(batch_size, epoch_num, dataset_path, learning_rate, testset_size, l2_lambda, checkpoint_dir)
 
 if __name__ == '__main__':
   tf.app.run()
