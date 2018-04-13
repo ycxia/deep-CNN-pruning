@@ -88,7 +88,7 @@ class VGG16SEBlock:
     def se_block(self,input):
         channel_size = input.shape[1]
         channel_num = input.shape[3]
-        output = tf.layers.average_pooling2d(input, channel_size, 1, 'vaild')
+        output = tf.layers.average_pooling2d(input, [channel_size, channel_size], 1, 'vaild')
         output = tf.reshape(output,[-1,channel_num])
         # output = self.fc(output,se_fc_weight[0][0],se_fc_weight[0][1])
         output = tf.layers.dense(output,channel_num//8)
