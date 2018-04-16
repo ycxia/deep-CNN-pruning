@@ -4,6 +4,7 @@ import numpy as np
 import os
 from util import Cifar10Dataset
 import sys
+import filter_reduce as fr
 
 
 flags = tf.app.flags
@@ -43,6 +44,15 @@ def train_vgg_cifar10(batch_size, epoch_num, dataset_path, learning_rate, testse
             print("Weight load fail!")
             return
         print("Weight load success，pruning start!")
+        loss, acc = sess.run([vgg.loss, vgg.accaury],
+                             feed_dict={vgg.x: cifar10.test_x, vgg.y_: cifar10.test_label, vgg.isTrain: False})
+        print("Model init stat: loss is {},accuary is {}".format(loss, acc))
+        fr.reduceFilterOutput(vgg.filters[0],3)
+        fr.reduceFilterInput(vgg.filters[1],3)
+        loss, acc = sess.run([vgg.loss, vgg.accaury],
+                             feed_dict={vgg.x: cifar10.test_x, vgg.y_: cifar10.test_label, vgg.isTrain: False})
+        print("Model init stat: loss is {},accuary is {}".format(loss, acc))
+
 
 def thinet_channel_select(sess,input_channel,filters):
     input_channel_num = input_channel.shape[1]
@@ -51,6 +61,12 @@ def thinet_channel_select(sess,input_channel,filters):
     input_channel = np.pad(input_channel,((0,0), (1,1),(1,1),(0,0)), 'constant')
     print(input_channel.shape)
     prune_sample = np.array()
+
+def seblock_channel_select(channel_weight,compress_rate):
+    channel_weight = np.reshape(channel_weight,(-1,channel_weight.shape[3]))
+    channel_weight = np.sum(channel_weight,axis=0)
+    prune_num = int(channel_weight.shape[0]*compress_rate)
+    return channel_weight.argsort()[0:prune_num]
 
 def main(_):
     batch_size = FLAGS.batch_size

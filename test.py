@@ -8,9 +8,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 
-a = np.int64(1)
-print('%.2f' % a)
-
+a = np.array([[0, 1, 2],
+       [3, 4, 5]])
+np.argmin(a)
+np.argmin(a, axis=0)
 
 
 
