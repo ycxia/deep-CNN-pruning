@@ -73,9 +73,6 @@ class Cifar10Dataset:
         self.train_label = self.train_label[permutation]
 
     def load_prune_data(self):
-        if self.train_x == None:
-            print("Error:train data has not been loaded!")
-            return False
         self.prune_x = np.array([])
         all_count = 0;
         class_count = np.zeros(shape=(10))
