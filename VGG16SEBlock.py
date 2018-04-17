@@ -15,7 +15,7 @@ class VGG16SEBlock:
         self.seblock_bais1 = []
         self.seblock_dense2 = []
         self.seblock_bais2 = []
-        for num,i in channel_nums,range(len(channel_nums)):
+        for (num,i) in zip(channel_nums,range(len(channel_nums))):
             mid_dense_num = num//8
             self.seblock_dense1.append(self.get_variable("seblock_dense1_"+(i+1),shape=[num,mid_dense_num]))
             self.seblock_dense2.append(self.get_variable("seblock_dense2_" + (i + 1), shape=[mid_dense_num,num]))
