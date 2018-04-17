@@ -17,10 +17,10 @@ class VGG16SEBlock:
         self.seblock_bais2 = []
         for (num,i) in zip(channel_nums,range(len(channel_nums))):
             mid_dense_num = num//8
-            self.seblock_dense1.append(self.get_variable("seblock_dense1_"+(i+1),shape=[num,mid_dense_num]))
-            self.seblock_dense2.append(self.get_variable("seblock_dense2_" + (i + 1), shape=[mid_dense_num,num]))
-            self.seblock_bais1.append(self.get_variable("seblock_bais1_" + (i + 1), shape=[1, mid_dense_num]))
-            self.seblock_bais2.append(self.get_variable("seblock_bais1_" + (i + 1), shape=[1, num]))
+            self.seblock_dense1.append(self.get_variable("seblock_dense1_"+str((i+1)),shape=[num,mid_dense_num]))
+            self.seblock_dense2.append(self.get_variable("seblock_dense2_" + str((i+1)), shape=[mid_dense_num,num]))
+            self.seblock_bais1.append(self.get_variable("seblock_bais1_" + str((i+1)), shape=[1, mid_dense_num]))
+            self.seblock_bais2.append(self.get_variable("seblock_bais1_" + str((i+1)), shape=[1, num]))
         self.filters.append(self.get_variable("filter1",shape=[3,3,3,64]))
         self.filters.append(self.get_variable("filter2",shape=[3,3,64,64]))
         self.filters.append(self.get_variable("filter3",shape=[3, 3, 64, 128]))
