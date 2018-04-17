@@ -8,10 +8,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 
-a = np.array([[0, 1, 2],
-       [3, 4, 5]])
-np.argmin(a)
-np.argmin(a, axis=0)
+t = tf.placeholder(tf.float64,[None,3,3,2])
+
+print(t)
 
 
 

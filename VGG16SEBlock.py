@@ -3,6 +3,7 @@ import numpy as np
 
 class VGG16SEBlock:
     def __init__(self,lbda):
+        channel_nums = [64,64,128,128,256,256,256,512,512,512,512,512]
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None,))
         self.isTrain = tf.placeholder(tf.bool)
@@ -10,6 +11,16 @@ class VGG16SEBlock:
         self.filters = []
         self.dense = []
         self.bais = []
+        self.seblock_dense1=[]
+        self.seblock_bais1 = []
+        self.seblock_dense2 = []
+        self.seblock_bais2 = []
+        for num,i in channel_nums,range(len(channel_nums)):
+            mid_dense_num = num//8
+            self.seblock_dense1.append(self.get_variable("seblock_dense1_"+(i+1),shape=[num,mid_dense_num]))
+            self.seblock_dense2.append(self.get_variable("seblock_dense2_" + (i + 1), shape=[mid_dense_num,num]))
+            self.seblock_bais1.append(self.get_variable("seblock_bais1_" + (i + 1), shape=[1, mid_dense_num]))
+            self.seblock_bais2.append(self.get_variable("seblock_bais1_" + (i + 1), shape=[1, num]))
         self.filters.append(self.get_variable("filter1",shape=[3,3,3,64]))
         self.filters.append(self.get_variable("filter2",shape=[3,3,64,64]))
         self.filters.append(self.get_variable("filter3",shape=[3, 3, 64, 128]))
@@ -31,41 +42,42 @@ class VGG16SEBlock:
 
 
 
+
     def build_model(self):
-        self.output1 = self.conv2d_with_relu_seblock(self.x, self.filters[0])
+        self.output1 = self.conv2d_with_relu_seblock(self.x, 0)
         self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
-        self.output2 = self.conv2d_with_relu_seblock(self.output1, self.filters[1])
-        polled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
+        self.output2 = self.conv2d_with_relu_seblock(self.output1, 1)
+        pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
 
-        self.output3 = self.conv2d_with_relu_seblock(polled, self.filters[2])
+        self.output3 = self.conv2d_with_relu_seblock(pooled, 2)
         self.output3 = tf.layers.dropout(self.output3, 0.4,training=self.isTrain)
-        self.output4 = self.conv2d_with_relu_seblock(self.output3, self.filters[3])
-        polled = tf.nn.max_pool(self.output4, [1,2,2,1], [1,2,2,1], 'VALID')
+        self.output4 = self.conv2d_with_relu_seblock(self.output3, 3)
+        pooled = tf.nn.max_pool(self.output4, [1,2,2,1], [1,2,2,1], 'VALID')
 
-        self.output5 = self.conv2d_with_relu_seblock(polled, self.filters[4])
+        self.output5 = self.conv2d_with_relu_seblock(pooled, 4)
         self.output5 = tf.layers.dropout(self.output5, 0.4,training=self.isTrain)
-        self.output6 = self.conv2d_with_relu_seblock(self.output5, self.filters[5])
+        self.output6 = self.conv2d_with_relu_seblock(self.output5, 5)
         self.output6 = tf.layers.dropout(self.output6, 0.4,training=self.isTrain)
-        self.output7 = self.conv2d_with_relu_seblock(self.output6, self.filters[6])
-        polled = tf.nn.max_pool(self.output7, [1,2,2,1], [1, 2, 2, 1], 'VALID')
+        self.output7 = self.conv2d_with_relu_seblock(self.output6, 6)
+        pooled = tf.nn.max_pool(self.output7, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
-        self.output8 = self.conv2d_with_relu_seblock(polled, self.filters[7])
+        self.output8 = self.conv2d_with_relu_seblock(pooled, 7)
         self.output8 = tf.layers.dropout(self.output8, 0.4,training=self.isTrain)
-        self.output9 = self.conv2d_with_relu_seblock(self.output8, self.filters[8])
+        self.output9 = self.conv2d_with_relu_seblock(self.output8, 8)
         self.output9 = tf.layers.dropout(self.output9, 0.4,training=self.isTrain)
-        self.output10 = self.conv2d_with_relu_seblock(self.output9, self.filters[9])
-        polled = tf.nn.max_pool(self.output10, [1,2,2,1], [1, 2, 2, 1], 'VALID')
+        self.output10 = self.conv2d_with_relu_seblock(self.output9, 9)
+        pooled = tf.nn.max_pool(self.output10, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
-        self.output11 = self.conv2d_with_relu_seblock(polled, self.filters[10])
+        self.output11 = self.conv2d_with_relu_seblock(pooled, 10)
         self.output11 = tf.layers.dropout(self.output11, 0.4,training=self.isTrain)
-        self.output12 = self.conv2d_with_relu_seblock(self.output11, self.filters[11])
+        self.output12 = self.conv2d_with_relu_seblock(self.output11, 11)
         self.output12 = tf.layers.dropout(self.output12, 0.4,training=self.isTrain)
-        self.output13 = self.conv2d_with_relu_seblock(self.output12, self.filters[12])
-        polled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
+        self.output13 = self.conv2d_with_relu(self.output12, 12)
+        pooled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
-        polled = tf.reshape(polled,[-1,512])
-        polled = tf.layers.dropout(polled, 0.4,training=self.isTrain)
-        fc1 = self.fc(polled,self.dense[0],self.bais[0])
+        pooled = tf.layers.flatten(pooled)
+        pooled = tf.layers.dropout(pooled, 0.4,training=self.isTrain)
+        fc1 = self.fc(pooled,self.dense[0],self.bais[0])
         fc1 = tf.layers.batch_normalization(fc1)
         fc1 = tf.nn.relu(fc1)
         fc1 = tf.nn.dropout(fc1,0.5)
@@ -78,25 +90,32 @@ class VGG16SEBlock:
             labels=self.y_,
             logits=self.y))
 
-    def conv2d_with_relu_seblock(self, input, filter):
-        output = tf.nn.conv2d(input, filter, [1, 1, 1, 1], 'SAME')
+    def conv2d_with_relu(self, input, i):
+        output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
         output = tf.layers.batch_normalization(output)
         output = tf.nn.relu(output)
-        self.se_block(output)
         return output
 
-    def se_block(self,input):
-        channel_size = input.shape[1]
-        channel_num = input.shape[3]
-        output = tf.layers.average_pooling2d(input, [channel_size, channel_size], 1, 'valid')
-        output = tf.reshape(output,[-1,channel_num])
-        # output = self.fc(output,se_fc_weight[0][0],se_fc_weight[0][1])
-        output = tf.layers.dense(output,channel_num//8)
+    def conv2d_with_relu_seblock(self, input, i):
+
+        output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
+        output = tf.layers.batch_normalization(output)
         output = tf.nn.relu(output)
-        # output = self.fc(output, se_fc_weight[1][0], se_fc_weight[1][1])
-        output = tf.layers.dense(output, channel_num)
+        self.se_block(output,i)
+        return output
+
+    def se_block(self,input,i):
+        channel_size = input.shape[1]
+        output = tf.layers.average_pooling2d(input, [channel_size, channel_size], 1, 'valid')
+        output = tf.layers.flatten(output)
+        output = self.fc(output,self.seblock_dense1[i],self.seblock_bais1[i])
+        # output = tf.layers.dense(output,channel_num//8)
+        output = tf.nn.relu(output)
+        output = self.fc(output, self.seblock_dense2[i], self.seblock_bais2[i])
+        # output = tf.layers.dense(output, channel_num)
         output = tf.nn.sigmoid(output)
-        output = tf.reshape(output, [-1, 1, 1, channel_num])
+        output = tf.expand_dims(output, 1)
+        output = tf.expand_dims(output, 1)
         output = input*output
         return output
 
