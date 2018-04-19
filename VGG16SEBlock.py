@@ -20,8 +20,8 @@ class VGG16SEBlock:
             mid_dense_num = num//8
             self.seblock_dense1.append(self.get_variable("seblock_dense1_"+str((i+1)),shape=[num,mid_dense_num]))
             self.seblock_dense2.append(self.get_variable("seblock_dense2_" + str((i+1)), shape=[mid_dense_num,num]))
-            self.seblock_bais1.append(self.get_variable("seblock_bais1_" + str((i+1)), shape=[1, mid_dense_num]))
-            self.seblock_bais2.append(self.get_variable("seblock_bais2_" + str((i+1)), shape=[1, num]))
+            self.seblock_bais1.append(tf.zeros("seblock_bais1_" + str((i+1)), shape=[1, mid_dense_num]))
+            self.seblock_bais2.append(tf.zeros("seblock_bais2_" + str((i+1)), shape=[1, num]))
         self.filters.append(self.get_variable("filter1",shape=[3,3,3,64]))
         self.filters.append(self.get_variable("filter2",shape=[3,3,64,64]))
         self.filters.append(self.get_variable("filter3",shape=[3, 3, 64, 128]))
@@ -100,7 +100,7 @@ class VGG16SEBlock:
     def conv2d_with_relu_seblock(self, input, i):
 
         output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
-        output = tf.layers.batch_normalization(output)
+        # output = tf.layers.batch_normalization(output)
         output = tf.nn.relu(output)
         self.se_block(output,i)
         return output

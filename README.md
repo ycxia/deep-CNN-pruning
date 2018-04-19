@@ -13,5 +13,5 @@
 !python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_cifar10/vgg16_cifar_epoch --model_name=VGG16Cifar10
 
 ### 训练有seblock的vgg16
-!python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_seblock --model_name=VGG16SEBlock
+!python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_seblock/vgg16_seblock_0.89 --model_name=VGG16SEBlock
 
