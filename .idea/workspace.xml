@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VGG16SEBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16SEBlock.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,17 +20,17 @@
       <file leaf-file-name="VGG16Cifar10.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
+            <state relative-caret-position="-1760">
               <caret line="3" column="18" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VGG16SEBlock.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VGG16SEBlock.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="147" selection-start-line="147" selection-end-line="147" />
+            <state relative-caret-position="180">
+              <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -37,11 +38,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="868">
-              <caret line="57" column="62" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="62" />
+            <state relative-caret-position="360">
+              <caret line="53" column="34" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prune.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prune.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -53,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="15" column="223" selection-start-line="15" selection-start-column="177" selection-end-line="15" selection-end-column="223" />
+              <caret line="15" column="249" lean-forward="true" selection-start-line="15" selection-start-column="224" selection-end-line="15" selection-end-column="249" />
             </state>
           </provider>
         </entry>
@@ -104,8 +116,8 @@
         <option value="$PROJECT_DIR$/VGG16Cifar10.py" />
         <option value="$PROJECT_DIR$/util.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/VGG16SEBlock.py" />
       </list>
     </option>
@@ -533,7 +545,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524123360724</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="去除seblock前的bn">
+      <created>1524123516769</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1524123516769</updated>
+    </task>
+    <task id="LOCAL-00044" summary="每个epoch输出第一个seblock的输出">
+      <created>1524123990450</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1524123990450</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -607,7 +633,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="loss need reduce_mean" />
     <MESSAGE value="readme update" />
     <MESSAGE value="lr to 0.001" />
     <MESSAGE value="add l2" />
@@ -632,7 +657,8 @@
     <MESSAGE value="张量命名重复修正" />
     <MESSAGE value="训练函数重用" />
     <MESSAGE value="去除seblock前的bn" />
-    <option name="LAST_COMMIT_MESSAGE" value="去除seblock前的bn" />
+    <MESSAGE value="每个epoch输出第一个seblock的输出" />
+    <option name="LAST_COMMIT_MESSAGE" value="每个epoch输出第一个seblock的输出" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -646,14 +672,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/VGG16Imagenet.py" />
-    <entry file="file://$PROJECT_DIR$/util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -788,13 +806,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="3" column="18" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/math_ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-442">
@@ -802,29 +813,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/prune.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="223" selection-start-line="15" selection-start-column="177" selection-end-line="15" selection-end-column="223" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="147" selection-start-line="147" selection-end-line="147" />
+        <state>
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="868">
-          <caret line="57" column="62" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="62" />
+        <state relative-caret-position="360">
+          <caret line="53" column="34" selection-start-line="53" selection-start-column="23" selection-end-line="53" selection-end-column="34" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1760">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="249" lean-forward="true" selection-start-line="15" selection-start-column="224" selection-end-line="15" selection-end-column="249" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="1403" column="22" selection-start-line="1403" selection-start-column="17" selection-end-line="1403" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
