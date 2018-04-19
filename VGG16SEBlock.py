@@ -15,6 +15,7 @@ class VGG16SEBlock:
         self.seblock_bais1 = []
         self.seblock_dense2 = []
         self.seblock_bais2 = []
+        self.seblock_ouputs = []
         for (num,i) in zip(channel_nums,range(len(channel_nums))):
             mid_dense_num = num//8
             self.seblock_dense1.append(self.get_variable("seblock_dense1_"+str((i+1)),shape=[num,mid_dense_num]))
@@ -114,6 +115,7 @@ class VGG16SEBlock:
         output = self.fc(output, self.seblock_dense2[i], self.seblock_bais2[i])
         # output = tf.layers.dense(output, channel_num)
         output = tf.nn.sigmoid(output)
+        self.seblock_ouputs.append(output)
         output = tf.expand_dims(output, 1)
         output = tf.expand_dims(output, 1)
         output = input*output
