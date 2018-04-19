@@ -101,8 +101,9 @@ class VGG16SEBlock:
 
         output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
         # output = tf.layers.batch_normalization(output)
+
+        output = self.se_block(output,i)
         output = tf.nn.relu(output)
-        self.se_block(output,i)
         return output
 
     def se_block(self,input,i):
