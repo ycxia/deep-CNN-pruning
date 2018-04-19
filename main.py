@@ -51,11 +51,12 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                                                                 model.y_: batch_label,
                                                                 model.isTrain: False})
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i, batch_num, loss, acc,train_loss, train_acc))
-            loss, acc = sess.run([model.loss, model.accaury],
+            loss, acc, seblock_out = sess.run([model.loss, model.accaury, model.seblock_ouputs[0]],
                                  feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
+            print("seblock00 is {}".format(seblock_out[0]))
             print("{} epoch: loss is {},accuary is {}".format(epoch, loss, acc))
             if acc > max_acc:
-                saver.save(sess, "{}_{}".format(checkpoint_dir, '%.2f' % acc))
+                saver.save(sess, "{}_{}".format(checkpoint_dir, '%.3f' % acc))
                 max_acc = acc
                 print("{} epoch weight save success!".format(epoch))
         print("Training end!")
