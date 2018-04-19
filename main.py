@@ -63,7 +63,7 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
 def main(_):
     batch_size = FLAGS.batch_size
     epoch_num = FLAGS.epoch
-    dataset_path = os.path.join(sys.path[0],'data', FLAGS.dataset)
+    dataset_path =  FLAGS.dataset
     learning_rate = FLAGS.learning_rate
     testset_size = FLAGS.testset_size
     l2_lambda = FLAGS.l2_lambda
