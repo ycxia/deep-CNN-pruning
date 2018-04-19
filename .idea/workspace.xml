@@ -29,8 +29,8 @@
       <file leaf-file-name="VGG16SEBlock.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+            <state relative-caret-position="270">
+              <caret line="105" column="28" selection-start-line="105" selection-start-column="28" selection-end-line="105" selection-end-column="28" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -559,7 +559,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524123990450</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="每个epoch输出第一个seblock的输出">
+      <created>1524124945083</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1524124945083</updated>
+    </task>
+    <task id="LOCAL-00046" summary="seblock放到relu前面">
+      <created>1524126847619</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1524126847619</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TodoView">
@@ -633,7 +647,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="readme update" />
     <MESSAGE value="lr to 0.001" />
     <MESSAGE value="add l2" />
     <MESSAGE value="add l2_lambda to start command" />
@@ -658,7 +671,8 @@
     <MESSAGE value="训练函数重用" />
     <MESSAGE value="去除seblock前的bn" />
     <MESSAGE value="每个epoch输出第一个seblock的输出" />
-    <option name="LAST_COMMIT_MESSAGE" value="每个epoch输出第一个seblock的输出" />
+    <MESSAGE value="seblock放到relu前面" />
+    <option name="LAST_COMMIT_MESSAGE" value="seblock放到relu前面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -855,8 +869,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="23" column="52" selection-start-line="23" selection-start-column="52" selection-end-line="23" selection-end-column="52" />
+        <state relative-caret-position="270">
+          <caret line="105" column="28" selection-start-line="105" selection-start-column="28" selection-end-line="105" selection-end-column="28" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
