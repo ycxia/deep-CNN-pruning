@@ -108,7 +108,7 @@ class VGG16SEBlock:
         output = self.se_block(output,i)
         if int(input.shape[3])!=int(output.shape[3]):
             padding =  tf.constant([[0,0], [0, 0], [0, 0],[0,int(input.shape[3])]])
-            output = tf.pad(output,padding,"CONSTANT")
+            input = tf.pad(input,padding,"CONSTANT")
         output = tf.nn.relu(output+input)
         return output
 
