@@ -103,7 +103,7 @@ class VGG16SEBlock:
         # output = tf.layers.batch_normalization(output)
 
         output = self.se_block(output,i)
-        output = tf.nn.relu(output)
+        output = tf.nn.relu(output+input)
         return output
 
     def se_block(self,input,i):
