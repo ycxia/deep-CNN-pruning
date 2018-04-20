@@ -106,7 +106,7 @@ class VGG16SEBlock:
         # output = tf.layers.batch_normalization(output)
 
         output = self.se_block(output,i)
-        if input.shape[3]!=output.shape[3]:
+        if int(input.shape[3])!=int(output.shape[3]):
             padding =  tf.constant([[0,0], [0, 0], [0, 0],[0,int(input.shape[3])]])
             output = tf.pad(output,padding,"CONSTANT")
         output = tf.nn.relu(output+input)
