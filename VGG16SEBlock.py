@@ -45,7 +45,10 @@ class VGG16SEBlock:
 
 
     def build_model(self):
-        self.output1 = self.conv2d_with_relu_seblock(self.x, 0)
+        self.output1 = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
+        # self.output1 = self.se_block(self.output1, 0)
+        self.output1 = tf.nn.relu(self.output1)
+        # self.output1 = self.conv2d_with_relu_seblock(self.x, 0)
         self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
         self.output2 = self.conv2d_with_relu_seblock(self.output1, 1)
         pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
@@ -103,6 +106,9 @@ class VGG16SEBlock:
         # output = tf.layers.batch_normalization(output)
 
         output = self.se_block(output,i)
+        if input.shape[3]!=output.shape[3]:
+            padding =  tf.constant([[0,0],[0, 0], [0, 0],[0,input.shape[3]]])
+            output = tf.pad(output,padding,"CONSTANT")
         output = tf.nn.relu(output+input)
         return output
 
