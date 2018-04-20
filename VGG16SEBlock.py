@@ -45,7 +45,7 @@ class VGG16SEBlock:
 
 
     def build_model(self):
-        self.output1 = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
+        self.output1 = tf.nn.conv2d(input, self.filters[0], [1, 1, 1, 1], 'SAME')
         # self.output1 = self.se_block(self.output1, 0)
         self.output1 = tf.nn.relu(self.output1)
         # self.output1 = self.conv2d_with_relu_seblock(self.x, 0)
