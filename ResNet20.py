@@ -10,14 +10,18 @@ class ResNet20:
         output = self.residual_block(output, "block2", 3, 32)
         output = self.residual_block(output, "block3", 3, 64)
 
-        output = tf.layers.
+        output = tf.layers.average_pooling2d(output,8,1,'valid')
+        output = tf.layers.flatten(output)
+        self.y = tf.layers.dense(output,10)
+        self.yy = tf.nn.softmax(self.y)
         correct_prediction = tf.equal(tf.argmax(self.yy, 1), self.y_)
         self.accaury = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
         self.cross_entropy = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(
             labels=self.y_,
             logits=self.y))
-    def residual_block(self,x,name,res_num,output_num):
+
+    def residual_block(self, x, name, res_num, output_num):
         output = x
         with tf.variable_scope(name):
             for i in range(res_num):
@@ -27,13 +31,19 @@ class ResNet20:
                     output = self.residual_model(output, output_num)
         return output
 
-    def residual_model(self,x,output_num,differ_dim=False):
-        output = tf.layers.conv2d(x, output_num, 3, 2, 'valid', activation=tf.nn.relu)
-        output = tf.layers.conv2d(output, output_num, 3, 1, 'same')
+    def residual_model(self, x, output_num, differ_dim=False):
         if(differ_dim==True):
-            x = tf.layers.average_pooling2d(x,2,2,'valid')
-            padding = tf.constant([[0, 0], [0, 0], [0, 0], [output_num//4, output_num//4]])
+            output = tf.layers.conv2d(x, output_num, 3, 2, 'valid')
+
+            x = tf.layers.average_pooling2d(x, 2, 2, 'valid')
+            padding = tf.constant([[0, 0], [0, 0], [0, 0], [output_num // 4, output_num // 4]])
             x = tf.pad(x, padding, "CONSTANT")
+        else:
+            output = tf.layers.conv2d(x, output_num, 3, 1, 'same')
+        output = tf.layers.batch_normalization(output)
+        output = tf.nn.relu(output)
+        output = tf.layers.conv2d(output, output_num, 3, 1, 'same')
+        output = tf.layers.batch_normalization(output)
         output = tf.nn.relu(output+x)
         return output
 
