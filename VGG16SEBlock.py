@@ -82,7 +82,7 @@ class VGG16SEBlock:
         pooled = tf.layers.flatten(pooled)
         pooled = tf.layers.dropout(pooled, 0.4,training=self.isTrain)
         fc1 = self.fc(pooled,self.dense[0],self.bais[0])
-        fc1 = tf.layers.batch_normalization(fc1)
+        fc1 = tf.layers.batch_normalization(fc1,training=self.isTrain)
         fc1 = tf.nn.relu(fc1)
         fc1 = tf.nn.dropout(fc1,0.5)
         self.y = self.fc(fc1,self.dense[1],self.bais[1])
@@ -96,7 +96,7 @@ class VGG16SEBlock:
 
     def conv2d_with_relu(self, input, i):
         output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
-        output = tf.layers.batch_normalization(output)
+        output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output)
         return output
 

@@ -9,9 +9,12 @@
 训练数据需要存放在项目下的data文件夹下（自行创建），dataset参数即数据集文件夹的名称。VGG16Cifar10使用的是cifar10-python数据集。
 
 ## 训练命令
+选择GPU：CUDA_VISIBLE_DEVICES="4"
 ### 训练普通vgg16
-!python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_cifar10/vgg16_cifar_epoch --model_name=VGG16Cifar10
+python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_cifar10/vgg16_cifar_epoch --model_name=VGG16Cifar10
 
 ### 训练有seblock的vgg16
-!python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_seblock/vgg16_seblock_0.89 --model_name=VGG16SEBlock
+python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=drive/weights/vgg16_seblock/vgg16_seblock_0.89 --model_name=VGG16SEBlock
 
+### 训练ResNet20
+python VGG16-filter-available/main.py --epoch 500 --learning_rate 0.01 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=checkpoint/ResNet20/ResNet20 --model_name=ResNet20

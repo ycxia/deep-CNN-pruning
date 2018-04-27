@@ -2,10 +2,9 @@ from VGG16Cifar10 import VGG16Cifar10
 from VGG16SEBlock import VGG16SEBlock
 from ResNet20 import ResNet20
 import tensorflow as tf
-import os
 from util import Cifar10Dataset
-import sys
 import numpy as np
+import os
 
 
 flags = tf.app.flags
@@ -22,7 +21,14 @@ FLAGS = flags.FLAGS
 def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
     train_step = model.get_train_step(learning_rate, ues_regularizer)
     saver = tf.train.Saver(max_to_keep=1)
+    tensorboard_dir = 'tensorboard/ResNet20'  # 保存目录
+    if not os.path.exists(tensorboard_dir):
+        os.makedirs(tensorboard_dir)
+
+
     with tf.Session() as sess:
+        writer = tf.summary.FileWriter(tensorboard_dir)
+        writer.add_graph(sess.graph)
         load_result = model.load_weight(sess, saver, checkpoint_dir)
         if (load_result == True):
             print("Checkpoint load success!")
@@ -52,9 +58,8 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                                                                 model.y_: batch_label,
                                                                 model.isTrain: False})
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i, batch_num, loss, acc,train_loss, train_acc))
-            loss, acc, seblock_out = sess.run([model.loss, model.accaury, model.seblock_ouputs[0]],
+            loss, acc = sess.run([model.loss, model.accaury],
                                  feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
-            print("seblock00 is {}".format(seblock_out[0]))
             print("{} epoch: loss is {},accuary is {}".format(epoch, loss, acc))
             if acc > max_acc:
                 saver.save(sess, "{}_{}".format(checkpoint_dir, '%.3f' % acc))
