@@ -66,7 +66,7 @@ class VGG16Cifar10:
         polled = tf.reshape(polled,[-1,512])
         polled = tf.layers.dropout(polled, 0.4,training=self.isTrain)
         fc1 = self.fc(polled,self.dense[0],self.bais[0])
-        fc1 = tf.layers.batch_normalization(fc1)
+        fc1 = tf.layers.batch_normalization(fc1,training=self.isTrain)
         fc1 = tf.nn.relu(fc1)
         fc1 = tf.nn.dropout(fc1,0.5)
         self.y = self.fc(fc1,self.dense[1],self.bais[1])
@@ -80,7 +80,7 @@ class VGG16Cifar10:
 
     def conv2d_with_relu(self, input, filter):
         output = tf.nn.conv2d(input, filter, [1, 1, 1, 1], 'SAME')
-        output = tf.layers.batch_normalization(output)
+        output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output)
         return output
 

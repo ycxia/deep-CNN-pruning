@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/ResNet20.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ResNet20.py" beforeDir="false" afterPath="$PROJECT_DIR$/ResNet20.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VGG16Cifar10.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16Cifar10.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +22,8 @@
       <file leaf-file-name="VGG16Cifar10.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-342">
-              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            <state relative-caret-position="252">
+              <caret line="108" column="24" lean-forward="true" selection-start-line="102" selection-start-column="4" selection-end-line="108" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -30,8 +31,8 @@
       <file leaf-file-name="VGG16SEBlock.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="94" column="27" lean-forward="true" selection-start-line="89" selection-start-column="8" selection-end-line="94" selection-end-column="27" />
+            <state relative-caret-position="310">
+              <caret line="138" column="72" lean-forward="true" selection-start-line="133" selection-start-column="8" selection-end-line="138" selection-end-column="72" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -39,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResNet20.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ResNet20.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ResNet20.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+            <state relative-caret-position="369">
+              <caret line="58" column="35" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -57,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+            <state relative-caret-position="450">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="19" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -138,12 +139,12 @@
         <option value="$PROJECT_DIR$/VGG16Imagenet.py" />
         <option value="$PROJECT_DIR$/util.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/VGG16SEBlock.py" />
-        <option value="$PROJECT_DIR$/VGG16Cifar10.py" />
         <option value="$PROJECT_DIR$/ResNet.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/prune.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/VGG16Cifar10.py" />
         <option value="$PROJECT_DIR$/ResNet20.py" />
       </list>
     </option>
@@ -276,20 +277,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520577482460</updated>
-    </task>
-    <task id="LOCAL-00007" summary="readme update">
-      <created>1521616950160</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1521616950160</updated>
-    </task>
-    <task id="LOCAL-00008" summary="lr to 0.001">
-      <created>1521622494710</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1521622494710</updated>
     </task>
     <task id="LOCAL-00009" summary="add l2">
       <created>1522397904263</created>
@@ -620,7 +607,21 @@
       <option name="project" value="LOCAL" />
       <updated>1524194348413</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="resnet20，还需要加bn和最后的avg池化、全连接">
+      <created>1524735108013</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1524735108014</updated>
+    </task>
+    <task id="LOCAL-00057" summary="resnet20完成，需要写训练代码">
+      <created>1524737884865</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1524737884865</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TodoView">
@@ -641,7 +642,7 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5029762" side_tool="true" weight="0.84514004" />
       <window_info anchor="right" x="0" y="0" width="277" height="580" id="Documentation" order="5" side_tool="true" weight="0.26361483" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.3294893" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32919255" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32763976" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.38975155" />
       <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.49702382" weight="0.8198758" />
@@ -694,8 +695,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="l2 regular" />
-    <MESSAGE value="add dropout" />
     <MESSAGE value="image input pixel order" />
     <MESSAGE value="use np tanscope" />
     <MESSAGE value="dropout区分训练和推断" />
@@ -719,7 +718,9 @@
     <MESSAGE value="去除seblock" />
     <MESSAGE value="加上SEBlock" />
     <MESSAGE value="加入skip connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="加入skip connection" />
+    <MESSAGE value="resnet20，还需要加bn和最后的avg池化、全连接" />
+    <MESSAGE value="resnet20完成，需要写训练代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="resnet20完成，需要写训练代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -733,13 +734,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
@@ -873,16 +867,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -910,27 +894,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/normalization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-342">
-          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        <state relative-caret-position="-1000">
+          <caret line="645" column="32" selection-start-line="645" selection-start-column="24" selection-end-line="645" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="94" column="27" lean-forward="true" selection-start-line="89" selection-start-column="8" selection-end-line="94" selection-end-column="27" />
+        <state relative-caret-position="310">
+          <caret line="138" column="72" lean-forward="true" selection-start-line="133" selection-start-column="8" selection-end-line="138" selection-end-column="72" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="108" column="24" lean-forward="true" selection-start-line="102" selection-start-column="4" selection-end-line="108" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ResNet20.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        <state relative-caret-position="369">
+          <caret line="58" column="35" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

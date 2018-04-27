@@ -1,5 +1,6 @@
 from VGG16Cifar10 import VGG16Cifar10
 from VGG16SEBlock import VGG16SEBlock
+from ResNet20 import ResNet20
 import tensorflow as tf
 import os
 from util import Cifar10Dataset
@@ -16,10 +17,10 @@ flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the 
 flags.DEFINE_integer("testset_size", 32, "testset size [32]")
 flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
 flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
-
 FLAGS = flags.FLAGS
-def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model):
-    train_step = model.get_train_step(learning_rate, ues_regularizer=True)
+
+def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
+    train_step = model.get_train_step(learning_rate, ues_regularizer)
     saver = tf.train.Saver(max_to_keep=1)
     with tf.Session() as sess:
         load_result = model.load_weight(sess, saver, checkpoint_dir)
@@ -70,6 +71,7 @@ def main(_):
     l2_lambda = FLAGS.l2_lambda
     checkpoint_dir = FLAGS.checkpoint_dir
     model_name = FLAGS.model_name
+    ues_regularizer = False
 
     cifar10 = Cifar10Dataset(dataset_path)
     cifar10.load_train_data()
@@ -79,13 +81,15 @@ def main(_):
     model = None
     if(model_name=="VGG16SEBlock"):
         model = VGG16SEBlock(l2_lambda)
-        model.build_model()
-        print("Model build success!")
+        ues_regularizer = True
     elif (model_name == "VGG16Cifar10"):
         model = VGG16Cifar10(l2_lambda)
-        model.build_model()
-        print("Model build success!")
-    train(batch_size, epoch_num, cifar10, learning_rate, testset_size, checkpoint_dir, model)
+        ues_regularizer = True
+    elif model_name == "ResNet20":
+        model = ResNet20()
+    model.build_model()
+    print("Model build success!")
+    train(batch_size, epoch_num, cifar10, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer)
 
 if __name__ == '__main__':
   tf.app.run()

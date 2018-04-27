@@ -3,6 +3,7 @@ class ResNet20:
     def __init__(self):
         self.x = tf.placeholder(tf.float32,[None,32,32,3])
         self.y_ = tf.placeholder(tf.float32,[None,1])
+        self.isTrain = tf.placeholder(tf.bool)
 
     def build_model(self):
         output = tf.layers.conv2d(self.x,16,3,1,'same',activation=tf.nn.relu)
@@ -40,10 +41,25 @@ class ResNet20:
             x = tf.pad(x, padding, "CONSTANT")
         else:
             output = tf.layers.conv2d(x, output_num, 3, 1, 'same')
-        output = tf.layers.batch_normalization(output)
+        output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output)
         output = tf.layers.conv2d(output, output_num, 3, 1, 'same')
-        output = tf.layers.batch_normalization(output)
+        output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output+x)
         return output
 
+    def get_train_step(self, lr, ues_regularizer):
+        self.loss = self.cross_entropy
+        if ues_regularizer==True:
+            self.loss += tf.reduce_sum(
+                tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+            )
+        return tf.train.AdamOptimizer(lr).minimize(self.loss)
+
+    def load_weight(self,sess,saver,weight_saver_dir):
+        try:
+            saver.restore(sess, weight_saver_dir)
+            return True
+        except BaseException:
+            sess.run(tf.global_variables_initializer())
+            return False
