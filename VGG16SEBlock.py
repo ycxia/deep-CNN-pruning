@@ -45,10 +45,7 @@ class VGG16SEBlock:
 
 
     def build_model(self):
-        self.output1 = tf.nn.conv2d(self.x, self.filters[0], [1, 1, 1, 1], 'SAME')
-        # self.output1 = self.se_block(self.output1, 0)
-        self.output1 = tf.nn.relu(self.output1)
-        # self.output1 = self.conv2d_with_relu_seblock(self.x, 0)
+        self.output1 = self.conv2d_with_relu_seblock(self.x, 0)
         self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
         self.output2 = self.conv2d_with_relu_seblock(self.output1, 1)
         pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
@@ -94,21 +91,10 @@ class VGG16SEBlock:
             labels=self.y_,
             logits=self.y))
 
-    def conv2d_with_relu(self, input, i):
-        output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
-        output = tf.layers.batch_normalization(output,training=self.isTrain)
-        output = tf.nn.relu(output)
-        return output
-
     def conv2d_with_relu_seblock(self, input, i):
-
         output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
-        # output = tf.layers.batch_normalization(output)
-
+        output = tf.layers.batch_normalization(output)
         output = self.se_block(output,i)
-        if int(input.shape[3])!=int(output.shape[3]):
-            padding =  tf.constant([[0,0], [0, 0], [0, 0],[0,int(input.shape[3])]])
-            input = tf.pad(input,padding,"CONSTANT")
         output = tf.nn.relu(output+input)
         return output
 
@@ -136,7 +122,10 @@ class VGG16SEBlock:
             self.loss += tf.reduce_sum(
                 tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
             )
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
+        extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        with tf.control_dependencies(extra_update_ops):
+            train_step = tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
+        return train_step
 
     def get_variable(self,name,shape):
         return tf.get_variable(name=name,

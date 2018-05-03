@@ -93,7 +93,10 @@ class VGG16Cifar10:
             self.loss += tf.reduce_sum(
                 tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
             )
-        return tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
+        extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        with tf.control_dependencies(extra_update_ops):
+            train_step = tf.train.AdamOptimizer(learning_rate).minimize(self.loss)
+        return train_step
 
     def get_variable(self,name,shape):
         return tf.get_variable(name=name,
