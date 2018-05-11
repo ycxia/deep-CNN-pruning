@@ -17,7 +17,7 @@ dataset参数即数据集文件夹路径，目前的模型使用的都是cifar10
 python3 deep-CNN-pruning/main.py --epoch 500 --learning_rate 0.001 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=checkpoint/vgg16_cifar10/vgg16 --model_name=VGG16Cifar10
 
 ### 训练有seblock的vgg16
-python3 deep-CNN-pruning/main.py --epoch 500 --learning_rate 0.00006 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=checkpoint/vgg16_seblock/vgg16_seblock --model_name=VGG16SEBlock
+python3 deep-CNN-pruning/main.py --epoch 500 --learning_rate 0.001 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=checkpoint/vgg16_seblock/vgg16_seblock --model_name=VGG16SEBlock
 
 ### 训练ResNet20
 python3 deep-CNN-pruning/main.py --epoch 500 --learning_rate 0.01 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=checkpoint/ResNet20/ResNet20 --model_name=ResNet20

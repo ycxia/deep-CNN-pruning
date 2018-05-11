@@ -15,7 +15,7 @@ class VGG16SEBlock:
         self.seblock_bais1 = []
         self.seblock_dense2 = []
         self.seblock_bais2 = []
-        self.seblock_ouputs = []
+        self.seblock_weight = []
         for (num,i) in zip(channel_nums,range(len(channel_nums))):
             mid_dense_num = num//8
             self.seblock_dense1.append(self.get_variable("seblock_dense1_"+str((i+1)),shape=[num,mid_dense_num]))
@@ -73,6 +73,7 @@ class VGG16SEBlock:
         self.output11 = tf.layers.dropout(self.output11, 0.4,training=self.isTrain)
         self.output12 = self.conv2d_with_relu_seblock(self.output11, 11)
         self.output12 = tf.layers.dropout(self.output12, 0.4,training=self.isTrain)
+        # 最后一层channelsize为1，不适合加seblock
         self.output13 = self.conv2d_with_relu(self.output12, 12)
         pooled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
@@ -91,11 +92,16 @@ class VGG16SEBlock:
             labels=self.y_,
             logits=self.y))
 
+    def conv2d_with_relu(self,input,i):
+        output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
+        output = tf.layers.batch_normalization(output,training=self.isTrain)
+        output = tf.nn.relu(output)
+        return output
     def conv2d_with_relu_seblock(self, input, i):
         output = tf.nn.conv2d(input, self.filters[i], [1, 1, 1, 1], 'SAME')
-        output = tf.layers.batch_normalization(output)
+        output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = self.se_block(output,i)
-        output = tf.nn.relu(output+input)
+        # output = tf.nn.relu(output+input)
         return output
 
     def se_block(self,input,i):
@@ -106,7 +112,7 @@ class VGG16SEBlock:
         output = tf.nn.relu(output)
         output = self.fc(output, self.seblock_dense2[i], self.seblock_bais2[i])
         output = tf.nn.sigmoid(output)
-        self.seblock_ouputs.append(output)
+        self.seblock_weight.append(output)
         output = tf.expand_dims(output, 1)
         output = tf.expand_dims(output, 1)
         output = input*output
