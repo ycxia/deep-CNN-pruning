@@ -1,6 +1,7 @@
 from VGG16Cifar10 import VGG16Cifar10
 from VGG16SEBlock import VGG16SEBlock
 from ResNet20 import ResNet20
+from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 from util import Cifar10Dataset
 import numpy as np
@@ -24,7 +25,7 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
 
     with tf.Session() as sess:
         load_result = model.load_weight(sess, saver, checkpoint_dir)
-        if (load_result == True):
+        if load_result == True:
             print("Checkpoint load success!")
         else:
             print("No checkpoint file,weight inited!")
@@ -32,7 +33,7 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
         loss, acc = sess.run([model.loss, model.accaury],
                              feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
         print("Model init stat: loss is {},accuary is {}".format(loss, acc))
-        max_acc = max(acc, 0.86)
+        max_acc = max(acc, 0.84)
         train_data_size = len(data_set.train_label)
         batch_num = train_data_size // batch_size
         for epoch in range(epoch_num):
@@ -52,8 +53,9 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                                                                 model.y_: batch_label,
                                                                 model.isTrain: False})
                     print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i, batch_num, loss, acc,train_loss, train_acc))
-            loss, acc = sess.run([model.loss, model.accaury],
+            loss, acc, se = sess.run([model.loss, model.accaury, model.seblock_weight[0]],
                                  feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
+            print(se[0])
             print("{} epoch: loss is {},accuary is {}".format(epoch, loss, acc))
             if acc > max_acc:
                 saver.save(sess, "{}_{}".format(checkpoint_dir, '%.3f' % acc))
@@ -78,14 +80,16 @@ def main(_):
     cifar10.load_test_data()
     print("Test data load success,test set shape:{}".format(cifar10.test_x.shape))
     model = None
-    if(model_name=="VGG16SEBlock"):
+    if model_name=="VGG16SEBlock":
         model = VGG16SEBlock(l2_lambda)
         ues_regularizer = True
-    elif (model_name == "VGG16Cifar10"):
+    elif model_name == "VGG16Cifar10":
         model = VGG16Cifar10(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20":
         model = ResNet20()
+    elif model_name == "ResNet20SEBlock":
+        model = ResNet20SEBlock()
     model.build_model()
     print("Model build success!")
     train(batch_size, epoch_num, cifar10, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer)
