@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ResNet20.py" beforeDir="false" afterPath="$PROJECT_DIR$/ResNet20.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prune.py" beforeDir="false" afterPath="$PROJECT_DIR$/prune.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,8 +59,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+            <state relative-caret-position="360">
+              <caret line="56" column="123" selection-start-line="56" selection-start-column="123" selection-end-line="56" selection-end-column="123" />
               <folding>
                 <element signature="e#0#37#0" expanded="true" />
               </folding>
@@ -298,13 +296,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520577482460</updated>
-    </task>
-    <task id="LOCAL-00015" summary="image input pixel order">
-      <created>1523017940424</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1523017940424</updated>
     </task>
     <task id="LOCAL-00016" summary="use np tanscope">
       <created>1523095150930</created>
@@ -642,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1526032964425</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="resnet不适用adam，使用带动量的梯度下降">
+      <created>1526371391690</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1526371391691</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TodoView">
@@ -716,7 +714,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="只保存一份checkpoint" />
     <MESSAGE value="只保存一份精确率最高的checkpoint,并且大于0.8" />
     <MESSAGE value="增加载入权重功能" />
     <MESSAGE value="加入数据增强，适用sparse损失函数" />
@@ -741,7 +738,8 @@
     <MESSAGE value="vgg中bn层正确更新" />
     <MESSAGE value="增加带seblock的ResNet" />
     <MESSAGE value="开始编写剪枝函数，修正vgg seblock错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="开始编写剪枝函数，修正vgg seblock错误" />
+    <MESSAGE value="resnet不适用adam，使用带动量的梯度下降" />
+    <option name="LAST_COMMIT_MESSAGE" value="resnet不适用adam，使用带动量的梯度下降" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1007,8 +1005,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        <state relative-caret-position="360">
+          <caret line="56" column="123" selection-start-line="56" selection-start-column="123" selection-end-line="56" selection-end-column="123" />
           <folding>
             <element signature="e#0#37#0" expanded="true" />
           </folding>
