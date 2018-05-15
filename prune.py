@@ -70,7 +70,7 @@ def seblock_channel_select(channel_weight,compress_rate):
 
 def seblock_prune(sess,pre_filter,next_filter,seblock_filter,bn_filter,seblock_output,compress_rate):
     prune_index = seblock_channel_select(seblock_output, compress_rate)
-    for index in prune_index:
+    # for index in prune_index:
 
 
 

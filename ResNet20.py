@@ -58,7 +58,7 @@ class ResNet20:
             )
         extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
         with tf.control_dependencies(extra_update_ops):
-            train_op = tf.train.AdamOptimizer(lr).minimize(self.loss)
+            train_op = tf.train.MomentumOptimizer(lr,0.9).minimize(self.loss)
         return train_op
 
     def load_weight(self,sess,saver,weight_saver_dir):
