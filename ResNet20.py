@@ -7,7 +7,7 @@ class ResNet20:
 
     def build_model(self):
         output = tf.image.resize_image_with_crop_or_pad(self.x,40,40)
-        output = tf.random_crop(output, [None,32,32,3])
+        output = tf.random_crop(output, [64,32,32,3])
         output = tf.layers.conv2d(output, 16, 3, 1, 'same',use_bias=False)
         output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output)
