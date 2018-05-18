@@ -74,7 +74,7 @@ class Cifar10Dataset:
         random = np.random.randint(9, size=(N, 2))
         xx = []
         for i in range(N):
-            xx.append(x[i, random[i][0]:random[i][0] + 32, random[i][1]:random[i][1] + 32])
+            xx.append(x[i, random[i,0]:random[i,0] + 32, random[i,1]:random[i,1] + 32])
         return xx
 
     def normalize(self,x):
