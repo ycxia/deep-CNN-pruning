@@ -5,6 +5,7 @@ from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 from util import Cifar10Dataset
 import numpy as np
+from imgaug import augmenters as iaa
 import os
 
 
@@ -44,10 +45,10 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                 batch_x = data_set.train_x[batch_index]
                 batch_label = data_set.train_label[batch_index]
                 # 随机crop
-                flip_image = batch_x[:len(batch_label)//2]
-                batch_x[:len(batch_label)//2] = flip_image[:, :, ::-1, :]
-                batch_x = np.pad(batch_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
-
+                # flip_image = batch_x[:len(batch_label)//2]
+                # batch_x[:len(batch_label)//2] = flip_image[:, :, ::-1, :]
+                # batch_x = np.pad(batch_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
+                batch_x = data_set.data_argument(batch_x)
                 sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
                 if i % 100 == 0:
                     loss, acc = sess.run([model.loss, model.accaury], feed_dict={model.x: data_set.test_x[0:testset_size],
