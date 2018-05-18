@@ -47,12 +47,17 @@ class Cifar10Dataset:
             dict = unpickle(file)
             self.train_x = np.concatenate((self.train_x,dict[b'data'].flatten()))
             self.train_label = np.concatenate((self.train_label,np.array(dict[b'labels'])))
-
-        # 数据增强（左右翻转）
         self.train_x = self._data_reshape(self.train_x)
+        self.avg = np.mean(self.train_x,(0,1,2),dtype=np.float32)
+        self.std = np.std(self.train_x,(0,1,2),dtype=np.float32)
+        print("avg:{},std:{}"(self.avg,self.std))
+        self.train_x = (self.train_x-self.avg)/self.std
+
+        # 数据增强
         filp_data = self.train_x[:, :, ::-1, :]
         self.train_x = np.concatenate((self.train_x, filp_data))
         self.train_label = np.concatenate((self.train_label, self.train_label))
+        self.train_x = np.pad(self.train_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
 
     def load_test_data(self):
         file_dir = os.path.join(self.dir, 'test_batch')
@@ -60,9 +65,9 @@ class Cifar10Dataset:
         self.test_x = dict[b'data'].flatten()
         self.test_x = self._data_reshape(self.test_x)
         self.test_label = dict[b'labels']
+        self.test_x = (self.test_x - self.avg) / self.std
 
     def _data_reshape(self,data):
-        data = data / 255.0
         data = np.reshape(data, (-1, 3, 32, 32))
         data = np.transpose(data, (0, 2, 3, 1))
         return data
