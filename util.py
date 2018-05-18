@@ -72,11 +72,11 @@ class Cifar10Dataset:
         N = x.shape[0]
         x = self.seq.augment_images(x)
         x = np.array(x)
-        print(x.shape)
         random = np.random.randint(9, size=(N, 2))
         xx = []
         for i in range(N):
             xx.append(x[i, random[i][0]:random[i][0] + 32, random[i][1]:random[i][1] + 32])
+        xx = np.array(xx)
         return xx
 
     def normalize(self,x):
