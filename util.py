@@ -54,10 +54,10 @@ class Cifar10Dataset:
         self.train_x = (self.train_x-self.avg)/self.std
 
         # 数据增强
-        filp_data = self.train_x[:, :, ::-1, :]
-        self.train_x = np.concatenate((self.train_x, filp_data))
-        self.train_label = np.concatenate((self.train_label, self.train_label))
-        self.train_x = np.pad(self.train_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
+        # filp_data = self.train_x[:, :, ::-1, :]
+        # self.train_x = np.concatenate((self.train_x, filp_data))
+        # self.train_label = np.concatenate((self.train_label, self.train_label))
+        # self.train_x = np.pad(self.train_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
 
     def load_test_data(self):
         file_dir = os.path.join(self.dir, 'test_batch')

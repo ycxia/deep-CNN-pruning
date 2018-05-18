@@ -44,7 +44,11 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                 batch_x = data_set.train_x[batch_index]
                 batch_label = data_set.train_label[batch_index]
                 # 随机crop
-                x = tf.placeholder(dtype=tf.float32,shape=[None,32,32,3])
+                flip_image = batch_x[len(batch_label)//2]
+                batch_x[len(batch_label)//2] = flip_image[:, :, ::-1, :]
+                batch_x = np.pad(batch_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
+
+                x = tf.placeholder(dtype=tf.float32,shape=[None,40,40,3])
                 argdata = tf.random_crop(argdata, [64, 32, 32, 3])
                 batch_x = sess.run(argdata,feed_dict={x:batch_x})
                 sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
