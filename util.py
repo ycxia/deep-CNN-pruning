@@ -69,14 +69,13 @@ class Cifar10Dataset:
         return False
 
     def data_argument(self,x):
+        N = x.shape[0]
         x = self.seq.augment_images(x)
-        random = np.random.randint(9, size=(x.shape[0], 2))
+        random = np.random.randint(9, size=(N, 2))
         xx = []
-        for i in range(x.shape[0]):
+        for i in range(N):
             xx.append(x[i, random[i][0]:random[i][0] + 32, random[i][1]:random[i][1] + 32])
         return xx
-
-
 
     def normalize(self,x):
         x = x/255.0
