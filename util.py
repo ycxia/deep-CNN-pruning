@@ -21,7 +21,7 @@ class Cifar10Dataset:
         self.test_label = None
         self.prune_x = None
         self.seq = iaa.Sequential([
-            iaa.Pad(px=4),
+            iaa.Pad(px=4,keep_size=False),
             # iaa.Crop(px=(0, 4)),  # crop images from each side by 0 to 4px (randomly chosen)
             iaa.Fliplr(0.5),  # horizontally flip 50% of the images
         ])
@@ -69,7 +69,14 @@ class Cifar10Dataset:
         return False
 
     def data_argument(self,x):
-        return self.seq.augment_images(x)
+        x = self.seq.augment_images(x)
+        random = np.random.randint(9, size=(x.shape[0], 2))
+        xx = []
+        for i in range(x.shape[0]):
+            xx.append(x[i, random[i][0]:random[i][0] + 32, random[i][1]:random[i][1] + 32])
+        return xx
+
+
 
     def normalize(self,x):
         x = x/255.0
