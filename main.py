@@ -33,7 +33,7 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
         loss, acc = sess.run([model.loss, model.accaury],
                              feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
         print("Model init stat: loss is {},accuary is {}".format(loss, acc))
-        max_acc = max(acc, 0.85)
+        max_acc = max(acc, 0.84)
         train_data_size = len(data_set.train_label)
         batch_num = train_data_size // batch_size
         for epoch in range(epoch_num):
