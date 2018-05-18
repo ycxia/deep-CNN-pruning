@@ -71,6 +71,7 @@ class Cifar10Dataset:
     def data_argument(self,x):
         N = x.shape[0]
         x = self.seq.augment_images(x)
+        print(x.shape)
         random = np.random.randint(9, size=(N, 2))
         xx = []
         for i in range(N):
