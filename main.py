@@ -48,11 +48,9 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                 # batch_x[:len(batch_label)//2] = flip_image[:, :, ::-1, :]
                 # batch_x = np.pad(batch_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
                 batch_x = data_set.data_argument(batch_x)
+                batch_x = data_set.normalize(batch_x)
                 sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
                 if i % 100 == 0:
-                    plt.imshow(batch_x[0])  # 显示图片
-                    plt.axis('off')  # 不显示坐标轴
-                    plt.show()
                     loss, acc = sess.run([model.loss, model.accaury], feed_dict={model.x: data_set.test_x[0:testset_size],
                                                                                  model.y_: data_set.test_label[0:testset_size],
                                                                                  model.isTrain: False})

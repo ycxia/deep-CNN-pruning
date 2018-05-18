@@ -23,7 +23,7 @@ class Cifar10Dataset:
         self.seq = iaa.Sequential([
             iaa.Pad(px=4),
             # iaa.Crop(px=(0, 4)),  # crop images from each side by 0 to 4px (randomly chosen)
-            iaa.Fliplr(0.5)  # horizontally flip 50% of the images
+            iaa.Fliplr(0.5),  # horizontally flip 50% of the images
         ])
     def load_train_data(self):
         file_list = glob(os.path.join(self.dir, 'data*'))
@@ -36,14 +36,7 @@ class Cifar10Dataset:
         self.train_x = self._data_reshape(self.train_x)
         self.avg = np.mean(self.train_x,(0,1,2),dtype=np.float32)
         self.std = np.std(self.train_x,(0,1,2),dtype=np.float32)
-        print("avg:{},std:{}".format(self.avg,self.std))
-        self.train_x = (self.train_x-self.avg)/self.std
 
-        # 数据增强
-        # filp_data = self.train_x[:, :, ::-1, :]
-        # self.train_x = np.concatenate((self.train_x, filp_data))
-        # self.train_label = np.concatenate((self.train_label, self.train_label))
-        # self.train_x = np.pad(self.train_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
 
     def load_test_data(self):
         file_dir = os.path.join(self.dir, 'test_batch')
@@ -51,7 +44,7 @@ class Cifar10Dataset:
         self.test_x = dict[b'data'].flatten()
         self.test_x = self._data_reshape(self.test_x)
         self.test_label = dict[b'labels']
-        self.test_x = (self.test_x - self.avg) / self.std
+        self.test_x = self.normalize(self.test_x)
 
     def _data_reshape(self,data):
         data = np.reshape(data, (-1, 3, 32, 32))
@@ -79,4 +72,9 @@ class Cifar10Dataset:
 
     def data_argument(self,x):
         return self.seq.augment_images(x)
+
+    def normalize(self,x):
+        x = x/255.0
+        x = (x-[0.4914, 0.4822, 0.4465])/[0.2023, 0.1994, 0.2010]
+        return x
 
