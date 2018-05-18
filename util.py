@@ -50,7 +50,7 @@ class Cifar10Dataset:
         self.train_x = self._data_reshape(self.train_x)
         self.avg = np.mean(self.train_x,(0,1,2),dtype=np.float32)
         self.std = np.std(self.train_x,(0,1,2),dtype=np.float32)
-        print("avg:{},std:{}"(self.avg,self.std))
+        print("avg:{},std:{}".format(self.avg,self.std))
         self.train_x = (self.train_x-self.avg)/self.std
 
         # 数据增强
