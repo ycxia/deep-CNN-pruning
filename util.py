@@ -21,7 +21,8 @@ class Cifar10Dataset:
         self.test_label = None
         self.prune_x = None
         self.seq = iaa.Sequential([
-            iaa.Crop(px=(0, 4)),  # crop images from each side by 0 to 4px (randomly chosen)
+            iaa.Pad(px=4),
+            # iaa.Crop(px=(0, 4)),  # crop images from each side by 0 to 4px (randomly chosen)
             iaa.Fliplr(0.5)  # horizontally flip 50% of the images
         ])
     def load_train_data(self):
