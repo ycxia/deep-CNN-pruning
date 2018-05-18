@@ -43,27 +43,24 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                 batch_index = random_order[i * batch_size: min(i * batch_size + batch_size, train_data_size)]
                 batch_x = data_set.train_x[batch_index]
                 batch_label = data_set.train_label[batch_index]
-                # 随机crop
-                # flip_image = batch_x[:len(batch_label)//2]
-                # batch_x[:len(batch_label)//2] = flip_image[:, :, ::-1, :]
-                # batch_x = np.pad(batch_x, ((0, 0), (4, 4), (4, 4), (0, 0)), 'constant')
+                # 数据增强
                 batch_x = data_set.data_argument(batch_x)
                 batch_x = data_set.normalize(batch_x)
                 sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
                 if i % 100 == 0:
-                    loss, acc = sess.run([model.loss, model.accaury], feed_dict={model.x: data_set.test_x[0:testset_size],
-                                                                                 model.y_: data_set.test_label[0:testset_size],
-                                                                                 model.isTrain: False})
+                    # loss, acc = sess.run([model.loss, model.accaury], feed_dict={model.x: data_set.test_x[0:testset_size],
+                    #                                                              model.y_: data_set.test_label[0:testset_size],
+                    #                                                              model.isTrain: False})
                     train_loss, train_acc = sess.run([model.loss, model.accaury],
                                                      feed_dict={model.x: batch_x,
                                                                 model.y_: batch_label,
                                                                 model.isTrain: False})
-                    print("{}/{} batch: loss is {},acc is {}. on train set:{},{}".format(i, batch_num, loss, acc,train_loss, train_acc))
+                    print("{}/{} batch: train loss is {:.3f},acc is {:.2f}.".format(i, batch_num,train_loss, train_acc))
             loss, acc = sess.run([model.loss, model.accaury],
                                  feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
             print("{} epoch: loss is {},accuary is {}".format(epoch, loss, acc))
             if acc > max_acc:
-                saver.save(sess, "{}_{}".format(checkpoint_dir, '%.3f' % acc))
+                saver.save(sess, "{}_{:.2f}".format(checkpoint_dir, acc))
                 max_acc = acc
                 print("{} epoch weight save success!".format(epoch))
         print("Training end!")
