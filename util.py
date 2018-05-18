@@ -34,8 +34,6 @@ class Cifar10Dataset:
             self.train_x = np.concatenate((self.train_x,dict[b'data'].flatten()))
             self.train_label = np.concatenate((self.train_label,np.array(dict[b'labels'])))
         self.train_x = self._data_reshape(self.train_x)
-        self.avg = np.mean(self.train_x,(0,1,2),dtype=np.float32)
-        self.std = np.std(self.train_x,(0,1,2),dtype=np.float32)
 
 
     def load_test_data(self):
