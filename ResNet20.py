@@ -1,12 +1,13 @@
 import tensorflow as tf
 class ResNet20:
     def __init__(self):
-        self.x = tf.placeholder(tf.float32,[None,32,32,3])
+        self.x = tf.placeholder(dtype=tf.float32,shape=[None,40,40,3])
         self.y_ = tf.placeholder(tf.int64,[None,])
         self.isTrain = tf.placeholder(tf.bool)
 
     def build_model(self):
-        output = tf.layers.conv2d(self.x, 16, 3, 1, 'same',use_bias=False)
+        output = tf.random_crop(self.x, [64, 32, 32, 3])
+        output = tf.layers.conv2d(output, 16, 3, 1, 'same',use_bias=False)
         output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output)
         output = self.residual_block(output, "block1", 3, 16, False)
