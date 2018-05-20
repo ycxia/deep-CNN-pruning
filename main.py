@@ -14,7 +14,7 @@ flags.DEFINE_float("learning_rate", 0.0002, "Learning rate of for adam [0.0002]"
 flags.DEFINE_integer("batch_size", 64, "The size of batch images [64]")
 flags.DEFINE_string("dataset", None, "The name of dataset [celebA, mnist, lsun]")
 flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the checkpoints [checkpoint]")
-flags.DEFINE_integer("testset_size", 32, "testset size [32]")
+flags.DEFINE_integer("testset_size", 1000, "testset size [32]")
 flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
 flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
 FLAGS = flags.FLAGS
