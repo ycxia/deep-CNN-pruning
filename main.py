@@ -89,7 +89,7 @@ def main(_):
         model = VGG16Cifar10(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20":
-        model = ResNet20(0.0001)
+        model = ResNet20(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20SEBlock":
         model = ResNet20SEBlock()
