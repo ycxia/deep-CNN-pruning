@@ -92,7 +92,8 @@ def main(_):
         model = ResNet20(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20SEBlock":
-        model = ResNet20SEBlock()
+        model = ResNet20SEBlock(l2_lambda)
+        ues_regularizer = True
     model.build_model()
     print("Model build success!")
     train(batch_size, epoch_num, cifar10, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer)

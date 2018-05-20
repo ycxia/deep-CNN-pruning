@@ -7,7 +7,7 @@ class ResNet20:
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
 
     def build_model(self):
-        output = tf.layers.conv2d(self.x, 16, 3, 1, 'same',use_bias=False,kernel_regularizer=self.regularizer)
+        output = tf.layers.conv2d(self.x, 16, 3, 1, 'same',use_bias=False, kernel_regularizer=self.regularizer)
         output = tf.layers.batch_normalization(output,training=self.isTrain)
         output = tf.nn.relu(output)
         output = self.residual_block(output, "block1", 3, 16, False)
