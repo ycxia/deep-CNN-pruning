@@ -23,4 +23,4 @@ python3 deep-CNN-pruning/main.py --epoch 500 --learning_rate 0.001 --batch_size 
 python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 128 --dataset data/cifar-10-batches-py --l2_lambda=0.0001 --l1_lambda=0.00001 --checkpoint_dir=checkpoint/ResNet20/ResNet20_slim --model_name=ResNet20
 
 ### 训练ResNet20SEBlock
-python3 deep-CNN-pruning/main.py --epoch 500 --learning_rate 0.01 --batch_size 64 --dataset data/cifar-10-batches-py --testset_size 1000 --l2_lambda=0.0007 --checkpoint_dir=checkpoint/ResNet20SEBlock/ResNet20SEBlock --model_name=ResNet20SEBlock
+python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 128 --dataset data/cifar-10-batches-py --l2_lambda=0.0001 --checkpoint_dir=checkpoint/ResNet20SEBlock/ResNet20SEBlock --model_name=ResNet20SEBlock

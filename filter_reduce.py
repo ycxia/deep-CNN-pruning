@@ -1,13 +1,21 @@
 import tensorflow as tf
 
 #去除输出第index个通道的相关卷积核
-def reduceFilterOutput(sess, input, index, shape):
+def reduce_conv_filter_output(sess, input, index, shape):
     reduceFilter(sess, input, index, 3, shape)
 
 #去除处理第index个输入通道的相关卷积核
-def reduceFilterInput(sess, input, index, shape):
+def reduce_conv_filter_input(sess, input, index, shape):
     reduceFilter(sess, input, index, 2, shape)
 
+def reduce_bn_filter(sess, input, index, shape):
+    reduceFilter(sess, input, index, 0, shape)
+
+def reduce_dense_filter_output(sess, input, index, shape):
+    reduceFilter(sess, input, index, 1, shape)
+
+def reduce_dense_filter_input(sess, input, index, shape):
+    reduceFilter(sess, input, index, 0, shape)
 
 def reduceFilter(sess, input,  target_index, target_dim, shape):
     leftSize = []

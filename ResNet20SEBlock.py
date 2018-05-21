@@ -30,7 +30,7 @@ class ResNet20SEBlock:
         output = x
         with tf.variable_scope(name):
             for i in range(res_num):
-                name = "res_modules_" + str(i)
+                name = "res_modules_" + str(i+1)
                 if(i==0):
                     output = self.residual_model(output, output_num, name, differ_dim)
                 else:
@@ -48,7 +48,7 @@ class ResNet20SEBlock:
             else:
                 output = tf.layers.conv2d(x, output_num, 3, 1, 'same',use_bias=False, kernel_regularizer=self.regularizer, name="conv_1")
             output = tf.layers.batch_normalization(output, training=self.isTrain, name="bn_1")
-            output = self.se_block(output, "seblock_0")
+            output = self.se_block(output, "seblock_1")
             output = tf.nn.relu(output)
             output = tf.layers.conv2d(output, output_num, 3, 1, 'same',use_bias=False, kernel_regularizer=self.regularizer, name="conv2")
             output = tf.layers.batch_normalization(output,training=self.isTrain, name="bn_2")

@@ -43,7 +43,6 @@ def thinet_channel_select(sess,input_channel,filters):
 
 def seblock_channel_select(channel_weight,compress_rate):
     """
-
     :param channel_weight:numpy数组
         seblock的输出
     :param compress_rate:float
@@ -59,18 +58,19 @@ def seblock_channel_select(channel_weight,compress_rate):
     channel_weight = channel_weight[::-1]
     return channel_weight
 
-def seblock_prune(sess,module_name,filtername_set,seblock_output,compress_rate):
-    prune_index = seblock_channel_select(seblock_output, compress_rate)
+def seblock_prune(sess, module_name, filtername_dict, seblock_output, compress_rate, shape_dict):
+    prune_indexs = seblock_channel_select(seblock_output, compress_rate)
     with tf.variable_scope(module_name,reuse=True):
-        pre_filter = tf.get_variable(filtername_set["pre_filter"])
-        bn_gm = tf.get_variable(filtername_set["bn_gm"])
-        bn_mean = tf.get_variable(filtername_set["bn_mean"])
-        bn_var = tf.get_variable(filtername_set["bn_var"])
-        bn_beta = tf.get_variable(filtername_set["bn_beta"])
-        next_filter = tf.get_variable(filtername_set["next_filter"])
-        se_dense1 = tf.get_variable(filtername_set["se_filter1"])
-        se_dense2 = tf.get_variable(filtername_set["se_filter2"])
-
+        pre_filter = tf.get_variable(filtername_dict["pre_filter"])
+        bn_gm = tf.get_variable(filtername_dict["bn_gm"])
+        bn_mean = tf.get_variable(filtername_dict["bn_mean"])
+        bn_var = tf.get_variable(filtername_dict["bn_var"])
+        bn_beta = tf.get_variable(filtername_dict["bn_beta"])
+        next_filter = tf.get_variable(filtername_dict["next_filter"])
+        se_dense1 = tf.get_variable(filtername_dict["se_filter1"])
+        se_dense2 = tf.get_variable(filtername_dict["se_filter2"])
+    for i in prune_indexs:
+        fr.reduce_conv_filter_output(sess,pre_filter,i,)
 
 
 def main(_):
