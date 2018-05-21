@@ -56,14 +56,14 @@ class Cifar10Dataset:
 
     def load_prune_data(self):
         self.prune_x = np.array([])
-        all_count = 0;
+        all_count = 0
         class_count = np.zeros(shape=(10))
         for image,label in self.train_x,self.train_label:
-            if(class_count[label]<10):
+            if class_count[label]<10 :
                 all_count+=1
                 class_count[label]+=1
                 self.prune_x = np.concatenate(self.prune_x,image)
-                if(all_count==10*10):
+                if all_count==10*10 :
                     self.prune_x = np.reshape(self.prune_x, (-1, 32, 32, 3))
                     return True
         return False

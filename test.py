@@ -7,15 +7,16 @@ import pickle
 import matplotlib.pyplot as plt
 import numpy as np
 from ResNet20 import ResNet20
+from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 import filter_reduce as fr
 
-channel_weight = np.array([3,4,2,1])
-channel_weight = channel_weight.argsort()[:]
-print(channel_weight)
-channel_weight.sort()
-channel_weight = channel_weight[::-1]
-print(channel_weight)
+# channel_weight = np.array([3,4,2,1])
+# channel_weight = channel_weight.argsort()[:]
+# print(channel_weight)
+# channel_weight.sort()
+# channel_weight = channel_weight[::-1]
+# print(channel_weight)
 
 # cifar10 = Cifar10Dataset("/home/wxj/下载/dataset/cifar-10-batches-py")
 # cifar10.load_test_data()
@@ -69,13 +70,14 @@ print(channel_weight)
 # sess.close()
 
 
-
-# tensorboard_dir = 'tensorboard/ResNet20'  # 保存目录
-# if not os.path.exists(tensorboard_dir):
-#     os.makedirs(tensorboard_dir)
-# with tf.Session() as sess:
-#     writer = tf.summary.FileWriter(tensorboard_dir)
-#     writer.add_graph(sess.graph)
+model = ResNet20SEBlock(0.0001)
+model.build_model()
+tensorboard_dir = 'tensorboard/ResNet20'  # 保存目录
+if not os.path.exists(tensorboard_dir):
+    os.makedirs(tensorboard_dir)
+with tf.Session() as sess:
+    writer = tf.summary.FileWriter(tensorboard_dir)
+    writer.add_graph(sess.graph)
 
 
 

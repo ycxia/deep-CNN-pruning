@@ -15,7 +15,8 @@ flags.DEFINE_integer("batch_size", 64, "The size of batch images [64]")
 flags.DEFINE_string("dataset", None, "The name of dataset [celebA, mnist, lsun]")
 flags.DEFINE_string("checkpoint_dir", "checkpoint", "Directory name to save the checkpoints [checkpoint]")
 flags.DEFINE_integer("testset_size", 1000, "testset size [32]")
-flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
+flags.DEFINE_float("l2_lambda", 0, "l2 term lambda")
+flags.DEFINE_float("l1_lambda", 0, "l1 term lambda")
 flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
 FLAGS = flags.FLAGS
 
@@ -75,6 +76,7 @@ def main(_):
     checkpoint_dir = FLAGS.checkpoint_dir
     model_name = FLAGS.model_name
     ues_regularizer = False
+    l1_lambda = FLAGS.l1_lambda
 
     cifar10 = Cifar10Dataset(dataset_path)
     cifar10.load_train_data()
@@ -89,7 +91,7 @@ def main(_):
         model = VGG16Cifar10(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20":
-        model = ResNet20(l2_lambda)
+        model = ResNet20(l2_lambda,l1_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20SEBlock":
         model = ResNet20SEBlock(l2_lambda)

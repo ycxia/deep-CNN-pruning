@@ -4,9 +4,8 @@ from ResNet20 import ResNet20
 from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 import numpy as np
-import os
 from util import Cifar10Dataset
-import sys
+from main import train
 import filter_reduce as fr
 
 
@@ -21,7 +20,7 @@ flags.DEFINE_float("l2_lambda", 0.01, "l2 term lambda")
 flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
 FLAGS = flags.FLAGS
 
-def prune(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
+def prune(batch_size, epoch_num, data_set, learning_rate, checkpoint_dir, model, ues_regularizer=False):
     train_step = model.get_train_step(learning_rate, ues_regularizer)
     saver = tf.train.Saver(max_to_keep=1)
 
@@ -32,14 +31,6 @@ def prune(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
         else:
             print("No checkpoint file,weight inited!")
 
-        loss, acc = sess.run([model.loss, model.accaury],
-                             feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
-        print("Model init stat: loss is {},accuary is {}".format(loss, acc))
-
-
-        loss, acc = sess.run([model.loss, model.accaury],
-                             feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
-        print("Model after pruning: loss is {},accuary is {}".format(loss, acc))
 
 
 def thinet_channel_select(sess,input_channel,filters):
@@ -60,29 +51,29 @@ def seblock_channel_select(channel_weight,compress_rate):
     :return numpy数组
         返回需要剪枝的通道index，index从大到小（方便剪枝）:
     """
-    channel_weight = np.reshape(channel_weight,(-1,channel_weight.shape[3]))
-    channel_weight = np.sum(channel_weight,axis=0)
+    # channel_weight = np.reshape(channel_weight,(-1,channel_weight.shape[3]))
+    channel_weight = np.mean(channel_weight,axis=(0,1,2))
     prune_num = int(channel_weight.shape[0]*compress_rate)
     channel_weight = channel_weight.argsort()[0:prune_num]
     channel_weight.sort()
     channel_weight = channel_weight[::-1]
     return channel_weight
 
-def seblock_prune(sess,pre_filter,next_filter,seblock_filter,bn_filter,seblock_output,compress_rate):
+def seblock_prune(sess,module_name,filtername_set,seblock_output,compress_rate):
     prune_index = seblock_channel_select(seblock_output, compress_rate)
-    # for index in prune_index:
+    with tf.variable_scope(module_name,reuse=True):
+        pre_filter = tf.get_variable(filtername_set["pre_filter"])
+        bn_gm = tf.get_variable(filtername_set["bn_gm"])
+        bn_mean = tf.get_variable(filtername_set["bn_mean"])
+        bn_var = tf.get_variable(filtername_set["bn_var"])
+        bn_beta = tf.get_variable(filtername_set["bn_beta"])
+        next_filter = tf.get_variable(filtername_set["next_filter"])
+        se_dense1 = tf.get_variable(filtername_set["se_filter1"])
+        se_dense2 = tf.get_variable(filtername_set["se_filter2"])
 
 
 
 def main(_):
-    batch_size = FLAGS.batch_size
-    epoch_num = FLAGS.epoch
-    dataset_path =  FLAGS.dataset
-    learning_rate = FLAGS.learning_rate
-    testset_size = FLAGS.testset_size
-    l2_lambda = FLAGS.l2_lambda
-    checkpoint_dir = FLAGS.checkpoint_dir
-
     batch_size = FLAGS.batch_size
     epoch_num = FLAGS.epoch
     dataset_path = FLAGS.dataset
@@ -112,7 +103,7 @@ def main(_):
     model.build_model()
     print("Model build success!")
 
-    prune(batch_size, epoch_num, cifar10, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer)
+    prune(batch_size, epoch_num, cifar10, learning_rate, checkpoint_dir, model, ues_regularizer)
 
 if __name__ == '__main__':
   tf.app.run()
