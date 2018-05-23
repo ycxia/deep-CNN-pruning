@@ -1,4 +1,4 @@
-from VGG16Cifar10 import VGG16Cifar10
+from VGG16 import VGG16Cifar10
 from VGG16SEBlock import VGG16SEBlock
 from ResNet20 import ResNet20
 from ResNet20SEBlock import ResNet20SEBlock

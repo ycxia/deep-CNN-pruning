@@ -1,4 +1,4 @@
-from VGG16Cifar10 import VGG16Cifar10
+from VGG16 import VGG16
 from VGG16SEBlock import VGG16SEBlock
 from ResNet20 import ResNet20
 from ResNet20SEBlock import ResNet20SEBlock
@@ -88,7 +88,7 @@ def main(_):
         model = VGG16SEBlock(l2_lambda)
         ues_regularizer = True
     elif model_name == "VGG16Cifar10":
-        model = VGG16Cifar10(l2_lambda)
+        model = VGG16(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20":
         model = ResNet20(l2_lambda,l1_lambda)
