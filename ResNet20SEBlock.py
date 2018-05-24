@@ -50,7 +50,7 @@ class ResNet20SEBlock:
             output = tf.layers.batch_normalization(output, training=self.isTrain, name="bn_1")
             output = self.se_block(output, "seblock_1")
             output = tf.nn.relu(output)
-            output = tf.layers.conv2d(output, output_num, 3, 1, 'same',use_bias=False, kernel_regularizer=self.regularizer, name="conv2")
+            output = tf.layers.conv2d(output, output_num, 3, 1, 'same',use_bias=False, kernel_regularizer=self.regularizer, name="conv_2")
             output = tf.layers.batch_normalization(output,training=self.isTrain, name="bn_2")
             output = tf.nn.relu(output+x)
             return output
