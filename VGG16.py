@@ -78,24 +78,24 @@ class VGG16:
         with tf.variable_scope(name):
             output = self.conv3x3(input,output_num,"conv")
             output = tf.layers.batch_normalization(output,training=self.isTrain,name="bn")
-            output = self.se_block(output,output_num,output_num//8,"seblock")
+            # output = self.se_block(output,output_num,output_num//8,"seblock")
             output = tf.nn.relu(output)
             return output
 
-    def se_block(self,input,output_num,squeeze_size,name):
-        with tf.variable_scope(name):
-            channel_size = input.shape[1]
-            output = tf.layers.average_pooling2d(input, [channel_size, channel_size], 1, 'valid')
-            output = tf.layers.flatten(output)
-            output = tf.layers.dense(output,squeeze_size,kernel_regularizer=self.regularizer,name="dense_1")
-            output = tf.nn.relu(output)
-            output = tf.layers.dense(output, output_num, kernel_regularizer=self.regularizer,name="dense_2")
-            output = tf.nn.sigmoid(output)
-            self.seblock_weight.append(output)
-            output = tf.expand_dims(output, 1)
-            output = tf.expand_dims(output, 1)
-            output = input*output
-            return output
+    # def se_block(self,input,output_num,squeeze_size,name):
+    #     with tf.variable_scope(name):
+    #         channel_size = input.shape[1]
+    #         output = tf.layers.average_pooling2d(input, [channel_size, channel_size], 1, 'valid')
+    #         output = tf.layers.flatten(output)
+    #         output = tf.layers.dense(output,squeeze_size,kernel_regularizer=self.regularizer,name="dense_1")
+    #         output = tf.nn.relu(output)
+    #         output = tf.layers.dense(output, output_num, kernel_regularizer=self.regularizer,name="dense_2")
+    #         output = tf.nn.sigmoid(output)
+    #         self.seblock_weight.append(output)
+    #         output = tf.expand_dims(output, 1)
+    #         output = tf.expand_dims(output, 1)
+    #         output = input*output
+    #         return output
 
     def get_train_step(self, learning_rate, ues_regularizer=False):
         self.loss = self.cross_entropy

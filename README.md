@@ -12,9 +12,9 @@
 dataset参数即数据集文件夹路径，目前的模型使用的都是cifar10-python数据集。
 
 ## 训练命令
-选择GPU：CUDA_VISIBLE_DEVICES="4"
+选择GPU：CUDA_VISIBLE_DEVICES="2"
 ### 训练普通vgg16
-python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 128 --dataset data/cifar-10-batches-py --l2_lambda=0.0001 --checkpoint_dir=checkpoint/vgg16_cifar10/vgg16 --model_name=VGG16Cifar10
+python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 128 --dataset data/cifar-10-batches-py --l2_lambda=0.0001 --checkpoint_dir=checkpoint/vgg16/vgg16 --model_name=VGG16
 
 ### 训练有seblock的vgg16
 python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 128 --dataset data/cifar-10-batches-py --l2_lambda=0.0001 --checkpoint_dir=checkpoint/vgg16_seblock/vgg16_seblock --model_name=VGG16SEBlock

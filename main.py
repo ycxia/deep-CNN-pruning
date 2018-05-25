@@ -87,7 +87,7 @@ def main(_):
     if model_name=="VGG16SEBlock":
         model = VGG16SEBlock(l2_lambda)
         ues_regularizer = True
-    elif model_name == "VGG16Cifar10":
+    elif model_name == "VGG16":
         model = VGG16(l2_lambda)
         ues_regularizer = True
     elif model_name == "ResNet20":
