@@ -8,7 +8,7 @@ class VGG16SEBlock:
         self.y_ = tf.placeholder(tf.int64, shape=(None,))
         self.isTrain = tf.placeholder(tf.bool)
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
-        self.seblock_weight = []
+        self.seblock_output = []
 
     def build_model(self):
         with tf.variable_scope("block_1"):
@@ -92,7 +92,7 @@ class VGG16SEBlock:
             output = tf.nn.relu(output)
             output = tf.layers.dense(output, output_num, kernel_regularizer=self.regularizer,name="dense_2")
             output = tf.nn.sigmoid(output)
-            self.seblock_weight.append(output)
+            self.seblock_output.append(output)
             output = tf.expand_dims(output, 1)
             output = tf.expand_dims(output, 1)
             output = input*output

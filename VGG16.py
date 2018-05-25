@@ -7,7 +7,7 @@ class VGG16:
         self.y_ = tf.placeholder(tf.int64, shape=(None,))
         self.isTrain = tf.placeholder(tf.bool)
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
-        self.seblock_weight = []
+        self.seblock_output = []
 
     def build_model(self):
         with tf.variable_scope("block_1"):
