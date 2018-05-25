@@ -27,8 +27,8 @@ model.build_model()
 saver = tf.train.Saver(max_to_keep=1)
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    saver.save(sess,save_path="tensorboard/checkpoint/vggtest")
-    # model.load_weight(sess,saver,"checkpoint/vggtest")
+    # saver.save(sess,save_path="tensorboard/checkpoint/vggtest")
+    model.load_weight(sess,saver,"tensorboard/checkpoint/vggtest")
 
 # tensorboard_dir = 'tensorboard/VGG16SEBlock'  # 保存目录
 # if not os.path.exists(tensorboard_dir):
