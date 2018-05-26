@@ -12,35 +12,35 @@ class VGG16SEBlock:
 
     def build_model(self):
         with tf.variable_scope("block_1"):
-            self.output1 = self.conv2d_with_relu_seblock(self.x, 64, "conv_layer_1")
+            self.output1 = self.conv2d_with_relu(self.x, 64, "conv_layer_1")
             self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
-            self.output2 = self.conv2d_with_relu_seblock(self.output1, 64, "conv_layer_2")
+            self.output2 = self.conv2d_with_relu(self.output1, 64, "conv_layer_2")
             pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
 
         with tf.variable_scope("block_2"):
-            self.output3 = self.conv2d_with_relu_seblock(pooled, 128, "conv_layer_1")
+            self.output3 = self.conv2d_with_relu(pooled, 128, "conv_layer_1")
             self.output3 = tf.layers.dropout(self.output3, 0.4,training=self.isTrain)
-            self.output4 = self.conv2d_with_relu_seblock(self.output3, 128, "conv_layer_2")
+            self.output4 = self.conv2d_with_relu(self.output3, 128, "conv_layer_2")
             pooled = tf.nn.max_pool(self.output4, [1,2,2,1], [1,2,2,1], 'VALID')
 
         with tf.variable_scope("block_3"):
-            self.output5 = self.conv2d_with_relu_seblock(pooled, 256, "conv_layer_1")
+            self.output5 = self.conv2d_with_relu(pooled, 256, "conv_layer_1")
             self.output5 = tf.layers.dropout(self.output5, 0.4,training=self.isTrain)
-            self.output6 = self.conv2d_with_relu_seblock(self.output5, 256, "conv_layer_2")
+            self.output6 = self.conv2d_with_relu(self.output5, 256, "conv_layer_2")
             self.output6 = tf.layers.dropout(self.output6, 0.4,training=self.isTrain)
-            self.output7 = self.conv2d_with_relu_seblock(self.output6, 256, "conv_layer_3")
+            self.output7 = self.conv2d_with_relu(self.output6, 256, "conv_layer_3")
             pooled = tf.nn.max_pool(self.output7, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         with tf.variable_scope("block_4"):
-            self.output8 = self.conv2d_with_relu_seblock(pooled, 512, "conv_layer_1")
+            self.output8 = self.conv2d_with_relu(pooled, 512, "conv_layer_1")
             self.output8 = tf.layers.dropout(self.output8, 0.4,training=self.isTrain)
-            self.output9 = self.conv2d_with_relu_seblock(self.output8, 512, "conv_layer_2")
+            self.output9 = self.conv2d_with_relu(self.output8, 512, "conv_layer_2")
             self.output9 = tf.layers.dropout(self.output9, 0.4,training=self.isTrain)
-            self.output10 = self.conv2d_with_relu_seblock(self.output9, 512, "conv_layer_3")
+            self.output10 = self.conv2d_with_relu(self.output9, 512, "conv_layer_3")
             pooled = tf.nn.max_pool(self.output10, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
         with tf.variable_scope("block_5"):
-            self.output11 = self.conv2d_with_relu_seblock(pooled, 512, "conv_layer_1")
+            self.output11 = self.conv2d_with_relu(pooled, 512, "conv_layer_1")
             self.output11 = tf.layers.dropout(self.output11, 0.4,training=self.isTrain)
             self.output12 = self.conv2d_with_relu_seblock(self.output11, 512, "conv_layer_2")
             self.output12 = tf.layers.dropout(self.output12, 0.4,training=self.isTrain)
@@ -109,6 +109,16 @@ class VGG16SEBlock:
             train_step = tf.train.MomentumOptimizer(learning_rate,momentum=0.9).minimize(self.loss)
         return train_step
 
+    def get_se_train_step(self, learning_rate, ues_regularizer=False):
+        self.loss = self.cross_entropy
+        if(ues_regularizer):
+            self.loss += tf.reduce_sum(
+                tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
+            )
+        dict = self.get_seblock_variable()
+        train_step = tf.train.MomentumOptimizer(learning_rate,momentum=0.9).minimize(self.loss, var_list=dict)
+        return train_step
+
     def get_variable(self,name):
         with tf.variable_scope("",reuse=True):
             return tf.get_variable(name=name)
@@ -121,3 +131,17 @@ class VGG16SEBlock:
             sess.run(tf.global_variables_initializer())
             return False
 
+    def get_needrestore_variable(self):
+        dict = {}
+        for v in tf.trainable_variables():
+            if ("seblock" in v.name) == False:
+                dict[v.name.split(":")[0]] = v
+        return dict
+
+    def get_seblock_variable(self):
+        list = []
+        for v in tf.trainable_variables():
+            if "block_5/conv_layer_2/seblock" in v.name:
+                list.append(v)
+                print(v.name)
+        return list

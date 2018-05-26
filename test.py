@@ -1,6 +1,6 @@
 
 import os
-from util import Cifar10Dataset
+# from util import Cifar10Dataset
 import pickle
 import matplotlib.pyplot as plt
 import numpy as np
@@ -25,14 +25,17 @@ import filter_reduce as fr
 model = VGG16(0.0001)
 model.build_model()
 saver = tf.train.Saver(max_to_keep=1)
-data = Cifar10Dataset("data/cifar-10-batches-py")
-data.load_test_data()
+# data = Cifar10Dataset("data/cifar-10-batches-py")
+# data.load_test_data()
 with tf.Session() as sess:
-    # sess.run(tf.global_variables_initializer())
+    sess.run(tf.global_variables_initializer())
     # saver.save(sess,save_path="tensorboard/checkpoint/vggtest")
-    model.load_weight(sess,saver,"tensorboard/checkpoint/vgg16_0.88")
-    output = sess.run(model.seblock_output[0],feed_dict={model.x:data.test_x,model.y:data.test_label,model.isTrain:False})
-    print(output[0])
+    # model.load_weight(sess,saver,"tensorboard/checkpoint/vgg16_0.88")
+    # output = sess.run(model.seblock_output[0],feed_dict={model.x:data.test_x,model.y:data.test_label,model.isTrain:False})
+    # print(output[0])
+    for variable in tf.trainable_variables():
+        print(variable.name)
+        break
 
 # tensorboard_dir = 'tensorboard/VGG16SEBlock'  # 保存目录
 # if not os.path.exists(tensorboard_dir):

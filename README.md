@@ -24,3 +24,6 @@ python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 12
 
 ### 训练ResNet20SEBlock
 python3 deep-CNN-pruning/main.py --epoch 100 --learning_rate 0.1 --batch_size 128 --checkpoint_dir=checkpoint/ResNet20SEBlock/ResNet20SEBlock --model_name=ResNet20SEBlock
+
+### 给没有seblock的模型加上seblock再训练
+python3 deep-CNN-pruning/setrain.py --epoch 100 --learning_rate 0.01 --batch_size 128 --checkpoint_dir=checkpoint/vgg16_seblock/vgg16_seblock_0.88_0.91 --model_name=VGG16SEBlock

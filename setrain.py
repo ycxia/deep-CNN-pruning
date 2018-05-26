@@ -5,8 +5,6 @@ from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 from util import Cifar10Dataset
 import numpy as np
-import matplotlib.pyplot as plt # plt 用于显示图片
-
 
 flags = tf.app.flags
 flags.DEFINE_integer("epoch", 100, "Epoch to train [25]")
@@ -21,9 +19,9 @@ flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
 FLAGS = flags.FLAGS
 
 def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
-    train_step = model.get_train_step(learning_rate, ues_regularizer)
-    saver = tf.train.Saver(max_to_keep=1)
-
+    train_step = model.get_se_train_step(learning_rate, ues_regularizer)
+    dict = model.get_needrestore_variable()
+    saver = tf.train.Saver(dict, max_to_keep=1)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         load_result = model.load_weight(sess, saver, checkpoint_dir)
