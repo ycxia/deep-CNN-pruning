@@ -12,7 +12,7 @@ class VGG16:
 
     def build_model(self):
         with tf.variable_scope("block_1"):
-            self.output1 = self.conv2d_with_relu(self.x, int(64*self.prune_rate), "conv_layer_1")
+            self.output1 = self.conv2d_with_relu(self.x, 64-int(64*self.prune_rate), "conv_layer_1")
             self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
             self.output2 = self.conv2d_with_relu(self.output1, 64, "conv_layer_2")
             pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
