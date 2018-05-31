@@ -8,11 +8,12 @@ class VGG16SEBlock:
         self.y_ = tf.placeholder(tf.int64, shape=(None,))
         self.isTrain = tf.placeholder(tf.bool)
         self.regularizer = tf.contrib.layers.l2_regularizer(lbda)
+        self.l1_regularizer = tf.contrib.layers.l1_regularizer(0.00001)
         self.seblock_output = []
 
     def build_model(self):
         with tf.variable_scope("block_1"):
-            self.output1 = self.conv2d_with_relu(self.x, 64, "conv_layer_1")
+            self.output1 = self.conv2d_with_relu_seblock(self.x, 64, "conv_layer_1")
             self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
             self.output2 = self.conv2d_with_relu(self.output1, 64, "conv_layer_2")
             pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
@@ -42,7 +43,7 @@ class VGG16SEBlock:
         with tf.variable_scope("block_5"):
             self.output11 = self.conv2d_with_relu(pooled, 512, "conv_layer_1")
             self.output11 = tf.layers.dropout(self.output11, 0.4,training=self.isTrain)
-            self.output12 = self.conv2d_with_relu_seblock(self.output11, 512, "conv_layer_2")
+            self.output12 = self.conv2d_with_relu(self.output11, 512, "conv_layer_2")
             self.output12 = tf.layers.dropout(self.output12, 0.4,training=self.isTrain)
             # 最后一层channelsize为1，不适合加seblock
             self.output13 = self.conv2d_with_relu(self.output12, 512,"conv_layer_3")
@@ -63,6 +64,8 @@ class VGG16SEBlock:
         self.cross_entropy = tf.reduce_mean(tf.losses.sparse_softmax_cross_entropy(
             labels=self.y_,
             logits=self.y))
+
+        tf.contrib.layers.apply_regularization(self.l1_regularizer, weights_list=self.seblock_output)
 
     def conv3x3(self,input,output_num,name):
         return tf.layers.conv2d(input, filters=output_num, kernel_size=3, strides=1, padding='same', use_bias=False,
@@ -109,16 +112,6 @@ class VGG16SEBlock:
             train_step = tf.train.MomentumOptimizer(learning_rate,momentum=0.9).minimize(self.loss)
         return train_step
 
-    def get_se_train_step(self, learning_rate, ues_regularizer=False):
-        self.loss = self.cross_entropy
-        if(ues_regularizer):
-            self.loss += tf.reduce_sum(
-                tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
-            )
-        dict = self.get_seblock_variable()
-        train_step = tf.train.MomentumOptimizer(learning_rate,momentum=0.9).minimize(self.loss, var_list=dict)
-        return train_step
-
     def get_variable(self,name):
         with tf.variable_scope("",reuse=True):
             return tf.get_variable(name=name)
@@ -134,14 +127,14 @@ class VGG16SEBlock:
     def get_needrestore_variable(self):
         dict = {}
         for v in tf.trainable_variables():
-            if ("seblock" in v.name) == False:
+            if "seblock" not in v.name:
                 dict[v.name.split(":")[0]] = v
         return dict
 
     def get_seblock_variable(self):
         list = []
         for v in tf.trainable_variables():
-            if "block_5/conv_layer_2/seblock" in v.name:
+            if "block_1/conv_layer_1/seblock" in v.name:
                 list.append(v)
                 print(v.name)
         return list

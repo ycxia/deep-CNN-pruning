@@ -26,7 +26,7 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
 
     with tf.Session() as sess:
         load_result = model.load_weight(sess, saver, checkpoint_dir)
-        if load_result == True:
+        if load_result is True:
             print("Checkpoint load success!")
         else:
             print("No checkpoint file,weight inited!")

@@ -47,7 +47,6 @@ class VGG16:
             self.output13 = self.conv2d_with_relu(self.output12, 512,"conv_layer_3")
             pooled = tf.nn.max_pool(self.output13, [1,2,2,1], [1, 2, 2, 1], 'VALID')
 
-
         pooled = tf.layers.flatten(pooled)
         pooled = tf.layers.dropout(pooled, 0.4,training=self.isTrain)
         fc1 = tf.layers.dense(pooled, 512, kernel_regularizer=self.regularizer)

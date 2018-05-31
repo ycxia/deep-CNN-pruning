@@ -19,9 +19,9 @@ flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
 FLAGS = flags.FLAGS
 
 def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
-    train_step = model.get_se_train_step(learning_rate, ues_regularizer)
-    dict = model.get_needrestore_variable()
-    saver = tf.train.Saver(dict, max_to_keep=1)
+    train_step = model.get_train_step(learning_rate, ues_regularizer)
+    var_dict = model.get_needrestore_variable()
+    saver = tf.train.Saver(var_dict, max_to_keep=1)
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         load_result = model.load_weight(sess, saver, checkpoint_dir)
@@ -49,9 +49,6 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
                 batch_x = data_set.normalize(batch_x)
                 sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
                 if i % 100 == 0:
-                    # loss, acc = sess.run([model.loss, model.accaury], feed_dict={model.x: data_set.test_x[0:testset_size],
-                    #                                                              model.y_: data_set.test_label[0:testset_size],
-                    #                                                              model.isTrain: False})
                     train_loss, train_acc = sess.run([model.loss, model.accaury],
                                                      feed_dict={model.x: batch_x,
                                                                 model.y_: batch_label,
@@ -85,7 +82,7 @@ def main(_):
     cifar10.load_test_data()
     print("Test data load success,test set shape:{}".format(cifar10.test_x.shape))
     model = None
-    if model_name=="VGG16SEBlock":
+    if model_name == "VGG16SEBlock":
         model = VGG16SEBlock(l2_lambda)
         ues_regularizer = True
     elif model_name == "VGG16":

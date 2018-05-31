@@ -1,6 +1,5 @@
 import pickle
 import numpy as np
-import tensorflow as tf
 import os
 from glob import glob
 from imgaug import augmenters as iaa
