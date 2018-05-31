@@ -126,7 +126,7 @@ class VGG16SEBlock:
 
     def get_needrestore_variable(self):
         dict = {}
-        for v in tf.get_variable():
+        for v in tf.global_variables():
             if "seblock" not in v.name:
                 dict[v.name.split(":")[0]] = v
         return dict

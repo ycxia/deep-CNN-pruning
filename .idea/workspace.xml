@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/VGG16.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VGG16SEBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16SEBlock.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VGG16.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VGG16.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VGG16.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="16" column="82" lean-forward="true" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
+            <state relative-caret-position="81">
+              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -39,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="128" column="39" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="39" />
+              <caret line="128" column="32" lean-forward="true" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -92,11 +93,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-456">
-              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+            <state relative-caret-position="459">
+              <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -104,8 +105,11 @@
       <file leaf-file-name="setrain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+            <state relative-caret-position="135">
+              <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -152,13 +156,13 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/ResNet20SEBlock.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/VGG16SEBlock.py" />
         <option value="$PROJECT_DIR$/util.py" />
         <option value="$PROJECT_DIR$/setrain.py" />
         <option value="$PROJECT_DIR$/filter_reduce.py" />
         <option value="$PROJECT_DIR$/prune.py" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/VGG16.py" />
+        <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/VGG16SEBlock.py" />
       </list>
     </option>
   </component>
@@ -410,34 +414,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520577482460</updated>
-    </task>
-    <task id="LOCAL-00047" summary="去除seblock">
-      <created>1524128923766</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1524128923766</updated>
-    </task>
-    <task id="LOCAL-00048" summary="加上SEBlock">
-      <created>1524129897956</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1524129897956</updated>
-    </task>
-    <task id="LOCAL-00049" summary="加入skip connection">
-      <created>1524189325445</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1524189325445</updated>
-    </task>
-    <task id="LOCAL-00050" summary="加入skip connection">
-      <created>1524193160986</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1524193160987</updated>
     </task>
     <task id="LOCAL-00051" summary="加入skip connection">
       <created>1524193293599</created>
@@ -754,7 +730,35 @@
       <option name="project" value="LOCAL" />
       <updated>1527785044759</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="加载模型使用剪枝后的形状">
+      <created>1527785248350</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1527785248350</updated>
+    </task>
+    <task id="LOCAL-00097" summary="加载模型使用剪枝后的形状">
+      <created>1527785274406</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1527785274406</updated>
+    </task>
+    <task id="LOCAL-00098" summary="加载模型使用剪枝后的形状">
+      <created>1527785360093</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1527785360093</updated>
+    </task>
+    <task id="LOCAL-00099" summary="剪枝后保存除seblock的所有参数">
+      <created>1527785529233</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1527785529233</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TodoView">
@@ -844,8 +848,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="加上SEBlock" />
-    <MESSAGE value="加入skip connection" />
     <MESSAGE value="resnet20，还需要加bn和最后的avg池化、全连接" />
     <MESSAGE value="resnet20完成，需要写训练代码" />
     <MESSAGE value="增加训练resnet20代码" />
@@ -869,7 +871,9 @@
     <MESSAGE value="setrain的时候seblock加正则" />
     <MESSAGE value="加载剪枝后的模型，只加载可训练参数" />
     <MESSAGE value="打印异常" />
-    <option name="LAST_COMMIT_MESSAGE" value="打印异常" />
+    <MESSAGE value="加载模型使用剪枝后的形状" />
+    <MESSAGE value="剪枝后保存除seblock的所有参数" />
+    <option name="LAST_COMMIT_MESSAGE" value="剪枝后保存除seblock的所有参数" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -883,13 +887,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/os/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="903" column="4" selection-start-line="903" selection-start-column="4" selection-end-line="903" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/nt.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/genericpath.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/numpy/core/multiarray.py" />
@@ -981,13 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/prune.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -998,34 +988,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
+    <entry file="file://$PROJECT_DIR$/VGG16.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="128" column="39" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="39" />
+        <state relative-caret-position="81">
+          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/saver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="1258" column="11" selection-start-line="1258" selection-start-column="11" selection-end-line="1258" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/saver.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/variables.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="1204" column="20" lean-forward="true" selection-start-line="1204" selection-start-column="20" selection-end-line="1204" selection-end-column="20" />
+        <state relative-caret-position="135">
+          <caret line="1444" column="69" selection-start-line="1444" selection-start-column="55" selection-end-line="1444" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="128" column="32" lean-forward="true" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-456">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VGG16.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="16" column="82" lean-forward="true" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
+        <state relative-caret-position="459">
+          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
         </state>
       </provider>
     </entry>
