@@ -36,7 +36,6 @@ def vgg_prune(sess, data_set , model, moudle_name,moudle_name_next, compress_rat
 
     seblock_output = model.seblock_output[channel_index]
     seblock_output = sess.run(seblock_output,feed_dict={model.x: data_set.prune_x,model.isTrain: False})
-    print(str(type(seblock_output)))
     seblock_prune(sess, filters_dict, seblock_output, compress_rate, shape_dict)
 
 def tensor_shape_to_int(shape):

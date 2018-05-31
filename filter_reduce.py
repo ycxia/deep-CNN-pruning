@@ -33,8 +33,6 @@ def reduceFilter(sess, input,  target_index, target_dim, shape):
             rightStart.append(0)
         left_start.append(0)
     left = tf.slice(input, left_start, leftSize)
-    print(rightStart)
-    print(rightSize)
     right = tf.slice(input, rightStart, rightSize)
     ret = tf.concat([left, right], target_dim)
     sess.run(tf.assign(input, ret, validate_shape=False))
