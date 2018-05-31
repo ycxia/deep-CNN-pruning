@@ -115,7 +115,8 @@ class VGG16:
         try:
             saver.restore(sess, weight_saver_dir)
             return True
-        except BaseException:
+        except BaseException as e:
+            print(e)
             sess.run(tf.global_variables_initializer())
             return False
 
