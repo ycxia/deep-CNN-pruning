@@ -65,12 +65,10 @@ def seblock_channel_select(channel_weight,compress_rate):
     # channel_weight = np.reshape(channel_weight,(-1,channel_weight.shape[3]))
 
     channel_weight = np.mean(channel_weight,axis=(0))
-    print(channel_weight)
     prune_num = int(channel_weight.shape[0]*compress_rate)
     index = channel_weight.argsort()[0:prune_num]
     index.sort()
     index = index[::-1]
-    print(index)
     return index
 
 def seblock_prune(sess, filters_dict, seblock_output, compress_rate, shape_dict):
