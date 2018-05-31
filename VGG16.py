@@ -1,8 +1,9 @@
 import tensorflow as tf
 
 class VGG16:
-    def __init__(self,lbda):
+    def __init__(self,lbda,prune_rate):
         # channel_nums = [64,64,128,128,256,256,256,512,512,512,512,512]
+        self.prune_rate = prune_rate
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
         self.y_ = tf.placeholder(tf.int64, shape=(None,))
         self.isTrain = tf.placeholder(tf.bool)
@@ -11,7 +12,7 @@ class VGG16:
 
     def build_model(self):
         with tf.variable_scope("block_1"):
-            self.output1 = self.conv2d_with_relu(self.x, 64, "conv_layer_1")
+            self.output1 = self.conv2d_with_relu(self.x, int(64*self.prune_rate), "conv_layer_1")
             self.output1 = tf.layers.dropout(self.output1,0.3,training=self.isTrain)
             self.output2 = self.conv2d_with_relu(self.output1, 64, "conv_layer_2")
             pooled = tf.nn.max_pool(self.output2, [1,2,2,1], [1,2,2,1],'VALID')
