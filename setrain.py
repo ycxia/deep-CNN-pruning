@@ -5,6 +5,7 @@ from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 from util import Cifar10Dataset
 import numpy as np
+from prune import vgg_prune,tensor_shape_to_int,seblock_channel_select,seblock_prune
 
 flags = tf.app.flags
 flags.DEFINE_integer("epoch", 100, "Epoch to train [25]")
@@ -30,39 +31,44 @@ def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoi
         else:
             print("No checkpoint file,weight inited!")
 
-        se, loss, acc = sess.run([model.seblock_output[0], model.loss, model.accaury],
-                             feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
-        print("Model init stat: loss is {},accuary is {}".format(loss, acc))
-        print("seblock output is {}".format(se[0]))
-        max_acc = max(acc, 0.84)
-        train_data_size = len(data_set.train_label)
-        batch_num = train_data_size // batch_size
-        for epoch in range(epoch_num):
-            # 每个epoch都打乱数据顺序
-            random_order = np.random.permutation(train_data_size)
-            for i in range(batch_num):
-                batch_index = random_order[i * batch_size: min(i * batch_size + batch_size, train_data_size)]
-                batch_x = data_set.train_x[batch_index]
-                batch_label = data_set.train_label[batch_index]
-                # 数据增强
-                batch_x = data_set.data_argument(batch_x)
-                batch_x = data_set.normalize(batch_x)
-                sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
-                if i % 100 == 0:
-                    train_loss, train_acc = sess.run([model.loss, model.accaury],
-                                                     feed_dict={model.x: batch_x,
-                                                                model.y_: batch_label,
-                                                                model.isTrain: False})
-                    print("{}/{} batch: train loss is {:.3f},acc is {:.2f}.".format(i, batch_num,train_loss, train_acc))
-            se, loss, acc = sess.run([model.seblock_output[0], model.loss, model.accaury],
-                                 feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
-            print("seblock output is {}".format(se[0]))
-            print("{} epoch: loss is {},accuary is {}".format(epoch, loss, acc))
-            # if acc > max_acc:
-            #     saver.save(sess, "{}_{:.2f}".format(checkpoint_dir, acc))
-            #     max_acc = acc
-            #     print("{} epoch weight save success!".format(epoch))
-        print("Training end!")
+        # se, loss, acc = sess.run([model.seblock_output[0], model.loss, model.accaury],
+        #                      feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
+        # print("Model init stat: loss is {},accuary is {}".format(loss, acc))
+        # print("seblock output is {}".format(se[0]))
+        # max_acc = max(acc, 0.84)
+        # train_data_size = len(data_set.train_label)
+        # batch_num = train_data_size // batch_size
+        # for epoch in range(10):
+        #     # 每个epoch都打乱数据顺序
+        #     random_order = np.random.permutation(train_data_size)
+        #     for i in range(batch_num):
+        #         batch_index = random_order[i * batch_size: min(i * batch_size + batch_size, train_data_size)]
+        #         batch_x = data_set.train_x[batch_index]
+        #         batch_label = data_set.train_label[batch_index]
+        #         # 数据增强
+        #         batch_x = data_set.data_argument(batch_x)
+        #         batch_x = data_set.normalize(batch_x)
+        #         sess.run(train_step, feed_dict={model.x: batch_x, model.y_: batch_label, model.isTrain: True})
+        #         if i % 100 == 0:
+        #             train_loss, train_acc = sess.run([model.loss, model.accaury],
+        #                                              feed_dict={model.x: batch_x,
+        #                                                         model.y_: batch_label,
+        #                                                         model.isTrain: False})
+        #             print("{}/{} batch: train loss is {:.3f},acc is {:.2f}.".format(i, batch_num,train_loss, train_acc))
+        #     se, loss, acc = sess.run([model.seblock_output[0], model.loss, model.accaury],
+        #                          feed_dict={model.x: data_set.test_x, model.y_: data_set.test_label, model.isTrain: False})
+        #     print("seblock output is {}".format(se[0]))
+        #     print("{} epoch: loss is {},accuary is {}".format(epoch, loss, acc))
+        #     # if acc > max_acc:
+        #     #     saver.save(sess, "{}_{:.2f}".format(checkpoint_dir, acc))
+        #     #     max_acc = acc
+        #     #     print("{} epoch weight save success!".format(epoch))
+        # print("Training end!")
+        # saver2 = tf.train.Saver(max_to_keep=1)
+        # saver2.save(sess, "{}_after_setrain".format(checkpoint_dir))
+        # print("Checkpoint saved, acc is {.4f}".format(acc))
+        vgg_prune(sess,data_set,model,"block_1/conv_layer_1", "block_1/conv_layer_2",0.3,0)
+        saver.save(sess, "{}_after_pruning".format(checkpoint_dir))
 
 def main(_):
     batch_size = FLAGS.batch_size
@@ -81,6 +87,9 @@ def main(_):
     print("Train data load success,train set shape:{}".format(cifar10.train_x.shape))
     cifar10.load_test_data()
     print("Test data load success,test set shape:{}".format(cifar10.test_x.shape))
+    cifar10.load_prune_data()
+    print("Prune data load success,prune set shape:{}".format(cifar10.prune_x.shape))
+
     model = None
     if model_name == "VGG16SEBlock":
         model = VGG16SEBlock(l2_lambda)

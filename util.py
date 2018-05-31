@@ -24,6 +24,7 @@ class Cifar10Dataset:
             # iaa.Crop(px=(0, 4)),  # crop images from each side by 0 to 4px (randomly chosen)
             iaa.Fliplr(0.5),  # horizontally flip 50% of the images
         ])
+        self.prune_data_simple_num = 100 #剪枝时每个类取多少样本
     def load_train_data(self):
         file_list = glob(os.path.join(self.dir, 'data*'))
         self.train_x = np.array([])
@@ -54,15 +55,17 @@ class Cifar10Dataset:
         self.train_label = self.train_label[permutation]
 
     def load_prune_data(self):
-        self.prune_x = np.array([])
+        self.prune_x = []
         all_count = 0
-        class_count = np.zeros(shape=(10))
-        for image,label in self.train_x,self.train_label:
-            if class_count[label]<10 :
-                all_count+=1
-                class_count[label]+=1
-                self.prune_x = np.concatenate(self.prune_x,image)
-                if all_count==10*10 :
+        class_count = np.zeros(self.prune_data_simple_num, dtype=int)
+        for (image,label) in zip(self.train_x,self.train_label):
+            label = int(label)
+            if class_count[label] < self.prune_data_simple_num:
+                all_count += 1
+                class_count[label] += 1
+                self.prune_x.append(image)
+                if all_count == 10*self.prune_data_simple_num:
+                    self.prune_x = np.array(self.prune_x)
                     self.prune_x = np.reshape(self.prune_x, (-1, 32, 32, 3))
                     return True
         return False

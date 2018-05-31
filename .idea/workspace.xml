@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/VGG16-filterTensor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VGG16-filterTensor.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VGG16SEBlock.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16SEBlock.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/filter_reduce.py" beforeDir="false" afterPath="$PROJECT_DIR$/filter_reduce.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prune.py" beforeDir="false" afterPath="$PROJECT_DIR$/prune.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setrain.py" beforeDir="false" afterPath="$PROJECT_DIR$/setrain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,34 +19,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/VGG16_filter_available$test.coverage" NAME="test Coverage Results" MODIFIED="1525255381973" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/deep_CNN_pruning$test.coverage" NAME="test Coverage Results" MODIFIED="1527336562615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/VGG16_filter_available$test.coverage" NAME="test Coverage Results" MODIFIED="1527123490374" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VGG16.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/VGG16.py">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="13" column="74" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="74" />
+            <state relative-caret-position="180">
+              <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResNet20SEBlock.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ResNet20SEBlock.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="VGG16SEBlock.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VGG16SEBlock.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2049">
-              <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+            <state relative-caret-position="-1386">
+              <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -54,8 +50,8 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-502">
-              <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            <state relative-caret-position="-234">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -63,11 +59,41 @@
       <file leaf-file-name="util.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
-              <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+            <state relative-caret-position="94">
+              <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="multiarray.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1247971764/numpy/core/multiarray.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="10080">
+              <caret line="560" column="4" selection-start-line="560" selection-start-column="4" selection-end-line="560" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="prune.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/prune.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+              <folding>
+                <element signature="e#1#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="filter_reduce.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/filter_reduce.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="39" column="17" lean-forward="true" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -76,28 +102,10 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="311">
-                <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="30" />
+              <first_editor relative-caret-position="470">
+                <caret line="28" column="150" selection-start-line="28" selection-start-column="102" selection-end-line="28" selection-end-column="150" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prune.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/prune.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="10" selection-start-column="10" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -105,8 +113,8 @@
       <file leaf-file-name="setrain.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-135">
-              <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+            <state relative-caret-position="324">
+              <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -128,8 +136,10 @@
       <find>bat</find>
       <find>batch</find>
       <find>zip</find>
-      <find>ten</find>
-      <find>conv2d_with_relu_seblock</find>
+      <find>kernel_initializer</find>
+      <find>weight</find>
+      <find>seblock_prune</find>
+      <find>shape</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -145,22 +155,22 @@
       <list>
         <option value="$PROJECT_DIR$/vgg16.py" />
         <option value="$PROJECT_DIR$/vgg16_cifar10.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/VGG16_Cifar10.py" />
         <option value="$PROJECT_DIR$/VGG16Imagenet.py" />
-        <option value="$PROJECT_DIR$/util.py" />
         <option value="$PROJECT_DIR$/ResNet.py" />
-        <option value="$PROJECT_DIR$/filter_reduce.py" />
-        <option value="$PROJECT_DIR$/prune.py" />
-        <option value="$PROJECT_DIR$/ResNet20SEBlock.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/VGG16Cifar10.py" />
         <option value="$PROJECT_DIR$/ResNet20.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/VGG16.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/ResNet20SEBlock.py" />
+        <option value="$PROJECT_DIR$/VGG16.py" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/setrain.py" />
         <option value="$PROJECT_DIR$/VGG16SEBlock.py" />
+        <option value="$PROJECT_DIR$/util.py" />
+        <option value="$PROJECT_DIR$/setrain.py" />
+        <option value="$PROJECT_DIR$/filter_reduce.py" />
+        <option value="$PROJECT_DIR$/prune.py" />
+        <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
   </component>
@@ -174,10 +184,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1358" />
-    <option name="y" value="-312" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-13" />
+    <option name="y" value="26" />
+    <option name="width" value="1309" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -185,24 +195,24 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="deep-CNN-pruning" type="b2602c69:ProjectViewProjectNode" />
-              <item name="deep-CNN-pruning" type="462c0819:PsiDirectoryNode" />
+              <item name="VGG16-filter-available" type="b2602c69:ProjectViewProjectNode" />
+              <item name="VGG16-filter-available" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="web.server" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -213,10 +223,10 @@
     </option>
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\pythonWorkspace\VGG16-filterTensor" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\pythonWorkspace\VGG16-filterTensor" />
     </key>
   </component>
@@ -292,181 +302,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520577482460</updated>
-    </task>
-    <task id="LOCAL-00020" summary="dropout区分训练和推断">
-      <created>1523102752375</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1523102752375</updated>
-    </task>
-    <task id="LOCAL-00021" summary="每个epoch完成保存权重">
-      <created>1523163306363</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1523163306363</updated>
-    </task>
-    <task id="LOCAL-00022" summary="运行传入checkpoint保存路径">
-      <created>1523164228293</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1523164228293</updated>
-    </task>
-    <task id="LOCAL-00023" summary="保存checkpoint">
-      <created>1523165028854</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1523165028854</updated>
-    </task>
-    <task id="LOCAL-00024" summary="保存checkpoint">
-      <created>1523166309973</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1523166309973</updated>
-    </task>
-    <task id="LOCAL-00025" summary="只保存一份checkpoint">
-      <created>1523193038250</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1523193038250</updated>
-    </task>
-    <task id="LOCAL-00026" summary="只保存一份精确率最高的checkpoint,并且大于0.8">
-      <created>1523193761125</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1523193761125</updated>
-    </task>
-    <task id="LOCAL-00027" summary="增加载入权重功能">
-      <created>1523235952348</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1523235952349</updated>
-    </task>
-    <task id="LOCAL-00028" summary="增加载入权重功能">
-      <created>1523236344775</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1523236344775</updated>
-    </task>
-    <task id="LOCAL-00029" summary="增加载入权重功能">
-      <created>1523236628687</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1523236628687</updated>
-    </task>
-    <task id="LOCAL-00030" summary="增加载入权重功能">
-      <created>1523238679991</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1523238679991</updated>
-    </task>
-    <task id="LOCAL-00031" summary="增加载入权重功能">
-      <created>1523238786077</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1523238786077</updated>
-    </task>
-    <task id="LOCAL-00032" summary="加入数据增强，适用sparse损失函数">
-      <created>1523258354362</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1523258354362</updated>
-    </task>
-    <task id="LOCAL-00033" summary="加载checkpoint异常处理">
-      <created>1523258873802</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1523258873802</updated>
-    </task>
-    <task id="LOCAL-00034" summary="每个epoch都打乱数据顺序">
-      <created>1523345362595</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1523345362595</updated>
-    </task>
-    <task id="LOCAL-00035" summary="加载thinet剪枝用sample时不检查训练数是否已加载">
-      <created>1523848609527</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1523848609527</updated>
-    </task>
-    <task id="LOCAL-00036" summary="seblock全连接使用可见剪枝的权重参数">
-      <created>1523935359934</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1523935359934</updated>
-    </task>
-    <task id="LOCAL-00037" summary="seblock全连接使用可见剪枝的权重参数">
-      <created>1523935773262</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1523935773262</updated>
-    </task>
-    <task id="LOCAL-00038" summary="字符串拼接修正">
-      <created>1523935845246</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1523935845246</updated>
-    </task>
-    <task id="LOCAL-00039" summary="张量命名重复修正">
-      <created>1523935920877</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1523935920877</updated>
-    </task>
-    <task id="LOCAL-00040" summary="训练函数重用">
-      <created>1524108913721</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1524108913721</updated>
-    </task>
-    <task id="LOCAL-00041" summary="去除seblock前的bn">
-      <created>1524122796306</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1524122796306</updated>
-    </task>
-    <task id="LOCAL-00042" summary="去除seblock前的bn">
-      <created>1524123360724</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1524123360724</updated>
-    </task>
-    <task id="LOCAL-00043" summary="去除seblock前的bn">
-      <created>1524123516769</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1524123516769</updated>
-    </task>
-    <task id="LOCAL-00044" summary="每个epoch输出第一个seblock的输出">
-      <created>1524123990450</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1524123990450</updated>
     </task>
     <task id="LOCAL-00045" summary="每个epoch输出第一个seblock的输出">
       <created>1524124945083</created>
@@ -573,70 +408,245 @@
       <option name="project" value="LOCAL" />
       <updated>1524822154524</updated>
     </task>
-    <task id="LOCAL-00060" summary="resnet加上weight_decay">
-      <created>1526796752054</created>
+    <task id="LOCAL-00060" summary="通用剪枝函数">
+      <created>1525255436326</created>
       <option name="number" value="00060" />
       <option name="presentableId" value="LOCAL-00060" />
       <option name="project" value="LOCAL" />
-      <updated>1526796752055</updated>
+      <updated>1525255436326</updated>
     </task>
-    <task id="LOCAL-00061" summary="resnet加上weight_decay">
-      <created>1526796927814</created>
+    <task id="LOCAL-00061" summary="vgg中bn层正确更新">
+      <created>1525327959901</created>
       <option name="number" value="00061" />
       <option name="presentableId" value="LOCAL-00061" />
       <option name="project" value="LOCAL" />
-      <updated>1526796927814</updated>
+      <updated>1525327959901</updated>
     </task>
-    <task id="LOCAL-00062" summary="testsize">
-      <created>1526797030073</created>
+    <task id="LOCAL-00062" summary="增加带seblock的ResNet">
+      <created>1526024835136</created>
       <option name="number" value="00062" />
       <option name="presentableId" value="LOCAL-00062" />
       <option name="project" value="LOCAL" />
-      <updated>1526797030073</updated>
+      <updated>1526024835142</updated>
     </task>
-    <task id="LOCAL-00063" summary="se-resnet增加weight_decay,换成带动量的sgd">
-      <created>1526833772761</created>
+    <task id="LOCAL-00063" summary="开始编写剪枝函数，修正vgg seblock错误">
+      <created>1526032964425</created>
       <option name="number" value="00063" />
       <option name="presentableId" value="LOCAL-00063" />
       <option name="project" value="LOCAL" />
-      <updated>1526833772761</updated>
+      <updated>1526032964425</updated>
     </task>
-    <task id="LOCAL-00064" summary="剪枝函数完成，需要传递全局shape">
-      <created>1526918757241</created>
+    <task id="LOCAL-00064" summary="resnet不适用adam，使用带动量的梯度下降">
+      <created>1526371391690</created>
       <option name="number" value="00064" />
       <option name="presentableId" value="LOCAL-00064" />
       <option name="project" value="LOCAL" />
-      <updated>1526918757242</updated>
+      <updated>1526371391691</updated>
     </task>
-    <task id="LOCAL-00065" summary="重写VGG网络">
-      <created>1527092934493</created>
+    <task id="LOCAL-00065" summary="main.py不输出seblock的权重">
+      <created>1526372867808</created>
       <option name="number" value="00065" />
       <option name="presentableId" value="LOCAL-00065" />
       <option name="project" value="LOCAL" />
-      <updated>1527092934494</updated>
+      <updated>1526372867808</updated>
     </task>
-    <task id="LOCAL-00066" summary="VGG16网络修正">
-      <created>1527263921923</created>
+    <task id="LOCAL-00066" summary="数据增强，random crop">
+      <created>1526526685882</created>
       <option name="number" value="00066" />
       <option name="presentableId" value="LOCAL-00066" />
       <option name="project" value="LOCAL" />
-      <updated>1527263921924</updated>
+      <updated>1526526685883</updated>
     </task>
-    <task id="LOCAL-00067" summary="readme">
-      <created>1527266679661</created>
+    <task id="LOCAL-00067" summary="数据增强，random crop">
+      <created>1526527468494</created>
       <option name="number" value="00067" />
       <option name="presentableId" value="LOCAL-00067" />
       <option name="project" value="LOCAL" />
-      <updated>1527266679661</updated>
+      <updated>1526527468494</updated>
     </task>
-    <task id="LOCAL-00068" summary="setrain.py 测试增加seblock能否加载权重">
-      <created>1527269012538</created>
+    <task id="LOCAL-00068" summary="数据增强，random crop">
+      <created>1526528010468</created>
       <option name="number" value="00068" />
       <option name="presentableId" value="LOCAL-00068" />
       <option name="project" value="LOCAL" />
-      <updated>1527269012539</updated>
+      <updated>1526528010468</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="数据增强，random crop">
+      <created>1526528151481</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1526528151481</updated>
+    </task>
+    <task id="LOCAL-00070" summary="数据增强，random crop">
+      <created>1526536192523</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1526536192523</updated>
+    </task>
+    <task id="LOCAL-00071" summary="数据增强修正">
+      <created>1526609212173</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1526609212174</updated>
+    </task>
+    <task id="LOCAL-00072" summary="数据增强修正">
+      <created>1526609421015</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1526609421015</updated>
+    </task>
+    <task id="LOCAL-00073" summary="数据增强修正">
+      <created>1526610174015</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1526610174015</updated>
+    </task>
+    <task id="LOCAL-00074" summary="数据增强修正">
+      <created>1526610294873</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1526610294873</updated>
+    </task>
+    <task id="LOCAL-00075" summary="数据增强修正">
+      <created>1526610358256</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1526610358256</updated>
+    </task>
+    <task id="LOCAL-00076" summary="数据增强修正">
+      <created>1526610508818</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1526610508818</updated>
+    </task>
+    <task id="LOCAL-00077" summary="使用iia做数据增强">
+      <created>1526622980543</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1526622980543</updated>
+    </task>
+    <task id="LOCAL-00078" summary="pad代替crop">
+      <created>1526623958973</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1526623958978</updated>
+    </task>
+    <task id="LOCAL-00079" summary="归一化在数据增强后进行">
+      <created>1526625225495</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1526625225495</updated>
+    </task>
+    <task id="LOCAL-00080" summary="归一化在数据增强后进行">
+      <created>1526625799887</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1526625799887</updated>
+    </task>
+    <task id="LOCAL-00081" summary="归一化在数据增强后进行">
+      <created>1526628096715</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1526628096715</updated>
+    </task>
+    <task id="LOCAL-00082" summary="pad and crop">
+      <created>1526628493126</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1526628493126</updated>
+    </task>
+    <task id="LOCAL-00083" summary="pad and crop">
+      <created>1526628845985</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1526628845985</updated>
+    </task>
+    <task id="LOCAL-00084" summary="pad and crop">
+      <created>1526628966717</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1526628966717</updated>
+    </task>
+    <task id="LOCAL-00085" summary="pad and crop">
+      <created>1526629228185</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1526629228185</updated>
+    </task>
+    <task id="LOCAL-00086" summary="pad and crop">
+      <created>1526629634947</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1526629634947</updated>
+    </task>
+    <task id="LOCAL-00087" summary="pad and crop">
+      <created>1526629853350</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1526629853350</updated>
+    </task>
+    <task id="LOCAL-00088" summary="pad and crop">
+      <created>1526630030682</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1526630030682</updated>
+    </task>
+    <task id="LOCAL-00089" summary="训练输出修改">
+      <created>1526630551628</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1526630551628</updated>
+    </task>
+    <task id="LOCAL-00090" summary="ckpt保存条件修改">
+      <created>1526633369066</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1526633369066</updated>
+    </task>
+    <task id="LOCAL-00091" summary="剪枝函数编写，resnet20加上bngamma正则">
+      <created>1526897679743</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1526897679743</updated>
+    </task>
+    <task id="LOCAL-00092" summary="剪枝函数完成，修改ResNet20SEBlock命名空间">
+      <created>1527129093908</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1527129093909</updated>
+    </task>
+    <task id="LOCAL-00093" summary="setrain的时候seblock加正则">
+      <created>1527734706339</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1527734706341</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TodoView">
@@ -649,18 +659,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1358" y="-312" width="1936" height="1056" extended-state="6" />
+    <frame x="56" y="-11" width="1311" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3297062" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5029762" side_tool="true" weight="0.8440567" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5029762" side_tool="true" weight="0.84514004" />
+      <window_info anchor="right" x="0" y="0" width="277" height="580" id="Documentation" order="5" side_tool="true" weight="0.26361483" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.3293348" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32824427" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.32919255" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32919255" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32763976" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4623773" />
-      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.49702382" weight="0.49182117" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15724947" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.4409938" />
+      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.49702382" weight="0.5574534" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2296764" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="4" />
@@ -671,11 +682,10 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="277" height="580" id="Documentation" order="5" side_tool="true" weight="0.26361483" />
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32861805" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -711,15 +721,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="加载checkpoint异常处理" />
-    <MESSAGE value="每个epoch都打乱数据顺序" />
-    <MESSAGE value="加载thinet剪枝用sample时不检查训练数是否已加载" />
-    <MESSAGE value="seblock全连接使用可见剪枝的权重参数" />
-    <MESSAGE value="字符串拼接修正" />
-    <MESSAGE value="张量命名重复修正" />
-    <MESSAGE value="训练函数重用" />
-    <MESSAGE value="去除seblock前的bn" />
-    <MESSAGE value="每个epoch输出第一个seblock的输出" />
     <MESSAGE value="seblock放到relu前面" />
     <MESSAGE value="去除seblock" />
     <MESSAGE value="加上SEBlock" />
@@ -728,23 +729,37 @@
     <MESSAGE value="resnet20完成，需要写训练代码" />
     <MESSAGE value="增加训练resnet20代码" />
     <MESSAGE value="bn层的正确使用" />
-    <MESSAGE value="resnet加上weight_decay" />
-    <MESSAGE value="testsize" />
-    <MESSAGE value="se-resnet增加weight_decay,换成带动量的sgd" />
-    <MESSAGE value="剪枝函数完成，需要传递全局shape" />
-    <MESSAGE value="重写VGG网络" />
-    <MESSAGE value="VGG16网络修正" />
-    <MESSAGE value="readme" />
-    <MESSAGE value="setrain.py 测试增加seblock能否加载权重" />
-    <option name="LAST_COMMIT_MESSAGE" value="setrain.py 测试增加seblock能否加载权重" />
+    <MESSAGE value="通用剪枝函数" />
+    <MESSAGE value="vgg中bn层正确更新" />
+    <MESSAGE value="增加带seblock的ResNet" />
+    <MESSAGE value="开始编写剪枝函数，修正vgg seblock错误" />
+    <MESSAGE value="resnet不适用adam，使用带动量的梯度下降" />
+    <MESSAGE value="main.py不输出seblock的权重" />
+    <MESSAGE value="数据增强，random crop" />
+    <MESSAGE value="数据增强修正" />
+    <MESSAGE value="使用iia做数据增强" />
+    <MESSAGE value="pad代替crop" />
+    <MESSAGE value="归一化在数据增强后进行" />
+    <MESSAGE value="pad and crop" />
+    <MESSAGE value="训练输出修改" />
+    <MESSAGE value="ckpt保存条件修改" />
+    <MESSAGE value="剪枝函数编写，resnet20加上bngamma正则" />
+    <MESSAGE value="剪枝函数完成，修改ResNet20SEBlock命名空间" />
+    <MESSAGE value="setrain的时候seblock加正则" />
+    <option name="LAST_COMMIT_MESSAGE" value="setrain的时候seblock加正则" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
       <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/nn_ops.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/os/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -754,208 +769,297 @@
     </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/nt.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/genericpath.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/saver.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/numpy/core/multiarray.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/losses/losses_impl.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/matplotlib/pyplot.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/builtins.py" />
     <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/224795266/numpy/random/mtrand.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/math_ops.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/gen_math_ops.py" />
     <entry file="file://$PROJECT_DIR$/VGG16Imagenet.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/base.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/core.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_array_ops.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/math_ops.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/constant_op.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/pooling.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/normalization.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/adam.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/rmsprop.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/variable_scope.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/array_ops.py" />
-    <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/traitlets/tests/test_traitlets.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/variables.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/state_ops.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/math_ops.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/gen_array_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="1261" column="18" selection-start-line="1261" selection-start-column="18" selection-end-line="1261" selection-end-column="18" />
+        <state relative-caret-position="-1836">
+          <caret line="3865" column="4" selection-start-line="3865" selection-start-column="4" selection-end-line="3865" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5b0187772bf77026/get_datasets.sh" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/BNZ.5b0187c62bf8a470/k_nearest_neighbor.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/variables.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/math_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15444">
-          <caret line="572" column="24" selection-start-line="572" selection-start-column="24" selection-end-line="572" selection-end-column="24" />
+        <state relative-caret-position="-442">
+          <caret line="1728" column="4" selection-start-line="1728" selection-start-column="4" selection-end-line="1728" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/framework/op_def_library.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/framework/constant_op.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11364">
-          <caret line="343" column="7" selection-start-line="343" selection-start-column="7" selection-end-line="343" selection-end-column="7" />
+        <state relative-caret-position="-766">
+          <caret line="134" column="4" selection-start-line="134" selection-start-column="4" selection-end-line="134" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/gen_state_ops.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/pooling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+        <state relative-caret-position="98">
+          <caret line="330" column="4" selection-start-line="330" selection-start-column="4" selection-end-line="330" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/state_ops.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/normalization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7074">
-          <caret line="273" column="28" selection-start-line="273" selection-start-column="28" selection-end-line="273" selection-end-column="28" />
+        <state relative-caret-position="-234">
+          <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/filter_reduce.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/adam.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="37" column="19" selection-start-line="37" selection-start-column="19" selection-end-line="37" selection-end-column="19" />
+        <state relative-caret-position="-685">
+          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$USER_HOME$/.local/lib/python3.5/site-packages/traitlets/tests/test_traitlets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2862">
-          <caret line="106" column="12" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
+        <state relative-caret-position="75">
+          <caret line="1077" column="16" selection-start-line="1077" selection-start-column="13" selection-end-line="1077" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/imgaug/imgaug.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/state_ops.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="4770">
+          <caret line="276" column="16" selection-start-line="276" selection-start-column="16" selection-end-line="276" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/layers/convolutional.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/adadelta.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="517" column="18" selection-start-line="517" selection-start-column="11" selection-end-line="517" selection-end-column="18" />
+        <state relative-caret-position="206">
+          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/ops/variable_scope.py">
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/rmsprop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34317">
-          <caret line="1298" column="22" selection-start-line="1298" selection-start-column="17" selection-end-line="1298" selection-end-column="22" />
+        <state relative-caret-position="330">
+          <caret line="59" column="29" lean-forward="true" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/gradient_descent.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/training/momentum.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="43" column="44" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/array_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1568" column="28" selection-start-line="1568" selection-start-column="23" selection-end-line="1568" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/image_ops_impl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="232" column="32" selection-start-line="232" selection-start-column="27" selection-end-line="232" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/random_ops.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="314" column="26" selection-start-line="314" selection-start-column="21" selection-end-line="314" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/lib/arraypad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="1230" column="39" selection-start-line="1230" selection-start-column="29" selection-end-line="1230" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/random/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1620" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1247971764/numpy/random/mtrand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-468">
+          <caret line="2009" column="30" lean-forward="true" selection-start-line="2009" selection-start-column="30" selection-end-line="2009" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/imgaug/augmenters/size.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1344">
+          <caret line="781" column="77" selection-start-line="781" selection-start-column="30" selection-end-line="781" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/imgaug/augmenters/meta.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="284" column="39" selection-start-line="284" selection-start-column="35" selection-end-line="284" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/core.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="221" column="71" lean-forward="true" selection-start-line="221" selection-start-column="71" selection-end-line="221" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="452" column="30" selection-start-line="452" selection-start-column="30" selection-end-line="452" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/layers/convolutional.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="136" column="31" selection-start-line="136" selection-start-column="31" selection-end-line="136" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VGG16Cifar10.py" />
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/variables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="1410" column="31" selection-start-line="1410" selection-start-column="4" selection-end-line="1410" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/tensorflow/python/ops/variable_scope.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-540">
+          <caret line="1185" column="22" selection-start-line="1185" selection-start-column="17" selection-end-line="1185" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ResNet20.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/prune.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-502">
-          <caret line="3" column="13" lean-forward="true" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/saver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-972">
-          <caret line="1204" column="18" selection-start-line="1204" selection-start-column="18" selection-end-line="1204" selection-end-column="18" />
+        <state relative-caret-position="36">
+          <caret line="2" column="43" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VGG16.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="13" column="74" selection-start-line="13" selection-start-column="62" selection-end-line="13" selection-end-column="74" />
+        <state relative-caret-position="990">
+          <caret line="55" column="6" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/client/session.py">
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1247971764/numpy/core/multiarray.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2234">
-          <caret line="789" column="48" selection-start-line="789" selection-start-column="41" selection-end-line="789" selection-end-column="48" />
+        <state relative-caret-position="10080">
+          <caret line="560" column="4" selection-start-line="560" selection-start-column="4" selection-end-line="560" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/momentum.py">
+    <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="46" column="23" selection-start-line="46" selection-start-column="23" selection-end-line="46" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+        <state relative-caret-position="-234">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/util.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+        <state relative-caret-position="94">
+          <caret line="78" column="26" lean-forward="true" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="311">
-            <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="30" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ResNet20SEBlock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/tensorflow/python/training/optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="586">
-          <caret line="381" column="64" lean-forward="true" selection-start-line="381" selection-start-column="64" selection-end-line="381" selection-end-column="64" />
+        <state relative-caret-position="-630">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setrain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-135">
-          <caret line="49" column="58" selection-start-line="49" selection-start-column="58" selection-end-line="49" selection-end-column="58" />
+        <state relative-caret-position="324">
+          <caret line="69" column="12" selection-start-line="69" selection-start-column="12" selection-end-line="69" selection-end-column="12" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python3.5/dist-packages/numpy/core/fromnumeric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2805" column="15" selection-start-line="2805" selection-start-column="15" selection-end-line="2805" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prune.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+          <folding>
+            <element signature="e#1#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/filter_reduce.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="39" column="17" lean-forward="true" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/VGG16SEBlock.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2049">
-          <caret line="44" column="54" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
+        <state relative-caret-position="-1386">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="470">
+            <caret line="28" column="150" selection-start-line="28" selection-start-column="102" selection-end-line="28" selection-end-column="150" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="43" column="3" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="3" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

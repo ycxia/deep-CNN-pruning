@@ -5,7 +5,6 @@ from ResNet20SEBlock import ResNet20SEBlock
 import tensorflow as tf
 from util import Cifar10Dataset
 import numpy as np
-import matplotlib.pyplot as plt # plt 用于显示图片
 
 
 flags = tf.app.flags
