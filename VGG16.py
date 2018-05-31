@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 class VGG16:
-    def __init__(self,lbda,prune_rate=0):
+    def __init__(self,lbda,prune_rate=0.3):
         # channel_nums = [64,64,128,128,256,256,256,512,512,512,512,512]
         self.prune_rate = prune_rate
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))
@@ -73,29 +73,6 @@ class VGG16:
             output = tf.layers.batch_normalization(output,training=self.isTrain,name="bn")
             output = tf.nn.relu(output)
             return output
-
-    def conv2d_with_relu_seblock(self, input, output_num,name):
-        with tf.variable_scope(name):
-            output = self.conv3x3(input,output_num,"conv")
-            output = tf.layers.batch_normalization(output,training=self.isTrain,name="bn")
-            # output = self.se_block(output,output_num,output_num//8,"seblock")
-            output = tf.nn.relu(output)
-            return output
-
-    # def se_block(self,input,output_num,squeeze_size,name):
-    #     with tf.variable_scope(name):
-    #         channel_size = input.shape[1]
-    #         output = tf.layers.average_pooling2d(input, [channel_size, channel_size], 1, 'valid')
-    #         output = tf.layers.flatten(output)
-    #         output = tf.layers.dense(output,squeeze_size,kernel_regularizer=self.regularizer,name="dense_1")
-    #         output = tf.nn.relu(output)
-    #         output = tf.layers.dense(output, output_num, kernel_regularizer=self.regularizer,name="dense_2")
-    #         output = tf.nn.sigmoid(output)
-    #         self.seblock_weight.append(output)
-    #         output = tf.expand_dims(output, 1)
-    #         output = tf.expand_dims(output, 1)
-    #         output = input*output
-    #         return output
 
     def get_train_step(self, learning_rate, ues_regularizer=False):
         self.loss = self.cross_entropy
