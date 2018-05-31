@@ -21,7 +21,7 @@ FLAGS = flags.FLAGS
 
 def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
     train_step = model.get_train_step(learning_rate, ues_regularizer)
-    saver = tf.train.Saver(tf.trainable_variables(),max_to_keep=1)
+    saver = tf.train.Saver(max_to_keep=1)
 
     with tf.Session() as sess:
         load_result = model.load_weight(sess, saver, checkpoint_dir)
