@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6dcbb91a-d6d1-4235-93a5-91bc16f41c0e" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/VGG16-filterTensor.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/VGG16-filterTensor.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prune.py" beforeDir="false" afterPath="$PROJECT_DIR$/prune.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/VGG16.py" beforeDir="false" afterPath="$PROJECT_DIR$/VGG16.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VGG16.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VGG16.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/VGG16.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+            <state relative-caret-position="432">
+              <caret line="16" column="82" lean-forward="true" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
             </state>
           </provider>
         </entry>
@@ -96,10 +92,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
+            <state relative-caret-position="-456">
               <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
             </state>
           </provider>
@@ -155,7 +151,6 @@
         <option value="$PROJECT_DIR$/ResNet20.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/ResNet20SEBlock.py" />
-        <option value="$PROJECT_DIR$/VGG16.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/VGG16SEBlock.py" />
         <option value="$PROJECT_DIR$/util.py" />
@@ -163,6 +158,7 @@
         <option value="$PROJECT_DIR$/filter_reduce.py" />
         <option value="$PROJECT_DIR$/prune.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/VGG16.py" />
       </list>
     </option>
   </component>
@@ -176,10 +172,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="y" value="26" />
-    <option name="width" value="1309" />
-    <option name="height" value="772" />
+    <option name="x" value="1358" />
+    <option name="y" value="-312" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -414,20 +410,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520577482460</updated>
-    </task>
-    <task id="LOCAL-00045" summary="每个epoch输出第一个seblock的输出">
-      <created>1524124945083</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1524124945083</updated>
-    </task>
-    <task id="LOCAL-00046" summary="seblock放到relu前面">
-      <created>1524126847619</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1524126847619</updated>
     </task>
     <task id="LOCAL-00047" summary="去除seblock">
       <created>1524128923766</created>
@@ -758,7 +740,21 @@
       <option name="project" value="LOCAL" />
       <updated>1527734706341</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="加载剪枝后的模型，只加载可训练参数">
+      <created>1527784856485</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1527784856486</updated>
+    </task>
+    <task id="LOCAL-00095" summary="打印异常">
+      <created>1527785044759</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1527785044759</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TodoView">
@@ -848,8 +844,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="seblock放到relu前面" />
-    <MESSAGE value="去除seblock" />
     <MESSAGE value="加上SEBlock" />
     <MESSAGE value="加入skip connection" />
     <MESSAGE value="resnet20，还需要加bn和最后的avg池化、全连接" />
@@ -873,7 +867,9 @@
     <MESSAGE value="剪枝函数编写，resnet20加上bngamma正则" />
     <MESSAGE value="剪枝函数完成，修改ResNet20SEBlock命名空间" />
     <MESSAGE value="setrain的时候seblock加正则" />
-    <option name="LAST_COMMIT_MESSAGE" value="setrain的时候seblock加正则" />
+    <MESSAGE value="加载剪枝后的模型，只加载可训练参数" />
+    <MESSAGE value="打印异常" />
+    <option name="LAST_COMMIT_MESSAGE" value="打印异常" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -992,13 +988,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VGG16.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/prune.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
@@ -1028,8 +1017,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="-456">
           <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VGG16.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="16" column="82" lean-forward="true" selection-start-line="16" selection-start-column="82" selection-end-line="16" selection-end-column="82" />
         </state>
       </provider>
     </entry>
