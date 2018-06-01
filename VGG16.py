@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 class VGG16:
-    def __init__(self,lbda,prune_rate=0.3):
+    def __init__(self,lbda,prune_rate=0):
         # channel_nums = [64,64,128,128,256,256,256,512,512,512,512,512]
         self.prune_rate = prune_rate
         self.x = tf.placeholder(tf.float32, shape=(None, 32, 32, 3))

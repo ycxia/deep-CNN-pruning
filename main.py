@@ -17,6 +17,8 @@ flags.DEFINE_integer("testset_size", 1000, "testset size [32]")
 flags.DEFINE_float("l2_lambda", 0.0001, "l2 term lambda")
 flags.DEFINE_float("l1_lambda", 0, "l1 term lambda")
 flags.DEFINE_string("model_name", "VGG16Cifar10", "model to train")
+flags.DEFINE_float("pruning_rate", 0, "pruning rate,channel should be pruned")
+
 FLAGS = flags.FLAGS
 
 def train(batch_size, epoch_num, data_set, learning_rate, testset_size, checkpoint_dir, model, ues_regularizer=False):
@@ -87,7 +89,7 @@ def main(_):
         model = VGG16SEBlock(l2_lambda)
         ues_regularizer = True
     elif model_name == "VGG16":
-        model = VGG16(l2_lambda)
+        model = VGG16(l2_lambda,FLAGS.pruning_rate)
         ues_regularizer = True
     elif model_name == "ResNet20":
         model = ResNet20(l2_lambda,l1_lambda)
